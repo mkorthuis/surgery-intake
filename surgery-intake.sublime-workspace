@@ -1,0 +1,401 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Form",
+				"FormGroup"
+			],
+			[
+				"id",
+				"id"
+			],
+			[
+				"Nav",
+				"Navbar"
+			],
+			[
+				"authe",
+				"authenticated"
+			],
+			[
+				"Link",
+				"LinkContainer"
+			],
+			[
+				"collapse",
+				"collapseOnSelect"
+			],
+			[
+				"Nava",
+				"NavbarHeader"
+			],
+			[
+				"todo",
+				"todos"
+			],
+			[
+				"tod",
+				"todo"
+			],
+			[
+				"delete",
+				"deleteTodo"
+			],
+			[
+				"red",
+				"reducers"
+			],
+			[
+				"message",
+				"messageReducer"
+			],
+			[
+				"workf",
+				"workflow-list"
+			],
+			[
+				"con",
+				"controller"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 119.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"Remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"Install",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Controle:",
+				"Package Control: Remove Package"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"upgr",
+				"Package Control: Upgrade/Overwrite All Packages"
+			],
+			[
+				"PHP Code Sniffer: ",
+				"PHP Code Sniffer: Sniff this file"
+			],
+			[
+				"Package Control: INsa",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 428.0
+	},
+	"console":
+	{
+		"height": 316.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"asd",
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/michaelkorthuis/Projects/Clinicalbox/surgery-intake"
+	],
+	"file_history":
+	[
+		"/Users/michaelkorthuis/Documents/Personal/ClinicalBox/2017-01-04-murali-farbod-mockup-notes.tx",
+		"/Users/michaelkorthuis/Desktop/job-notes.txt",
+		"/Users/michaelkorthuis/Documents/Personal/MedMal/2017-12-20-Martin-Stanford-Notes.txt",
+		"/Users/michaelkorthuis/Documents/Personal/Job/Engrapho Health/2017-12-20-MDAR.txt",
+		"/Users/michaelkorthuis/Projects/NewCo/examples/ctakes-web-client/src/main/webapp/index.jsp",
+		"/Users/michaelkorthuis/Projects/NewCo/nlp/src/main/resources/icd10",
+		"/Users/michaelkorthuis/Desktop/input.txt",
+		"/Users/michaelkorthuis/Desktop/techincal.txt",
+		"/Users/michaelkorthuis/Documents/Personal/Job/Engrapho Health/medical-coding-software.txt",
+		"/Users/michaelkorthuis/Documents/Personal/Job/Rebagg/2017-11-9-Rebagg.txt",
+		"/Users/michaelkorthuis/Documents/Personal/Job/Engrapho Health/engrapho-health.txt",
+		"/Users/michaelkorthuis/Documents/Personal/Job/Engrapho Health/john-meeting.txt",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/index.scss",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/components/signup/PageOne.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/components/signup/PageThree.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/components/signup/index.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/components/signup/PageTwo.js",
+		"/Users/michaelkorthuis/Documents/Personal/MedMal/2017-11-21-meeting-with-clarity.txt",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/reducers/User.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/components/shared/forms/FieldGroup.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/reducers/SignUp.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/store/index.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/actions/SignUp.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/actions/User.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/commands.txt",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/README.md",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/components/signup/pageOne.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/service/Authentication.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/components/header/index.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/components/login/index.js",
+		"/Users/michaelkorthuis/Projects/Personal/zephyrus/node_modules/react-bootstrap/dist/react-bootstrap.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/actions/user.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/components/quiz/index.js",
+		"/Users/michaelkorthuis/Projects/Personal/sample-worklist/src/components/TodoForm.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/App.js",
+		"/Users/michaelkorthuis/Projects/Personal/sample-worklist/node_modules/event-emitter/benchmark/many-on.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/components/portal/index.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/components/dashboard/index.js",
+		"/Users/michaelkorthuis/Projects/Personal/sample-worklist/src/components/TodoList.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/components/header/header.scss",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/index.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/index.css",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/components/home/index.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/components/header/header.css",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/containers/home/index.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/package.json",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/containers/login/index.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/containers/quiz/index.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/containers/signup/index.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/containers/doctor/index.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/store/Store.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/.gitignore",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/reducers/user.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/store",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/store/CreateStore.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/store/Reducers.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/store/Counter.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/routes/Index.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/.env.development",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/node_modules/symbol-observable/lib/index.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/components/header/Header.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/components/header/Header.css",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/components/header/Header.scss",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/App.scss",
+		"/Users/michaelkorthuis/Projects/Personal/zephyrus/src/components/header/Header.css",
+		"/Users/michaelkorthuis/Projects/Personal/zephyrus/src/components/header/Header.scss",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMalToo/commands.txt",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMalToo/src/components",
+		"/Users/michaelkorthuis/Desktop/2017-11-14-notes.txt",
+		"/Users/michaelkorthuis/Desktop/review.txt",
+		"/Users/michaelkorthuis/Desktop/2017-11-9-Wellframe.txt",
+		"/Users/michaelkorthuis/Desktop/2017-11-9-wellframe.txt",
+		"/Users/michaelkorthuis/Desktop/2017-11-9-Rebagg-Questions.txt",
+		"/Users/michaelkorthuis/Desktop/lori-notes.txt",
+		"/Users/michaelkorthuis/Desktop/ART : Captive Market notes.txt",
+		"/Users/michaelkorthuis/Desktop/oncology/oncology-notes",
+		"/Users/michaelkorthuis/Downloads/Environments/MySQL/Natural-Language-Processing",
+		"/Users/michaelkorthuis/Desktop/2017-10-17-notes.txt",
+		"/Users/michaelkorthuis/Desktop/2017-10-18-oak-notes.txt",
+		"/Users/michaelkorthuis/Desktop/oncology/10-25-2017-oncology-notes.txt",
+		"/Users/michaelkorthuis/Desktop/billing.txt",
+		"/Users/michaelkorthuis/Desktop/2017-10-17",
+		"/Users/michaelkorthuis/Projects/Samples/react-redux-starter-kit/package.json",
+		"/Users/michaelkorthuis/Desktop/to-review-2.txt",
+		"/Users/michaelkorthuis/Desktop/2017-10-10-Notes",
+		"/Users/michaelkorthuis/Desktop/to-review.txt",
+		"/Users/michaelkorthuis/Projects/Samples/react-redux-starter-kit/server/main.js",
+		"/Users/michaelkorthuis/Projects/NewCo/MedMal/src/App.css",
+		"/Users/michaelkorthuis/Projects/Personal/sample-worklist/src/components/Footer.js",
+		"/Users/michaelkorthuis/Desktop/2017-10-05-notes.txt",
+		"/Users/michaelkorthuis/Desktop/notes.txt",
+		"/Users/michaelkorthuis/Desktop/Envision-Files/2017-09-25-Mirza-Notes.txt",
+		"/Users/michaelkorthuis/Desktop/radiology.txt",
+		"/Users/michaelkorthuis/Desktop/2017-09-19-core-questions.txt",
+		"/Users/michaelkorthuis/Projects/Personal/zephyrus/src/components/header/Header.js",
+		"/Users/michaelkorthuis/Projects/Personal/zephyrus/src/App.js",
+		"/Users/michaelkorthuis/Projects/Personal/zephyrus/package.json",
+		"/Users/michaelkorthuis/Projects/Personal/zephyrus/src/components/header/header.css",
+		"/Users/michaelkorthuis/Projects/Personal/zephyrus/src/components/header/header.css.scss",
+		"/Users/michaelkorthuis/Projects/Personal/zephyrus/src/components/header/header.scss",
+		"/Users/michaelkorthuis/Projects/Personal/zephyrus/src/components/Header.js",
+		"/Users/michaelkorthuis/Projects/Personal/zephryus/src/App.css",
+		"/Users/michaelkorthuis/Projects/Personal/zephryus/src/App.js",
+		"/Users/michaelkorthuis/Projects/Personal/zephryus/src/components/Header.js",
+		"/Users/michaelkorthuis/Projects/Personal/zephryus/src/components/Main.js",
+		"/Users/michaelkorthuis/Projects/Personal/zephryus/src/components/Footer.js",
+		"/Users/michaelkorthuis/Projects/Personal/zephryus/src/index.js",
+		"/Users/michaelkorthuis/Projects/Personal/sample-worklist/src/App.js",
+		"/Users/michaelkorthuis/Projects/Personal/sample-worklist/package.json",
+		"/Users/michaelkorthuis/Desktop/context.html",
+		"/Users/michaelkorthuis/Projects/Personal/sample-worklist/node_modules/postcss-flexbugs-fixes/bugs/bug81a.js",
+		"/Users/michaelkorthuis/Desktop/Envision-Plan/envision-notes.txt",
+		"/Users/michaelkorthuis/Desktop/third-party.txt",
+		"/Users/michaelkorthuis/Projects/Personal/sample-worklist/src/reducers/messages.js",
+		"/Users/michaelkorthuis/Projects/Personal/sample-worklist/src/reducers/todo.js",
+		"/Users/michaelkorthuis/Desktop/stuff-now",
+		"/Users/michaelkorthuis/Projects/Personal/sample-worklist/src/components/Message.js",
+		"/Users/michaelkorthuis/Projects/Personal/sample-worklist/src/index.js",
+		"/Users/michaelkorthuis/Projects/Personal/sample-worklist/src/lib/todoServices.js",
+		"/Users/michaelkorthuis/Projects/Personal/sample-worklist/.env",
+		"/Users/michaelkorthuis/Projects/Personal/sample-worklist/.env.production",
+		"/Users/michaelkorthuis/Projects/Personal/sample-worklist/db.json",
+		"/Users/michaelkorthuis/Projects/Personal/sample-worklist/src/store.js",
+		"/Users/michaelkorthuis/Library/Application Support/Sublime Text 3/Packages/JsFormat/JsFormat.sublime-settings",
+		"/Users/michaelkorthuis/Library/Application Support/Sublime Text 3/Packages/User/JsFormat.sublime-settings",
+		"/Users/michaelkorthuis/Documents/Personal/React/key-react-tutorials",
+		"/Users/michaelkorthuis/Projects/Clinicalbox/admin-react/src/main.js",
+		"/Users/michaelkorthuis/Projects/Clinicalbox/admin-react/src/routes/Form/index.js"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 101.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"path": "/Users/michaelkorthuis/Projects/Clinicalbox/surgery-intake"
+		}
+	],
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"untitled"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 238.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
