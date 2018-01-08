@@ -6,7 +6,7 @@
 create-react-app surgery-intake
 
 # UI functionality
-yarn add react-bootstrap node-sass-chokidar
+yarn add react-bootstrap node-sass-chokidar bootstrap react-router-bootstrap 
 
 # Redux and Router
 yarn add redux react-redux react-router-dom react-router-redux@next redux-thunk
