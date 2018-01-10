@@ -9,9 +9,16 @@ import {
   Row,
   Col,
   Panel,
-  Button
+  Button,
+  FormGroup,
+  Radio,
+  ControlLabel,
+  FormControl
 } from 'react-bootstrap'
 import FieldGroup from '../forms/field-group'
+import {
+  states
+} from '../forms/lists'
 
 class PageOne extends Component {
 
@@ -73,7 +80,14 @@ class PageOne extends Component {
             />
           </Col>
           <Col md={2}>
-            Sex
+            <FormGroup>
+              <ControlLabel>Sex</ControlLabel>
+              <FormControl componentClass="select" placeholder="select">
+                <option value="select">Select</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </FormControl>
+            </FormGroup>
           </Col>
         </Row>
         </Panel.Body>
@@ -119,13 +133,17 @@ class PageOne extends Component {
               />
             </Col>
             <Col md={4}>
-              <FieldGroup
-                id="state"
-                type="text"
-                label="State"
-                defaultValue={this.props.state}
-                onChange={this.props.handleInputChange}
-              />
+              <FormGroup>
+                <ControlLabel>State</ControlLabel>
+                <FormControl componentClass="select" placeholder="select">
+                  <option value="select">Select</option>
+                  {
+                    states.map((state, index) => {
+                      return (<option key={index} value={state.abbreviation}>{state.name}</option>);
+                    })
+                  }
+                </FormControl>
+              </FormGroup>
             </Col>
           </Row>
         </Panel.Body>

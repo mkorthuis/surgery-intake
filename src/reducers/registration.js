@@ -3,7 +3,8 @@ export const REGISTRATION_UPDATE = "REGISTRATION_UPDATE";
 
 const initState = {
   page: 1,
-  firstName: ''
+  institutionName: 'Test Institution',
+  institutionAddress: '1167 Massachusetts Ave, Arlington, MA 02476'
 };
 
 export default (state = initState, action) => {
