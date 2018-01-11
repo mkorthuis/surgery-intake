@@ -135,7 +135,7 @@ class PageOne extends Component {
             <Col md={4}>
               <FormGroup>
                 <ControlLabel>State</ControlLabel>
-                <FormControl componentClass="select" placeholder="select">
+                <FormControl id="state" componentClass="select" placeholder="select">
                   <option value="select">Select</option>
                   {
                     states.map((state, index) => {

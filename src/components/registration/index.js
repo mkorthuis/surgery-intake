@@ -21,12 +21,14 @@ import RegisterPageTwo from './page-two'
 import RegisterPageThree from './page-three'
 import RegisterPageFour from './page-four'
 
+
 class Registration extends Component {
 
   handleInputChange = (evt) => {
-    evt.preventDefault();
+    const value = evt.target.type === 'checkbox' ? evt.target.checked : evt.target.value;
+
     this.props.updateRegistration({
-      [evt.target.id]: evt.target.value
+      [evt.target.id]: value
     });
   };
 

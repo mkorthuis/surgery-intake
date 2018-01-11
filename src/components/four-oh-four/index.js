@@ -2,22 +2,16 @@ import React, {
   Component
 } from 'react'
 import {
-  LinkContainer
-} from 'react-router-bootstrap';
-import {
   connect
 } from 'react-redux'
 
-import './header.css';
-
-class Header extends Component {
+class FourOhFour extends Component {
 
   render() {
     return (
-      <div></div>
-    )
+      <div>This is the 404 Page</div>
+    );
   }
-
 }
 
 export default connect(
@@ -26,4 +20,4 @@ export default connect(
   }), {
 
   }
-)(Header)
+)(FourOhFour)
