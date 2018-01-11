@@ -14,8 +14,20 @@ import FieldGroup from '../forms/field-group'
 import {
   connect
 } from 'react-redux'
+import store, {
+  history
+} from '../../store';
+
 
 class PageTwo extends Component {
+
+  constructor() {
+    super();
+    store.subscribe(() => {
+      //this.refs.institutionName.props.disabled = null;
+      console.log('Here!');
+    });
+  }
 
   handleSubmit = (evt) => {
     this.props.goToPage(3);
@@ -29,10 +41,6 @@ class PageTwo extends Component {
     // } else {
     //   this.refs.institutionName.disabled = true;
     // }
-  }
-
-  componentWillReceiveProps(props) {
-    console.log('Recieved!');
   }
 
   getMedicalFacility() {
@@ -78,11 +86,106 @@ class PageTwo extends Component {
     )
   }
 
+  getDisclosuresPolicies() {
+    return (
+      <Panel>
+        <Panel.Heading>Disclosures and Policies</Panel.Heading>
+        <Panel.Body>
+          TBD
+        </Panel.Body>
+      </Panel>
+    )
+  }
+
+  getDoctorAndVisit() {
+    return (
+      <Panel>
+        <Panel.Heading>Doctor & Visit Details</Panel.Heading>
+        <Panel.Body>
+          TBD
+        </Panel.Body> 
+      </Panel>
+    )
+  }
+
+  getContactPreferences() {
+    return (
+      <Panel>
+        <Panel.Heading>Contact Preferences</Panel.Heading>
+        <Panel.Body>
+          TBD
+        </Panel.Body>
+      </Panel>
+    )
+  }
+
+  getFamilyContact() {
+    return (
+      <Panel>
+        <Panel.Heading>Family Contact</Panel.Heading>
+        <Panel.Body>
+          TBD
+        </Panel.Body>
+      </Panel>
+    )
+  }
+
+  getInsuranceInformation() {
+    return (
+      <Panel>
+        <Panel.Heading>Insurance Information</Panel.Heading>
+        <Panel.Body>
+          TBD
+        </Panel.Body>
+      </Panel>
+    )
+  }
+
+  getMedicalFacilityInformation() {
+    return (
+      <Panel>
+        <Panel.Heading>Medical Facility Information</Panel.Heading>
+        <Panel.Body>
+          TBD
+        </Panel.Body>
+      </Panel>
+    )
+  }
+
+  getPreferencesAdditionalInformation() {
+    return (
+      <Panel>
+        <Panel.Heading>Preferences and Additional Information</Panel.Heading>
+        <Panel.Body>
+          TBD
+        </Panel.Body>
+      </Panel>
+    )
+  }
+
+  getEmergencyContactInformation() {
+    return (
+      <Panel>
+        <Panel.Heading>Emergency Contact Information</Panel.Heading>
+        <Panel.Body>
+          TBD
+        </Panel.Body>
+      </Panel>
+    )
+  }
+
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
         <Grid>
           {this.getMedicalFacility()}
+          {this.getDisclosuresPolicies()}
+          {this.getContactPreferences()}
+          {this.getFamilyContact()}
+          {this.getInsuranceInformation()}
+          {this.getMedicalFacilityInformation()}
+          {this.getPreferencesAdditionalInformation()}
+          {this.getEmergencyContactInformation()}
           <Row>
             <Col xs={12}>
               <Button type="submit">

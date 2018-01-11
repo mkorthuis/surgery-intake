@@ -18,26 +18,33 @@ class PageThree extends Component {
     this.props.goToPage(1);
   }
 
+  getRowEntry = (name, value) => {
+    return (
+      <Row>
+        <Col xs={12}>
+          {name}: {value}
+        </Col>
+      </Row>
+    )
+  }
+
   getPatientInformation() {
     return (
       <Panel>
         <Panel.Heading>Patient Information</Panel.Heading>
         <Panel.Body>
-          <Row>
-            <Col xs={12}>
-              First Name - {this.props.firstName}
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              Middle Initial - {this.props.middleInitial}
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              Last Name - {this.props.lastName}
-            </Col>
-          </Row>
+          {this.getRowEntry('Name', this.props.firstName + ' ' + this.props.middleInitial + ' ' + this.props.lastName)}
+          {this.getRowEntry('Preferred Name', this.props.preferredName)}
+          {this.getRowEntry('Date of Birth', this.props.dateOfBirth)}
+          {this.getRowEntry('Address One', this.props.addressOne)}
+          {this.getRowEntry('Address Two', this.props.addressTwo)}
+          {this.getRowEntry('City', this.props.city)}
+          {this.getRowEntry('State', this.props.state)}
+          {this.getRowEntry('Mobile Phone', this.props.mobilePhone)}
+          {this.getRowEntry('Home Phone', this.props.homePhone)}
+          {this.getRowEntry('Work Phone', this.props.workPhone)}
+          {this.getRowEntry('Work Phone Extension', this.props.workPhoneExtension)}
+          
         </Panel.Body>
       </Panel>
     )
