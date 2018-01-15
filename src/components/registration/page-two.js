@@ -16,9 +16,7 @@ import FieldGroup from '../forms/field-group'
 import {
   connect
 } from 'react-redux'
-import store, {
-  history
-} from '../../store';
+import union from 'lodash/union'
 
 
 class PageTwo extends Component {
@@ -29,56 +27,14 @@ class PageTwo extends Component {
 
   docs = [{
     name: 'Murali Menon',
-    id: 1
+    value: 1
   }, {
     name: 'Farbod Hagigi',
-    id: 2
+    value: 2
   }, {
     name: 'Unknown',
-    id: -99
+    value: -99
   }];
-
-  getDisabledInstitutionNameGroup() {
-    if (this.props.incorrectFacility) {
-      return <FieldGroup
-                id="institutionName"
-                type="text"
-                label="Institution Name"
-                defaultValue={this.props.institutionName}
-                onChange={this.props.handleInputChange}
-                />
-    } else {
-      return <FieldGroup
-                id="institutionName"
-                type="text"
-                label="Institution Name"
-                defaultValue={this.props.institutionName}
-                onChange={this.props.handleInputChange}
-                disabled
-                />
-    }
-  }
-
-  getDisabledInstitutionAddressGroup() {
-    if (this.props.incorrectFacility) {
-      return <FieldGroup
-        id="institutionAddress"
-        type="text"
-        label="Institution Address"
-        defaultValue={this.props.institutionAddress}
-        onChange={this.props.handleInputChange}
-        />
-    } else {
-      return <FieldGroup
-        id="institutionAddress"
-        type="text"
-        label="Institution Address"
-        defaultValue={this.props.institutionAddress}
-        onChange={this.props.handleInputChange}
-        disabled
-        />
-    }
-  }
 
   getMedicalFacility() {
     return (
@@ -87,19 +43,37 @@ class PageTwo extends Component {
         <Panel.Body>
           <Row>
             <Col xs={12}>
-              {this.getDisabledInstitutionNameGroup()}
+              <FieldGroup
+                id="institutionName"
+                type="text"
+                label="Institution Name"
+                value={this.props.institutionName}
+                onChange={this.props.handleInputChange}
+                disabled={this.props.incorrectFacility.value}
+                />
             </Col>
           </Row>
           <Row>
             <Col xs={12}>
-              {this.getDisabledInstitutionAddressGroup()}
+              <FieldGroup
+                id="institutionAddress"
+                type="text"
+                label="Institution Address"
+                value={this.props.institutionAddress}
+                onChange={this.props.handleInputChange}
+                disabled={this.props.incorrectFacility.value}
+                />
             </Col>
           </Row>
           <Row>
             <Col xs={12}>
-              <FormGroup>
-                <Checkbox id="incorrectFacility" onChange={this.props.handleInputChange} defaultChecked={this.props.incorrectFacility}  inline>Incorrect Facility? </Checkbox>
-              </FormGroup>
+              <FieldGroup
+                id="incorrectFacility"
+                type="checkbox"
+                label="Incorrect Facility?"
+                value={this.props.incorrectFacility}
+                onChange={this.props.handleInputChange} 
+                />
             </Col>
           </Row>
         </Panel.Body>
@@ -119,12 +93,24 @@ class PageTwo extends Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <Checkbox id="understandPatientNotice" onChange={this.props.handleInputChange} defaultChecked={this.props.understandPatientNotice}  inline><ControlLabel>I understand and accept the Notice of Patients. "Read Document"</ControlLabel></Checkbox>
+              <FieldGroup
+                id="understandPatientNotice"
+                type="checkbox"
+                label="I understand and accept the Notice of Patients. (Read Document)"
+                value={this.props.understandPatientNotice}
+                onChange={this.props.handleInputChange} 
+                />
             </Col>
           </Row>
           <Row>
             <Col xs={12}>
-              <Checkbox id="ackOwnership" onChange={this.props.handleInputChange} defaultChecked={this.props.ackOwnership}  inline><ControlLabel>I understand and accept the Acknowledgement of Ownership. "Read Document"</ControlLabel></Checkbox>
+              <FieldGroup
+                id="ackOwnership"
+                type="checkbox"
+                label="I understand and accept the Acknowledgement of Ownership. (Read Document)"
+                value={this.props.ackOwnership}
+                onChange={this.props.handleInputChange} 
+                />
             </Col>
           </Row>
         </Panel.Body>
@@ -139,29 +125,24 @@ class PageTwo extends Component {
         <Panel.Body>
           <Row>
             <Col md={6}>
-              <FormGroup>
-                <ControlLabel>Who is performing the procedure, surgery or consult?</ControlLabel>
-                <FormControl id="docPerforming" componentClass="select" placeholder="select">
-                  <option value="select">Select</option>
-                  {
-                    this.docs.map((doc, index) => {
-                      return (<option key={index} value={doc.id}>{doc.name}</option>);
-                    })
-                  }
-                </FormControl>
-              </FormGroup>
+              <FieldGroup
+                id="docPerforming"
+                type="select"
+                label="Who is performing the procedure, surgery or consult?"
+                value={this.props.docPerforming}
+                options={union([{name:'Select', value:''}],this.docs)}
+                onChange={this.props.handleInputChange}
+                />
             </Col>
             <Col md={6}>
-              <FormGroup>
-                <ControlLabel>Procedure Site</ControlLabel>
-                <FormControl id="procedureSite" componentClass="select" placeholder="select">
-                  <option value="select">Select</option>
-                  <option value="left">Left</option>
-                  <option value="right">Right</option>
-                  <option value="both">Both</option>
-                  <option value="notApplicable">Not Applicable</option>
-                </FormControl>
-              </FormGroup>
+              <FieldGroup
+                id="procedureSite"
+                type="select"
+                label="Procedure Site"
+                value={this.props.procedureSite}
+                options={[{name:'Select', value:''},{name:'Left', value:'left'},{name:'Right', value:'right'},{name:'Both', value:'both'},{name:'Not Applicable', value:'notApplicable'}]}
+                onChange={this.props.handleInputChange}
+                />
             </Col>
           </Row>
           <Row>
@@ -170,7 +151,7 @@ class PageTwo extends Component {
                 id="procedureSurgeryConsultType"
                 type="text"
                 label="Type of Procedure, Surgery, or Consult"
-                defaultValue={this.props.procedureSurgeryConsultType}
+                value={this.props.procedureSurgeryConsultType}
                 onChange={this.props.handleInputChange}
                 />
             </Col>
@@ -181,7 +162,7 @@ class PageTwo extends Component {
                 id="procedureSurgeryConsultReason"
                 type="text"
                 label="Reason for Procedure, Surgery, or Consult"
-                defaultValue={this.props.procedureSurgeryConsultReason}
+                value={this.props.procedureSurgeryConsultReason}
                 onChange={this.props.handleInputChange}
                 />
             </Col>
@@ -198,36 +179,36 @@ class PageTwo extends Component {
         <Panel.Body>
           <Row>
             <Col md={6}>
-              <FormGroup>
-                <ControlLabel>Choose a weekday contact phone number</ControlLabel>
-                <FormControl id="weekdayPhoneType" componentClass="select" placeholder="select">
-                  <option value="mobile">Mobile</option>
-                  <option value="home">Home</option>
-                  <option value="work">Work / Other</option>
-                </FormControl>
-              </FormGroup>
+              <FieldGroup
+                id="weekdayPhoneType"
+                type="select"
+                label="Choose a weekday contact phone number"
+                value={this.props.weekdayPhoneType}
+                options={[{name:'Select', value:''},{name:'Mobile', value:'mobile'},{name:'Home', value:'home'},{name:'Work / Other', value:'work'}]}
+                onChange={this.props.handleInputChange}
+                />
             </Col>
             <Col md={6}>
-              <FormGroup>
-                <ControlLabel>Choose the number where the healthcare team can leave a voice message</ControlLabel>
-                <FormControl id="voiceMailNumber" componentClass="select" placeholder="select">
-                  <option value="mobile">Mobile</option>
-                  <option value="home">Home</option>
-                  <option value="work">Work / Other</option>
-                </FormControl>
-              </FormGroup>
+              <FieldGroup
+                id="voiceMailNumber"
+                type="select"
+                label="Choose the number where the healthcare team can leave a voice message"
+                value={this.props.voiceMailNumber}
+                options={[{name:'Select', value:''},{name:'Mobile', value:'mobile'},{name:'Home', value:'home'},{name:'Work / Other', value:'work'}]}
+                onChange={this.props.handleInputChange}
+                />
             </Col>
           </Row>
           <Row>
             <Col md={6}>
-              <FormGroup>
-                <ControlLabel>Can the healthcare team send you a text message with healthcare information?</ControlLabel>
-                <FormControl id="textMessageApproval" componentClass="select" placeholder="select">
-                  <option value="select">Select</option>
-                  <option value="Yes">Yes</option>
-                  <option value="No">No</option>
-                </FormControl>
-              </FormGroup>
+              <FieldGroup
+                id="textMessageApproval"
+                type="select"
+                label="Can the healthcare team send you a text message with healthcare information?"
+                value={this.props.textMessageApproval}
+                options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
+                onChange={this.props.handleInputChange}
+                />
             </Col>
           </Row>
         </Panel.Body>
@@ -242,26 +223,24 @@ class PageTwo extends Component {
         <Panel.Body>
           <Row>
             <Col md={6}>
-              <FormGroup>
-                <ControlLabel>In case of an emergency, is there a family member we should contact?</ControlLabel>
-                <FormControl id="familyMemberContact" componentClass="select" placeholder="select">
-                  <option value="select">Select</option>
-                  <option value="Yes">Yes</option>
-                  <option value="No">No</option>
-                </FormControl>
-              </FormGroup>
+              <FieldGroup
+                id="familyMemberContact"
+                type="select"
+                label="In case of an emergency, is there a family member we should contact?"
+                value={this.props.familyMemberContact}
+                options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
+                onChange={this.props.handleInputChange}
+                />
             </Col>
             <Col md={6}>
-              <FormGroup>
-                <ControlLabel>Family Member Relationship to the Patient</ControlLabel>
-                <FormControl id="familyMemberContact" componentClass="select" placeholder="select">
-                  <option value="select">Select</option>
-                  <option value="mother">Mother</option>
-                  <option value="father">Father</option>
-                  <option value="son">Son</option>
-                  <option value="daughter">Daughter</option>
-                </FormControl>
-              </FormGroup>
+              <FieldGroup
+                id="familyMemberRelationship"
+                type="select"
+                label="Family Member Relationship to the Patient"
+                value={this.props.familyMemberRelationship}
+                options={[{name:'Select', value:''},{name:'Mother', value:'mother'},{name:'Father', value:'father'},{name:'Son', value:'son'},{name:'Daughter',value:'daughter'}]}
+                onChange={this.props.handleInputChange}
+                />
             </Col>
           </Row>
           <Row>
@@ -270,7 +249,7 @@ class PageTwo extends Component {
                 id="familyMemberFirstName"
                 type="text"
                 label="Family Member First Name"
-                defaultValue={this.props.familyMemberFirstName}
+                value={this.props.familyMemberFirstName}
                 onChange={this.props.handleInputChange}
                 />
             </Col>
@@ -279,21 +258,21 @@ class PageTwo extends Component {
                 id="familyMemberLastName"
                 type="text"
                 label="Family Member Last Name"
-                defaultValue={this.props.familyMemberLastName}
+                value={this.props.familyMemberLastName}
                 onChange={this.props.handleInputChange}
                 />
             </Col>
           </Row>
           <Row>
             <Col md={6}>
-              <FormGroup>
-                <ControlLabel>Does this family member have the same address as the patient?</ControlLabel>
-                <FormControl id="familyMemberContact" componentClass="select" placeholder="select">
-                  <option value="select">Select</option>
-                  <option value="yes">Yes</option>
-                  <option value="no">No</option>
-                </FormControl>
-              </FormGroup>
+              <FieldGroup
+                id="familyMemberContact"
+                type="select"
+                label="Does this family member have the same address as the patient?"
+                value={this.props.familyMemberContact}
+                options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
+                onChange={this.props.handleInputChange}
+                />
             </Col>
           </Row>
           {this.displayFamilyMemberAddress()}
@@ -314,30 +293,24 @@ class PageTwo extends Component {
         <Panel.Body>
           <Row>
             <Col md={6}>
-              <FormGroup>
-                <ControlLabel>Primary Insurance</ControlLabel>
-                <FormControl id="primaryInsuranceType" componentClass="select" placeholder="select">
-                  <option value="select">Select</option>
-                  <option value="insuranceCompany">Insurance Company</option>
-                  <option value="medicare">Medicare</option>
-                  <option value="medicaid">Medicaid</option>
-                  <option value="workersComp">Workers Compensation</option>
-                  <option value="medex">Medex</option>
-                  <option value="tricare">Tricare</option>
-                  <option value="selfPay">Self Pay</option>
-                  <option value="other">Other</option>
-                </FormControl>
-              </FormGroup>
+              <FieldGroup
+                id="primaryInsuranceType"
+                type="select"
+                label="Primary Insurance"
+                value={this.props.primaryInsuranceType}
+                options={[{value:'',name:'Select'},{value:'insuranceCompany',name:'Insurance Company'},{value:'medicare',name:'Medicare'},{value:'medicaid',name:'Medicaid'},{value:'workersComp',name:'Workers Compensation'},{value:'medex',name:'Medex'},{value:'tricare',name:'Tricare'},{value:'selfPay',name:'Self Pay'},{value:'other',name:'Other'}]}
+                onChange={this.props.handleInputChange}
+                />
             </Col>
             <Col md={6}>
-              <FormGroup>
-                <ControlLabel>Secondary Insurance?</ControlLabel>
-                <FormControl id="secondaryInsurance" componentClass="select" placeholder="select">
-                  <option value="select">Select</option>
-                  <option value="yes">Yes</option>
-                  <option value="no">No</option>
-                </FormControl>
-              </FormGroup>
+              <FieldGroup
+                id="secondaryInsurance"
+                type="select"
+                label="Secondary Insurance?"
+                value={this.props.secondaryInsurance}
+                options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
+                onChange={this.props.handleInputChange}
+                />
             </Col>
           </Row>
         </Panel.Body>
@@ -408,7 +381,23 @@ export default connect(
   (state) => ({
     institutionName: state.registration.institutionName,
     institutionAddress: state.registration.institutionAddress,
-    incorrectFacility: state.registration.incorrectFacility
+    incorrectFacility: state.registration.incorrectFacility,
+    understandPatientNotice: state.registration.understandPatientNotice,
+    ackOwnership: state.registration.ackOwnership,
+    docPerforming: state.registration.docPerforming,
+    procedureSite: state.registration.procedureSite,
+    procedureSurgeryConsultType: state.registration.procedureSurgeryConsultType,
+    procedureSurgeryConsultReason: state.registration.procedureSurgeryConsultReason,
+    weekdayPhoneType: state.registration.weekdayPhoneType,
+    voiceMailNumber: state.registration.voiceMailNumber,
+    textMessageApproval: state.registration.textMessageApproval,
+    familyMemberContact: state.registration.familyMemberContact,
+    familyMemberRelationship: state.registration.familyMemberRelationship,
+    familyMemberFirstName: state.registration.familyMemberFirstName,
+    familyMemberLastName: state.registration.familyMemberLastName,
+    familyMemberContact: state.registration.familyMemberContact,
+    primaryInsuranceType: state.registration.primaryInsuranceType,
+    secondaryInsurance: state.registration.secondaryInsurance
   }), {
 
   }

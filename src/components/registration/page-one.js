@@ -9,21 +9,31 @@ import {
   Row,
   Col,
   Panel,
-  Button,
-  FormGroup,
-  Radio,
-  ControlLabel,
-  FormControl
+  Button
 } from 'react-bootstrap'
 import FieldGroup from '../forms/field-group'
 import {
   states
 } from '../forms/lists'
+import union from 'lodash/union'
 
 class PageOne extends Component {
 
+
   handleSubmit = (evt) => {
-    this.props.goToPage(2);
+    evt.preventDefault();
+    var formValues = {};
+    var fields = ['firstName', 'middleInitial', 'lastName', 'preferredName', 'dateOfBirth', 'sex', 'addressOne', 'addressTwo', 'city', 'state', 'homePhone', 'mobilePhone', 'workPhone', 'workPhoneExtension'];
+    for (var i in fields) {
+      formValues[fields[i]] = this.props[fields[i]].value;
+    }
+    this.props.validate(formValues, 1);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.validation) {
+      this.props.goToPage(2);
+    }
   }
 
   getPatientInformation() {
@@ -37,7 +47,7 @@ class PageOne extends Component {
               id="firstName"
               type="text"
               label="First Name"
-              defaultValue={this.props.firstName}
+              value={this.props.firstName}
               onChange={this.props.handleInputChange}
               />
           </Col>
@@ -46,7 +56,7 @@ class PageOne extends Component {
               id="middleInitial"
               type="text"
               label="Middle Initial"
-              defaultValue={this.props.middleInitial}
+              value={this.props.middleInitial}
               onChange={this.props.handleInputChange}
               />
           </Col>
@@ -55,7 +65,7 @@ class PageOne extends Component {
               id="lastName"
               type="text"
               label="Last Name"
-              defaultValue={this.props.lastName}
+              value={this.props.lastName}
               onChange={this.props.handleInputChange}
               />
           </Col>
@@ -66,7 +76,7 @@ class PageOne extends Component {
               id="preferredName"
               type="text"
               label="Preferred Name"
-              defaultValue={this.props.preferredName}
+              value={this.props.preferredName}
               onChange={this.props.handleInputChange}
               />
           </Col>
@@ -75,19 +85,19 @@ class PageOne extends Component {
               id="dateOfBirth"
               type="text"
               label="Patient Date of Birth"
-              defaultValue={this.props.dateOfBirth}
+              value={this.props.dateOfBirth}
               onChange={this.props.handleInputChange}
             />
           </Col>
           <Col md={2}>
-            <FormGroup>
-              <ControlLabel>Sex</ControlLabel>
-              <FormControl componentClass="select" placeholder="select">
-                <option value="select">Select</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </FormControl>
-            </FormGroup>
+            <FieldGroup
+              id="sex"
+              type="select"
+              label="Sex"
+              value={this.props.sex}
+              options={[{name: 'Select', value:''}, {name:'Male', value:'male'}, {name:'Female', value:'female'}]}
+              onChange={this.props.handleInputChange}
+            />
           </Col>
         </Row>
         </Panel.Body>
@@ -106,7 +116,7 @@ class PageOne extends Component {
                 id="addressOne"
                 type="text"
                 label="Address 1"
-                defaultValue={this.props.addressOne}
+                value={this.props.addressOne}
                 onChange={this.props.handleInputChange}
               />
             </Col>
@@ -117,7 +127,7 @@ class PageOne extends Component {
                 id="addressTwo"
                 type="text"
                 label="Address 2"
-                defaultValue={this.props.addressTwo}
+                value={this.props.addressTwo}
                 onChange={this.props.handleInputChange}
               />
             </Col>
@@ -128,22 +138,19 @@ class PageOne extends Component {
                 id="city"
                 type="text"
                 label="City"
-                defaultValue={this.props.city}
+                value={this.props.city}
                 onChange={this.props.handleInputChange}
               />
             </Col>
             <Col md={4}>
-              <FormGroup>
-                <ControlLabel>State</ControlLabel>
-                <FormControl id="state" componentClass="select" placeholder="select">
-                  <option value="select">Select</option>
-                  {
-                    states.map((state, index) => {
-                      return (<option key={index} value={state.abbreviation}>{state.name}</option>);
-                    })
-                  }
-                </FormControl>
-              </FormGroup>
+              <FieldGroup
+                id="state"
+                type="select"
+                label="State"
+                value={this.props.state}
+                options={union([{name:'Select', value:''}],states)}
+                onChange={this.props.handleInputChange}
+              />
             </Col>
           </Row>
         </Panel.Body>
@@ -162,7 +169,7 @@ class PageOne extends Component {
                 id="mobilePhone"
                 type="text"
                 label="Mobile Phone"
-                defaultValue={this.props.mobilePhone}
+                value={this.props.mobilePhone}
                 onChange={this.props.handleInputChange}
                 />
             </Col>
@@ -171,7 +178,7 @@ class PageOne extends Component {
                 id="homePhone"
                 type="text"
                 label="Home Phone"
-                defaultValue={this.props.homePhone}
+                value={this.props.homePhone}
                 onChange={this.props.handleInputChange}
               />
             </Col>
@@ -182,7 +189,7 @@ class PageOne extends Component {
                 id="workPhone"
                 type="text"
                 label="Work Phone"
-                defaultValue={this.props.workPhone}
+                value={this.props.workPhone}
                 onChange={this.props.handleInputChange}
                 />
             </Col>
@@ -191,7 +198,7 @@ class PageOne extends Component {
                 id="workPhoneExtension"
                 type="text"
                 label="Extension"
-                defaultValue={this.props.workPhoneExtension}
+                value={this.props.workPhoneExtension}
                 onChange={this.props.handleInputChange}
                 />
             </Col>
@@ -228,6 +235,7 @@ export default connect(
     lastName: state.registration.lastName,
     preferredName: state.registration.preferredName,
     dateOfBirth: state.registration.dateOfBirth,
+    sex: state.registration.sex,
     addressOne: state.registration.addressOne,
     addressTwo: state.registration.addressTwo,
     city: state.registration.city,
@@ -235,7 +243,8 @@ export default connect(
     mobilePhone: state.registration.mobilePhone,
     homePhone: state.registration.homePhone,
     workPhone: state.registration.workPhone,
-    workPhoneExtension: state.registration.workPhoneExtension
+    workPhoneExtension: state.registration.workPhoneExtension,
+    validation: state.registration.validation['1']
   }), {
 
   }

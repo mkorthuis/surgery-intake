@@ -2,9 +2,6 @@ import React, {
   Component
 } from 'react'
 import {
-  LinkContainer
-} from 'react-router-bootstrap';
-import {
   connect
 } from 'react-redux'
 import {
@@ -13,7 +10,9 @@ import {
   Grid
 } from 'react-bootstrap'
 import {
-  updateRegistration
+  updateRegistrationValue,
+  validateFields,
+  updatePage
 } from '../../actions/registration'
 
 import RegisterPageOne from './page-one'
@@ -27,9 +26,10 @@ class Registration extends Component {
   handleInputChange = (evt) => {
     const value = evt.target.type === 'checkbox' ? evt.target.checked : evt.target.value;
 
-    this.props.updateRegistration({
+    this.props.updateRegistrationValue({
       [evt.target.id]: value
     });
+
   };
 
   handleNavSelect = (selectedKey) => {
@@ -37,10 +37,12 @@ class Registration extends Component {
   }
 
   goToPage = (pageId) => {
-    this.props.updateRegistration({
-      page: pageId
-    });
+    this.props.updatePage(pageId);
   }
+
+  validateFields = (fields, page) => {
+    this.props.validateFields(fields, page);
+  };
 
   getNavBar() {
     return (
@@ -66,15 +68,15 @@ class Registration extends Component {
   getPage() {
     switch (this.props.page) {
       case 1:
-        return <RegisterPageOne handleInputChange={this.handleInputChange} goToPage={this.goToPage} />;
+        return <RegisterPageOne handleInputChange={this.handleInputChange} validate={this.validateFields} goToPage={this.goToPage} />;
       case 2:
-        return <RegisterPageTwo handleInputChange={this.handleInputChange} goToPage={this.goToPage} />;
+        return <RegisterPageTwo handleInputChange={this.handleInputChange} validate={this.validateFields} goToPage={this.goToPage} />;
       case 3:
-        return <RegisterPageThree handleInputChange={this.handleInputChange} goToPage={this.goToPage} />;
+        return <RegisterPageThree handleInputChange={this.handleInputChange} validate={this.validateFields} goToPage={this.goToPage} />;
       case 4:
-        return <RegisterPageFour handleInputChange={this.handleInputChange} goToPage={this.goToPage} />;
+        return <RegisterPageFour handleInputChange={this.handleInputChange} validate={this.validateFields} goToPage={this.goToPage} />;
       default:
-        return <RegisterPageOne handleInputChange={this.handleInputChange} goToPage={this.goToPage} />;
+        return <RegisterPageOne handleInputChange={this.handleInputChange} validate={this.validateFields} goToPage={this.goToPage} />;
     }
   }
 
@@ -93,6 +95,8 @@ export default connect(
   (state) => ({
     page: state.registration.page
   }), {
-    updateRegistration
+    updateRegistrationValue,
+    validateFields,
+    updatePage
   }
 )(Registration)

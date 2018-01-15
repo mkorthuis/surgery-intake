@@ -3,7 +3,6 @@ import React, {
 } from 'react';
 import {
   Route,
-  IndexRoute,
   Switch
 } from 'react-router-dom';
 
@@ -15,6 +14,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Header />
         <Switch>
           <Route exact path="/registration" component={Registration} />
           <Route exact path="/404" component={FourOhFour} />
