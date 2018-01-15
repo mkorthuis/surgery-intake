@@ -12,7 +12,7 @@ import {
   connect
 } from 'react-redux'
 
-class PageThree extends Component {
+class PageFour extends Component {
 
   handleSubmit = (evt) => {
     this.props.goToPage(1);
@@ -33,17 +33,17 @@ class PageThree extends Component {
       <Panel>
         <Panel.Heading>Patient Information</Panel.Heading>
         <Panel.Body>
-          {this.getRowEntry('Name', this.props.firstName + ' ' + this.props.middleInitial + ' ' + this.props.lastName)}
-          {this.getRowEntry('Preferred Name', this.props.preferredName)}
-          {this.getRowEntry('Date of Birth', this.props.dateOfBirth)}
-          {this.getRowEntry('Address One', this.props.addressOne)}
-          {this.getRowEntry('Address Two', this.props.addressTwo)}
-          {this.getRowEntry('City', this.props.city)}
-          {this.getRowEntry('State', this.props.state)}
-          {this.getRowEntry('Mobile Phone', this.props.mobilePhone)}
-          {this.getRowEntry('Home Phone', this.props.homePhone)}
-          {this.getRowEntry('Work Phone', this.props.workPhone)}
-          {this.getRowEntry('Work Phone Extension', this.props.workPhoneExtension)}
+          {this.getRowEntry('Name', this.props.firstName.value + ' ' + this.props.middleInitial.value + ' ' + this.props.lastName.value)}
+          {this.getRowEntry('Preferred Name', this.props.preferredName.value)}
+          {this.getRowEntry('Date of Birth', this.props.dateOfBirth.value)}
+          {this.getRowEntry('Address One', this.props.addressOne.value)}
+          {this.getRowEntry('Address Two', this.props.addressTwo.value)}
+          {this.getRowEntry('City', this.props.city.value)}
+          {this.getRowEntry('State', this.props.state.value)}
+          {this.getRowEntry('Mobile Phone', this.props.mobilePhone.value)}
+          {this.getRowEntry('Home Phone', this.props.homePhone.value)}
+          {this.getRowEntry('Work Phone', this.props.workPhone.value)}
+          {this.getRowEntry('Work Phone Extension', this.props.workPhoneExtension.value)}
           
         </Panel.Body>
       </Panel>
@@ -86,4 +86,4 @@ export default connect(
   }), {
 
   }
-)(PageThree)
+)(PageFour)

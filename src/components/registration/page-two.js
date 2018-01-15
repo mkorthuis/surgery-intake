@@ -6,11 +6,7 @@ import {
   Row,
   Col,
   Panel,
-  Button,
-  FormGroup,
-  Checkbox,
-  ControlLabel,
-  FormControl
+  Button
 } from 'react-bootstrap'
 import FieldGroup from '../forms/field-group'
 import {
@@ -22,7 +18,19 @@ import union from 'lodash/union'
 class PageTwo extends Component {
 
   handleSubmit = (evt) => {
-    this.props.goToPage(3);
+    evt.preventDefault();
+    var formValues = {};
+    var fields = ['institutionName', 'institutionAddress'];
+    for (var i in fields) {
+      formValues[fields[i]] = this.props[fields[i]].value;
+    }
+    this.props.validate(formValues, 2);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.validation) {
+      this.props.goToPage(3);
+    }
   }
 
   docs = [{
@@ -266,10 +274,10 @@ class PageTwo extends Component {
           <Row>
             <Col md={6}>
               <FieldGroup
-                id="familyMemberContact"
+                id="familyMemberContactAddress"
                 type="select"
                 label="Does this family member have the same address as the patient?"
-                value={this.props.familyMemberContact}
+                value={this.props.familyMemberContactAddress}
                 options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
                 onChange={this.props.handleInputChange}
                 />
@@ -395,9 +403,10 @@ export default connect(
     familyMemberRelationship: state.registration.familyMemberRelationship,
     familyMemberFirstName: state.registration.familyMemberFirstName,
     familyMemberLastName: state.registration.familyMemberLastName,
-    familyMemberContact: state.registration.familyMemberContact,
+    familyMemberContactAddress: state.registration.familyMemberContactAddress,
     primaryInsuranceType: state.registration.primaryInsuranceType,
-    secondaryInsurance: state.registration.secondaryInsurance
+    secondaryInsurance: state.registration.secondaryInsurance,
+    validation: state.registration.validation['2']
   }), {
 
   }

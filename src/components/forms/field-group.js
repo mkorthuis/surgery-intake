@@ -33,7 +33,6 @@ const FieldGroup = (props) => {
   }
 
   function getEnabledText() {
-    console.log('enabled');
     return (
       <FormGroup controlId={id} validationState={getValidation()}>
           {label && <ControlLabel>{label}</ControlLabel>}
@@ -45,7 +44,6 @@ const FieldGroup = (props) => {
   }
 
   function getDisabledText() {
-    console.log('disabled');
     return (
       <FormGroup controlId={id} validationState={getValidation()}>
           {label && <ControlLabel>{label}</ControlLabel>}

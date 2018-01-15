@@ -48,7 +48,7 @@ const initState = {
   familyMemberRelationship: {},
   familyMemberFirstName: {},
   familyMemberLastName: {},
-  familyMemberContact: {},
+  familyMemberContactAddress: {},
   primaryInsuranceType: {},
   secondaryInsurance: {}
 
