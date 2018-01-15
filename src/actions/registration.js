@@ -14,6 +14,7 @@ import {
 } from './validation/rules'
 
 var validateRules = {
+  //Page One
   firstName: [required, maxLength(50)],
   middleInitial: [maxLength(2)],
   lastName: [required, maxLength(50)],
@@ -27,7 +28,11 @@ var validateRules = {
   mobilePhone: [phoneNumber],
   homePhone: [phoneNumber],
   workPhone: [phoneNumber],
-  workPhoneExtension: [number]
+  workPhoneExtension: [number],
+
+  //Page Two
+  procedureSurgeryConsultType: [required],
+  procedureSurgeryConsultReason: [required]
 }
 
 export function updateRegistrationValue(change) {

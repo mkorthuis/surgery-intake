@@ -20,7 +20,7 @@ class PageTwo extends Component {
   handleSubmit = (evt) => {
     evt.preventDefault();
     var formValues = {};
-    var fields = ['institutionName', 'institutionAddress'];
+    var fields = ['procedureSurgeryConsultType', 'procedureSurgeryConsultReason'];
     for (var i in fields) {
       formValues[fields[i]] = this.props[fields[i]].value;
     }
