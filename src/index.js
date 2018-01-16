@@ -19,7 +19,8 @@ import {
   fetchData
 } from './actions/registration'
 
-store.dispatch(fetchData());
+//For Testing
+//store.dispatch(fetchData());
 
 ReactDOM.render(
   <Provider store={store}>

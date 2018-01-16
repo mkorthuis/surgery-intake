@@ -65,7 +65,32 @@ const initState = {
   familyMemberState: {},
   familyMemberZip: {},
   primaryInsuranceType: {},
-  secondaryInsurance: {}
+  secondaryInsurance: {},
+  rideHomeFirstName: {},
+  rideHomeLastName: {},
+  rideHomePrimaryPhone: {},
+  rideHomeOtherPhone: {},
+  rideHomeRelationship: {},
+
+  //Page Three
+  weight: {},
+  cigaretteSmoker: {},
+  cigarSmoker: {},
+  drink: {},
+  alcoholAbuse: {},
+  drugs: {},
+  physicalActivity: {},
+  malignantHypertermia: {},
+  pseudocholinesteraseDeficiency: {},
+  motionSickness: {},
+  nauseaVomiting: {},
+  adverseReaction: {},
+  ekg: {},
+  chestXray: {},
+  sleepApnea: {},
+  cardiacStress: {},
+  cardiacEcho: {},
+  cardiacCatheterization: {}
 
 };
 

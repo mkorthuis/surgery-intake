@@ -505,6 +505,68 @@ class PageTwo extends Component {
     )
   }
 
+  getRideHomeInformation() {
+    return (
+      <Panel>
+        <Panel.Heading>Ride Home Information</Panel.Heading>
+        <Panel.Body>
+          <Row>
+            <Col md={6}>
+              <FieldGroup
+                id="rideHomeFirstName"
+                type="text"
+                label="First Name"
+                value={this.props.rideHomeFirstName}
+                onChange={this.props.handleInputChange}
+                />
+            </Col>
+            <Col md={6}>
+              <FieldGroup
+                id="rideHomeLastName"
+                type="text"
+                label="Last Name"
+                value={this.props.rideHomeLastName}
+                onChange={this.props.handleInputChange}
+                />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={6}>
+              <FieldGroup
+                id="rideHomePrimaryPhone"
+                type="text"
+                label="Primary Phone"
+                value={this.props.rideHomePrimaryPhone}
+                onChange={this.props.handleInputChange}
+                />
+            </Col>
+            <Col md={6}>
+              <FieldGroup
+                id="rideHomeOtherPhone"
+                type="text"
+                label="Other Phone"
+                value={this.props.rideHomeOtherPhone}
+                onChange={this.props.handleInputChange}
+                />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={6}>
+              <FieldGroup
+                id="rideHomeRelationship"
+                type="select"
+                label="Relationship"
+                value={this.props.rideHomeRelationship}
+                options={[{name:'Select', value:''},{name:'Mother', value:'mother'},{name:'Father', value:'father'},{name:'Son', value:'son'},{name:'Daughter',value:'daughter'},{name:'Other', value:'other'}]}
+                onChange={this.props.handleInputChange}
+                />
+            </Col>
+          </Row>
+        </Panel.Body>
+      </Panel>
+    )
+  }
+
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
@@ -515,6 +577,7 @@ class PageTwo extends Component {
           {this.getContactPreferences()}
           {this.getFamilyContact()}
           {this.getInsuranceInformation()}
+          {this.getRideHomeInformation()}
           <Row>
             <Col xs={12}>
               <Button type="submit">
@@ -560,6 +623,11 @@ export default connect(
     familyMemberZip: state.registration.familyMemberZip,
     primaryInsuranceType: state.registration.primaryInsuranceType,
     secondaryInsurance: state.registration.secondaryInsurance,
+    rideHomeFirstName: state.registration.rideHomeFirstName,
+    rideHomeLastName: state.registration.rideHomeLastName,
+    rideHomePrimaryPhone: state.registration.rideHomePrimaryPhone,
+    rideHomeOtherPhone: state.registration.rideHomeOtherPhone,
+    rideHomeRelationship: state.registration.rideHomeRelationship,
     validation: state.registration.validation['2']
   }), {
 
