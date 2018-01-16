@@ -78,7 +78,7 @@ const FieldGroup = (props) => {
   function getCheckbox() {
     return (
       <FormGroup>
-        <Checkbox id={id} {...otherProps} defaultChecked={value.value}  inline><b>{label}</b></Checkbox>
+        <Checkbox id={id} {...otherProps} defaultChecked={value.value}  inline>{label}</Checkbox>
       </FormGroup>
     )
   }

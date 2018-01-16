@@ -29,19 +29,29 @@ const initState = {
   institutionName: {
     value: 'Test Institution'
   },
-  institutionAddress: {
-    value: '1167 Massachusetts Ave, Arlington, MA 02476'
+  institutionAddressOne: {
+    value: '1167 Massachusetts Ave'
   },
-  incorrectFacility: {
-    value: true
+  institutionAddressTwo: {},
+  institutionCity: {
+    value: 'Arlington'
   },
+  institutionState: {
+    value: 'MA'
+  },
+  institutionZip: {
+    value: '024746'
+  },
+  correctFacility: {},
   understandPatientNotice: {},
   ackOwnership: {},
   docPerforming: {},
+  unknownDocPerforming: {},
+  procedureDate: {},
   procedureSite: {},
   procedureSurgeryConsultType: {},
   procedureSurgeryConsultReason: {},
-  weekdayPhoneType: {},
+  weekdayPhoneNumber: {},
   voiceMailNumber: {},
   textMessageApproval: {},
   familyMemberContact: {},
@@ -49,6 +59,11 @@ const initState = {
   familyMemberFirstName: {},
   familyMemberLastName: {},
   familyMemberContactAddress: {},
+  familyMemberAddressOne: {},
+  familyMemberAddressTwo: {},
+  familyMemberCity: {},
+  familyMemberState: {},
+  familyMemberZip: {},
   primaryInsuranceType: {},
   secondaryInsurance: {}
 

@@ -12,6 +12,9 @@ import FieldGroup from '../forms/field-group'
 import {
   connect
 } from 'react-redux'
+import {
+  states
+} from '../forms/lists'
 import union from 'lodash/union'
 
 
@@ -39,47 +42,113 @@ class PageTwo extends Component {
   }, {
     name: 'Farbod Hagigi',
     value: 2
-  }, {
-    name: 'Unknown',
-    value: -99
   }];
+
+  getInstitutionInfo() {
+    if (this.props.correctFacility.value != 'no') {
+      var addressLineTwo = this.props.institutionAddressTwo.value ? <br /> : '';
+      return (
+        <Row>
+          <Col xs={12}>
+            <p>You have chose to send your medical information to:</p>
+            <p>
+              <b>{this.props.institutionName.value}</b><br />
+              {this.props.institutionAddressOne.value}<br />
+              {this.props.institutionAddressTwo.value ? (this.props.institutionAddressTwo.value) : ''} {addressLineTwo}
+              {this.props.institutionCity.value}, {this.props.institutionState.value} {this.props.institutionZip.value}
+            </p>
+          </Col>
+        </Row>
+      )
+    } else {
+      return (
+        <span>
+        <Row>
+          <Col xs={12}>
+            <p>Please enter the correct medical facility information below:</p>
+          </Col>
+          <Col xs={12}>
+            <FieldGroup
+              id="institutionName"
+              type="text"
+              label=" Name"
+              value={this.props.institutionName}
+              onChange={this.props.handleInputChange}
+              />
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12}>
+            <FieldGroup
+              id="institutionAddressOne"
+              type="text"
+              label="Address Line One"
+              value={this.props.institutionAddressOne}
+              onChange={this.props.handleInputChange}
+              />
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12}>
+            <FieldGroup
+              id="institutionAddressTwo"
+              type="text"
+              label="Address Line Two"
+              value={this.props.institutionAddressTwo}
+              onChange={this.props.handleInputChange}
+              />
+          </Col>
+        </Row>
+        <Row>
+          <Col md={5}>
+            <FieldGroup
+              id="city"
+              type="text"
+              label="City"
+              value={this.props.institutionCity}
+              onChange={this.props.handleInputChange}
+            />
+            </Col>
+          <Col md={4}>
+            <FieldGroup
+              id="state"
+              type="select"
+              label="State"
+              value={this.props.institutionState}
+              options={union([{name:'Select', value:''}],states)}
+              onChange={this.props.handleInputChange}
+            />
+          </Col>
+          <Col md={3}>
+            <FieldGroup
+              id="zip"
+              type="text"
+              label="Zip"
+              value={this.props.institutionZip}
+              onChange={this.props.handleInputChange}
+            />
+          </Col>
+        </Row>
+        <hr />
+      </span>
+      )
+    }
+  }
 
   getMedicalFacility() {
     return (
       <Panel>
         <Panel.Heading>Validate Medical Facility</Panel.Heading>
         <Panel.Body>
+          {this.getInstitutionInfo()}
           <Row>
-            <Col xs={12}>
+            <Col md={4}>
               <FieldGroup
-                id="institutionName"
-                type="text"
-                label="Institution Name"
-                value={this.props.institutionName}
-                onChange={this.props.handleInputChange}
-                disabled={this.props.incorrectFacility.value}
-                />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              <FieldGroup
-                id="institutionAddress"
-                type="text"
-                label="Institution Address"
-                value={this.props.institutionAddress}
-                onChange={this.props.handleInputChange}
-                disabled={this.props.incorrectFacility.value}
-                />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              <FieldGroup
-                id="incorrectFacility"
-                type="checkbox"
-                label="Incorrect Facility?"
-                value={this.props.incorrectFacility}
+                id="correctFacility"
+                type="select"
+                label="Is this the correct facility?"
+                value={this.props.correctFacility}
+                options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
                 onChange={this.props.handleInputChange} 
                 />
             </Col>
@@ -96,7 +165,8 @@ class PageTwo extends Component {
         <Panel.Body>
           <Row>
             <Col xs={12}>
-              INSERT DISCLOSURES AND POLICIES HERE
+              <p>Stealth Company is required by state and federal regulations to provice the following disclosures and policies to each patient.  
+              Please check each box to acknowledge that you have read and accept these disclosures and policies.</p>
             </Col>
           </Row>
           <Row>
@@ -104,7 +174,7 @@ class PageTwo extends Component {
               <FieldGroup
                 id="understandPatientNotice"
                 type="checkbox"
-                label="I understand and accept the Notice of Patients. (Read Document)"
+                label="I understand and accept the Notice of Patients."
                 value={this.props.understandPatientNotice}
                 onChange={this.props.handleInputChange} 
                 />
@@ -115,7 +185,7 @@ class PageTwo extends Component {
               <FieldGroup
                 id="ackOwnership"
                 type="checkbox"
-                label="I understand and accept the Acknowledgement of Ownership. (Read Document)"
+                label="I understand and accept the Acknowledgement of Ownership."
                 value={this.props.ackOwnership}
                 onChange={this.props.handleInputChange} 
                 />
@@ -126,22 +196,61 @@ class PageTwo extends Component {
     )
   }
 
+  getUnkownDoctor() {
+    return (
+      <Row>
+        <Col md={10} mdOffset={2} >
+          <FieldGroup
+            id="unknownDocPerforming"
+            type="text"
+            label="Doctor Name"
+            value={this.props.unknownDocPerforming}
+            onChange={this.props.handleInputChange}
+            />
+        </Col>
+      </Row>
+    )
+  }
+
   getDoctorAndVisit() {
     return (
       <Panel>
         <Panel.Heading>Doctor & Visit Details</Panel.Heading>
         <Panel.Body>
           <Row>
-            <Col md={6}>
+            <Col xs={12}>
               <FieldGroup
                 id="docPerforming"
                 type="select"
                 label="Who is performing the procedure, surgery or consult?"
                 value={this.props.docPerforming}
-                options={union([{name:'Select', value:''}],this.docs)}
+                options={union([{name:'Select', value:''}],this.docs, [{name:'Doctor name not listed', value:'-1'}])}
                 onChange={this.props.handleInputChange}
                 />
             </Col>
+          </Row>
+          {this.props.docPerforming.value != -1 || this.getUnkownDoctor()}
+          <Row>
+            <Col md={6}>
+              <FieldGroup
+                id="procedureSurgeryConsultType"
+                type="text"
+                label="Type of Procedure, Surgery, or Consult"
+                value={this.props.procedureSurgeryConsultType}
+                onChange={this.props.handleInputChange}
+                />
+            </Col>
+            <Col md={6}>
+              <FieldGroup
+                id="procedureSurgeryConsultReason"
+                type="text"
+                label="Reason for Procedure, Surgery, or Consult"
+                value={this.props.procedureSurgeryConsultReason}
+                onChange={this.props.handleInputChange}
+                />
+            </Col>
+          </Row>
+          <Row>
             <Col md={6}>
               <FieldGroup
                 id="procedureSite"
@@ -152,25 +261,12 @@ class PageTwo extends Component {
                 onChange={this.props.handleInputChange}
                 />
             </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
+            <Col md={6}>
               <FieldGroup
-                id="procedureSurgeryConsultType"
+                id="procedureDate"
                 type="text"
-                label="Type of Procedure, Surgery, or Consult"
-                value={this.props.procedureSurgeryConsultType}
-                onChange={this.props.handleInputChange}
-                />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              <FieldGroup
-                id="procedureSurgeryConsultReason"
-                type="text"
-                label="Reason for Procedure, Surgery, or Consult"
-                value={this.props.procedureSurgeryConsultReason}
+                label="Procedure Date"
+                value={this.props.procedureDate}
                 onChange={this.props.handleInputChange}
                 />
             </Col>
@@ -188,10 +284,10 @@ class PageTwo extends Component {
           <Row>
             <Col md={6}>
               <FieldGroup
-                id="weekdayPhoneType"
+                id="weekdayPhoneNumber"
                 type="select"
                 label="Choose a weekday contact phone number"
-                value={this.props.weekdayPhoneType}
+                value={this.props.weekdayPhoneNumber}
                 options={[{name:'Select', value:''},{name:'Mobile', value:'mobile'},{name:'Home', value:'home'},{name:'Work / Other', value:'work'}]}
                 onChange={this.props.handleInputChange}
                 />
@@ -224,6 +320,135 @@ class PageTwo extends Component {
     )
   }
 
+  displayFamilyMemberInfo() {
+    return (
+      <span>
+        <Row>
+          <Col md={12}>
+            <hr />
+          </Col>
+        </Row>
+        <Row>
+          <Col md={11} mdOffset={1}>
+            <p>Family Member Information</p>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={5} mdOffset={1}>
+            <FieldGroup
+              id="familyMemberFirstName"
+              type="text"
+              label="Family Member First Name"
+              value={this.props.familyMemberFirstName}
+              onChange={this.props.handleInputChange}
+              />
+          </Col>
+          <Col md={6}>
+            <FieldGroup
+              id="familyMemberLastName"
+              type="text"
+              label="Family Member Last Name"
+              value={this.props.familyMemberLastName}
+              onChange={this.props.handleInputChange}
+              />
+          </Col>
+        </Row>
+        <Row>
+          <Col md={5} mdOffset={1}>
+            <FieldGroup
+              id="familyMemberRelationship"
+              type="select"
+              label="Family Member Relationship to the Patient"
+              value={this.props.familyMemberRelationship}
+              options={[{name:'Select', value:''},{name:'Mother', value:'mother'},{name:'Father', value:'father'},{name:'Son', value:'son'},{name:'Daughter',value:'daughter'}]}
+              onChange={this.props.handleInputChange}
+              />
+          </Col>
+          <Col md={6}>
+            <FieldGroup
+              id="familyMemberContactAddress"
+              type="select"
+              label="Does this family member have the same address as the patient?"
+              value={this.props.familyMemberContactAddress}
+              options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
+              onChange={this.props.handleInputChange}
+              />
+          </Col>
+        </Row>
+        {this.props.familyMemberContactAddress.value != 'yes' || this.displayFamilyMemberAddress()}
+      </span>
+    )
+  }
+
+  displayFamilyMemberAddress() {
+    return (
+      <span>
+        <Row>
+          <Col md={11} mdOffset={1}>
+            <hr />
+          </Col>
+        </Row>
+        <Row>
+          <Col md={11} mdOffset={2}>
+            <p>Family member address</p>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={10} mdOffset={2}>
+            <FieldGroup
+              id="familyMemberAddressOne"
+              type="text"
+              label="Address Line One"
+              value={this.props.familyMemberAddressOne}
+              onChange={this.props.handleInputChange}
+              />
+          </Col>
+        </Row>
+        <Row>
+          <Col md={10} mdOffset={2}>
+            <FieldGroup
+              id="familyMemberAddressTwo"
+              type="text"
+              label="Address Line Two"
+              value={this.props.familyMemberAddressTwo}
+              onChange={this.props.handleInputChange}
+              />
+          </Col>
+        </Row>
+        <Row>
+          <Col md={5} mdOffset={2}>
+            <FieldGroup
+              id="city"
+              type="text"
+              label="City"
+              value={this.props.familyMemberCity}
+              onChange={this.props.handleInputChange}
+            />
+            </Col>
+          <Col md={3}>
+            <FieldGroup
+              id="state"
+              type="select"
+              label="State"
+              value={this.props.familyMemberState}
+              options={union([{name:'Select', value:''}],states)}
+              onChange={this.props.handleInputChange}
+            />
+          </Col>
+          <Col md={2}>
+            <FieldGroup
+              id="zip"
+              type="text"
+              label="Zip"
+              value={this.props.familyMemberZip}
+              onChange={this.props.handleInputChange}
+            />
+          </Col>
+        </Row>
+      </span>
+    )
+  }
+
   getFamilyContact() {
     return (
       <Panel>
@@ -240,59 +465,13 @@ class PageTwo extends Component {
                 onChange={this.props.handleInputChange}
                 />
             </Col>
-            <Col md={6}>
-              <FieldGroup
-                id="familyMemberRelationship"
-                type="select"
-                label="Family Member Relationship to the Patient"
-                value={this.props.familyMemberRelationship}
-                options={[{name:'Select', value:''},{name:'Mother', value:'mother'},{name:'Father', value:'father'},{name:'Son', value:'son'},{name:'Daughter',value:'daughter'}]}
-                onChange={this.props.handleInputChange}
-                />
-            </Col>
           </Row>
-          <Row>
-            <Col md={6}>
-              <FieldGroup
-                id="familyMemberFirstName"
-                type="text"
-                label="Family Member First Name"
-                value={this.props.familyMemberFirstName}
-                onChange={this.props.handleInputChange}
-                />
-            </Col>
-            <Col md={6}>
-              <FieldGroup
-                id="familyMemberLastName"
-                type="text"
-                label="Family Member Last Name"
-                value={this.props.familyMemberLastName}
-                onChange={this.props.handleInputChange}
-                />
-            </Col>
-          </Row>
-          <Row>
-            <Col md={6}>
-              <FieldGroup
-                id="familyMemberContactAddress"
-                type="select"
-                label="Does this family member have the same address as the patient?"
-                value={this.props.familyMemberContactAddress}
-                options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
-                onChange={this.props.handleInputChange}
-                />
-            </Col>
-          </Row>
-          {this.displayFamilyMemberAddress()}
+          {this.props.familyMemberContact.value != 'yes' || this.displayFamilyMemberInfo()}
         </Panel.Body>
       </Panel>
     )
   }
 
-  displayFamilyMemberAddress() {
-    //TODO  "Add Family Member Address";
-    return "";
-  }
 
   getInsuranceInformation() {
     return (
@@ -326,39 +505,6 @@ class PageTwo extends Component {
     )
   }
 
-  getMedicalFacilityInformation() {
-    return (
-      <Panel>
-        <Panel.Heading>Medical Facility Information</Panel.Heading>
-        <Panel.Body>
-          TBD
-        </Panel.Body>
-      </Panel>
-    )
-  }
-
-  getPreferencesAdditionalInformation() {
-    return (
-      <Panel>
-        <Panel.Heading>Preferences and Additional Information</Panel.Heading>
-        <Panel.Body>
-          TBD
-        </Panel.Body>
-      </Panel>
-    )
-  }
-
-  getEmergencyContactInformation() {
-    return (
-      <Panel>
-        <Panel.Heading>Emergency Contact Information</Panel.Heading>
-        <Panel.Body>
-          TBD
-        </Panel.Body>
-      </Panel>
-    )
-  }
-
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
@@ -369,9 +515,6 @@ class PageTwo extends Component {
           {this.getContactPreferences()}
           {this.getFamilyContact()}
           {this.getInsuranceInformation()}
-          {this.getMedicalFacilityInformation()}
-          {this.getPreferencesAdditionalInformation()}
-          {this.getEmergencyContactInformation()}
           <Row>
             <Col xs={12}>
               <Button type="submit">
@@ -388,15 +531,21 @@ class PageTwo extends Component {
 export default connect(
   (state) => ({
     institutionName: state.registration.institutionName,
-    institutionAddress: state.registration.institutionAddress,
-    incorrectFacility: state.registration.incorrectFacility,
+    institutionAddressOne: state.registration.institutionAddressOne,
+    institutionAddressTwo: state.registration.institutionAddressTwo,
+    institutionCity: state.registration.institutionCity,
+    institutionState: state.registration.institutionState,
+    institutionZip: state.registration.institutionZip,
+    correctFacility: state.registration.correctFacility,
     understandPatientNotice: state.registration.understandPatientNotice,
     ackOwnership: state.registration.ackOwnership,
     docPerforming: state.registration.docPerforming,
+    unknownDocPerforming: state.registration.unknownDocPerforming,
+    procedureDate: state.registration.procedureDate,
     procedureSite: state.registration.procedureSite,
     procedureSurgeryConsultType: state.registration.procedureSurgeryConsultType,
     procedureSurgeryConsultReason: state.registration.procedureSurgeryConsultReason,
-    weekdayPhoneType: state.registration.weekdayPhoneType,
+    weekdayPhoneNumber: state.registration.weekdayPhoneNumber,
     voiceMailNumber: state.registration.voiceMailNumber,
     textMessageApproval: state.registration.textMessageApproval,
     familyMemberContact: state.registration.familyMemberContact,
@@ -404,6 +553,11 @@ export default connect(
     familyMemberFirstName: state.registration.familyMemberFirstName,
     familyMemberLastName: state.registration.familyMemberLastName,
     familyMemberContactAddress: state.registration.familyMemberContactAddress,
+    familyMemberAddressOne: state.registration.familyMemberAddressOne,
+    familyMemberAddressTwo: state.registration.familyMemberAddressTwo,
+    familyMemberCity: state.registration.familyMemberCity,
+    familyMemberState: state.registration.familyMemberState,
+    familyMemberZip: state.registration.familyMemberZip,
     primaryInsuranceType: state.registration.primaryInsuranceType,
     secondaryInsurance: state.registration.secondaryInsurance,
     validation: state.registration.validation['2']

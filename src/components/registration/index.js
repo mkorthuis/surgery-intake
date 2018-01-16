@@ -42,7 +42,7 @@ class Registration extends Component {
 
   validateFields = (fields, page) => {
     this.props.validateFields(fields, page);
-  };
+  }
 
   getNavBar() {
     return (

@@ -12,6 +12,7 @@ import {
   phoneNumber,
   dateOfBirth
 } from './validation/rules'
+import RegistrationApi from '../api/registration-api'
 
 var validateRules = {
   //Page One
@@ -79,4 +80,14 @@ export function updatePage(page) {
     type: UPDATE_PAGE,
     payload: page
   }
+}
+
+export function fetchData() {
+  return function(dispatch) {
+    return RegistrationApi.getData().then(registration => {
+      dispatch(updatePage(4));
+    }).catch(error => {
+      throw (error);
+    });
+  };
 }
