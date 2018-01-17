@@ -9,6 +9,7 @@ import {
 import Header from './components/header'
 import Registration from './components/registration'
 import FourOhFour from './components/four-oh-four'
+import PrivateRoute from './components/private-route'
 
 class App extends Component {
   render() {
@@ -16,7 +17,7 @@ class App extends Component {
       <div className="App">
         <Header />
           <Switch>
-            <Route exact path="/registration" component={Registration} />
+            <PrivateRoute exact path="/registration" component={Registration} />
             <Route component={FourOhFour} />
           </Switch>
       </div>

@@ -14,6 +14,7 @@ import createHistory from 'history/createBrowserHistory'
 import thunk from 'redux-thunk'
 
 import registrationReducer from '../reducers/registration'
+import authenticationReducer from '../reducers/authentication'
 
 export const history = createHistory()
 
@@ -26,7 +27,8 @@ const middleware = [
 
 const reducer = combineReducers({
   router: routerReducer,
-  registration: registrationReducer
+  registration: registrationReducer,
+  authentication: authenticationReducer
 })
 
 if (process.env.NODE_ENV === 'development') {
