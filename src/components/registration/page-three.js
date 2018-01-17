@@ -6,7 +6,11 @@ import {
   Row,
   Col,
   Panel,
-  Button
+  Button,
+  FormGroup,
+  ControlLabel,
+  FormControl,
+  HelpBlock
 } from 'react-bootstrap'
 import {
   connect
@@ -16,7 +20,40 @@ import FieldGroup from '../forms/field-group'
 class PageThree extends Component {
 
   handleSubmit = (evt) => {
-    this.props.goToPage(4);
+    evt.preventDefault();
+    var formValues = {};
+    var fields = [
+      'height',
+      'weight',
+      'cigaretteSmoker',
+      'cigarSmoker',
+      'drink',
+      'alcoholAbuse',
+      'drugs',
+      'physicalActivity',
+      'malignantHypertermia',
+      'pseudocholinesteraseDeficiency',
+      'motionSickness',
+      'nauseaVomiting',
+      'adverseReaction',
+      'ekg',
+      'chestXray',
+      'sleepApnea',
+      'cardiacStress',
+      'cardiacEcho',
+      'cardiacCatheterization'
+    ];
+
+    for (var i in fields) {
+      formValues[fields[i]] = this.props[fields[i]].value;
+    }
+    this.props.validate(formValues, 3);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.validation) {
+      this.props.goToPage(4);
+    }
   }
 
   getBasicScreening() {
@@ -26,13 +63,19 @@ class PageThree extends Component {
         <Panel.Body>
           <Row>
             <Col md={6}>
-              Height
+              <FieldGroup
+                id="height"
+                type="text"
+                label="Height? (inches)"
+                value={this.props.height}
+                onChange={this.props.handleInputChange} 
+                />
             </Col>
             <Col md={6}>
               <FieldGroup
                 id="weight"
                 type="text"
-                label="Weight?"
+                label="Weight? (lbs)"
                 value={this.props.weight}
                 onChange={this.props.handleInputChange} 
                 />
@@ -272,6 +315,7 @@ class PageThree extends Component {
 
 export default connect(
   (state) => ({
+    height: state.registration.height,
     weight: state.registration.weight,
     cigaretteSmoker: state.registration.cigaretteSmoker,
     cigarSmoker: state.registration.cigarSmoker,

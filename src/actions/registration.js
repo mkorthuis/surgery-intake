@@ -33,7 +33,11 @@ var validateRules = {
 
   //Page Two
   procedureSurgeryConsultType: [required],
-  procedureSurgeryConsultReason: [required]
+  procedureSurgeryConsultReason: [required],
+
+  //Page Three
+  height: [required],
+  weight: [required]
 }
 
 export function updateRegistrationValue(change) {

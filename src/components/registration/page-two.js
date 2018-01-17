@@ -23,7 +23,43 @@ class PageTwo extends Component {
   handleSubmit = (evt) => {
     evt.preventDefault();
     var formValues = {};
-    var fields = ['procedureSurgeryConsultType', 'procedureSurgeryConsultReason'];
+    var fields = ['institutionName',
+      'institutionAddressOne',
+      'institutionAddressTwo',
+      'institutionCity',
+      'institutionState',
+      'institutionZip',
+      'correctFacility',
+      'understandPatientNotice',
+      'ackOwnership',
+      'docPerforming',
+      'unknownDocPerforming',
+      'procedureDate',
+      'procedureSite',
+      'procedureSurgeryConsultType',
+      'procedureSurgeryConsultReason',
+      'weekdayPhoneNumber',
+      'voiceMailNumber',
+      'textMessageApproval',
+      'familyMemberContact',
+      'familyMemberRelationship',
+      'familyMemberFirstName',
+      'familyMemberLastName',
+      'familyMemberContactAddress',
+      'familyMemberAddressOne',
+      'familyMemberAddressTwo',
+      'familyMemberCity',
+      'familyMemberState',
+      'familyMemberZip',
+      'primaryInsuranceType',
+      'secondaryInsurance',
+      'rideHomeFirstName',
+      'rideHomeLastName',
+      'rideHomePrimaryPhone',
+      'rideHomeOtherPhone',
+      'rideHomeRelationship'
+    ];
+
     for (var i in fields) {
       formValues[fields[i]] = this.props[fields[i]].value;
     }
@@ -45,7 +81,7 @@ class PageTwo extends Component {
   }];
 
   getInstitutionInfo() {
-    if (this.props.correctFacility.value != 'no') {
+    if (this.props.correctFacility.value !== 'no') {
       var addressLineTwo = this.props.institutionAddressTwo.value ? <br /> : '';
       return (
         <Row>
@@ -229,7 +265,7 @@ class PageTwo extends Component {
                 />
             </Col>
           </Row>
-          {this.props.docPerforming.value != -1 || this.getUnkownDoctor()}
+          {this.props.docPerforming.value !== -1 || this.getUnkownDoctor()}
           <Row>
             <Col md={6}>
               <FieldGroup
@@ -375,7 +411,7 @@ class PageTwo extends Component {
               />
           </Col>
         </Row>
-        {this.props.familyMemberContactAddress.value != 'yes' || this.displayFamilyMemberAddress()}
+        {this.props.familyMemberContactAddress.value !== 'yes' || this.displayFamilyMemberAddress()}
       </span>
     )
   }
@@ -466,7 +502,7 @@ class PageTwo extends Component {
                 />
             </Col>
           </Row>
-          {this.props.familyMemberContact.value != 'yes' || this.displayFamilyMemberInfo()}
+          {this.props.familyMemberContact.value !== 'yes' || this.displayFamilyMemberInfo()}
         </Panel.Body>
       </Panel>
     )

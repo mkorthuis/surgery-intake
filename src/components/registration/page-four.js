@@ -15,7 +15,7 @@ import {
 class PageFour extends Component {
 
   handleSubmit = (evt) => {
-    this.props.goToPage(1);
+    this.props.goToPage(5);
   }
 
   getRowEntry = (name, value) => {

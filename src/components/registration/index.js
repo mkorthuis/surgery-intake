@@ -19,6 +19,7 @@ import RegisterPageOne from './page-one'
 import RegisterPageTwo from './page-two'
 import RegisterPageThree from './page-three'
 import RegisterPageFour from './page-four'
+import RegisterPageFive from './page-five'
 
 
 class Registration extends Component {
@@ -75,6 +76,8 @@ class Registration extends Component {
         return <RegisterPageThree handleInputChange={this.handleInputChange} validate={this.validateFields} goToPage={this.goToPage} />;
       case 4:
         return <RegisterPageFour handleInputChange={this.handleInputChange} validate={this.validateFields} goToPage={this.goToPage} />;
+      case 5:
+        return <RegisterPageFive />
       default:
         return <RegisterPageOne handleInputChange={this.handleInputChange} validate={this.validateFields} goToPage={this.goToPage} />;
     }
