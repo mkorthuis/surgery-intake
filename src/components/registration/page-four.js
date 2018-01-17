@@ -22,7 +22,7 @@ class PageFour extends Component {
     return (
       <Row>
         <Col xs={12}>
-          {name}: {value}
+          <b>{name}:</b> {value}
         </Col>
       </Row>
     )
@@ -31,7 +31,7 @@ class PageFour extends Component {
   getPatientInformation() {
     return (
       <Panel>
-        <Panel.Heading>Patient Information</Panel.Heading>
+        <Panel.Heading>Review Information</Panel.Heading>
         <Panel.Body>
           {this.getRowEntry('First Name', this.props.firstName.value)}
           {this.getRowEntry('Middle Initial', this.props.middleInitial.value)}

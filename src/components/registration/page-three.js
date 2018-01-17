@@ -6,11 +6,7 @@ import {
   Row,
   Col,
   Panel,
-  Button,
-  FormGroup,
-  ControlLabel,
-  FormControl,
-  HelpBlock
+  Button
 } from 'react-bootstrap'
 import {
   connect
