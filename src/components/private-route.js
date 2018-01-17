@@ -19,7 +19,7 @@ class PrivateRoute extends Component {
     component: Component,
     ...rest
   }) => (
-    <Route {...rest} render={props => (this.props.loggedIn ? (<Component {...props} />): (<Redirect to="/login" />))
+    <Route {...rest} render={props => (this.props.loggedIn ? (<Component {...props} />): (<Redirect to="/" />))
 }
 />
 )
