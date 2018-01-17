@@ -8,8 +8,9 @@ import {
 
 import Header from './components/header'
 import Registration from './components/registration'
-import FourOhFour from './components/four-oh-four'
+import NoMatch from './components/no-match'
 import PrivateRoute from './components/private-route'
+import DateOfBirth from './components/date-of-birth'
 
 class App extends Component {
   render() {
@@ -17,8 +18,9 @@ class App extends Component {
       <div className="App">
         <Header />
           <Switch>
+            <Route exact path="/" component={DateOfBirth} />
             <PrivateRoute exact path="/registration" component={Registration} />
-            <Route component={FourOhFour} />
+            <Route component={NoMatch} />
           </Switch>
       </div>
     );

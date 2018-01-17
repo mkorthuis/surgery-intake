@@ -5,7 +5,7 @@ import {
   connect
 } from 'react-redux'
 
-class FourOhFour extends Component {
+class NoMatch extends Component {
 
   render() {
     return (
@@ -20,4 +20,4 @@ export default connect(
   }), {
 
   }
-)(FourOhFour)
+)(NoMatch)
