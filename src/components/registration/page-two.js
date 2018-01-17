@@ -616,7 +616,7 @@ class PageTwo extends Component {
           {this.getRideHomeInformation()}
           <Row>
             <Col xs={12}>
-              <Button type="submit">
+              <Button bsStyle="primary" type="submit">
                 Submit
               </Button>
             </Col>

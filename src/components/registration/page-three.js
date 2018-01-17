@@ -298,7 +298,7 @@ class PageThree extends Component {
           {this.getDiagnosticTesting()}
           <Row>
             <Col xs={12}>
-              <Button type="submit">
+              <Button bsStyle="primary" type="submit">
                 Submit
               </Button>
             </Col>

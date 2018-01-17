@@ -217,7 +217,7 @@ class PageOne extends Component {
           {this.getContactNumbers()}
           <Row>
             <Col xs={12}>
-              <Button type="submit">
+              <Button bsStyle="primary" type="submit">
                 Submit
               </Button>
             </Col>
