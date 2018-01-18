@@ -3,10 +3,11 @@ export const BASE_URL = 'https://cc-platform-grp1-stage.clinicalbox.com/lgh/';
 class RegistrationApi {
 
   static validatePatientDateOfBirth(token, dateOfBirth) {
-    return fetch(BASE_URL + 'validatemedhistorydob/' + token, {
+    return fetch(BASE_URL + 'validatemedhistorydob', {
       method: 'POST',
       body: JSON.stringify({
-        'dob': dateOfBirth
+        'dob': dateOfBirth,
+        'form_token': token
       }),
       headers: new Headers({
         'Content-Type': 'application/json'
