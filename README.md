@@ -6,7 +6,7 @@
 create-react-app surgery-intake
 
 # UI functionality
-yarn add react-bootstrap node-sass-chokidar bootstrap react-router-bootstrap 
+yarn add react-bootstrap node-sass-chokidar bootstrap react-router-bootstrap create-react-class react-16-bootstrap-date-picker
 
 # Redux and Router
 yarn add redux react-redux react-router-dom react-router-redux@next redux-thunk
@@ -14,7 +14,7 @@ yarn add redux react-redux react-router-dom react-router-redux@next redux-thunk
 #For Running multiple commands
 yarn add npm-run-all
 
-yarn lodash
+yarn add lodash
 
 #Updates to package.json. Keep test and eject
   "build-css": "node-sass-chokidar src/ -o src/",

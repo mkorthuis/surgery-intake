@@ -15,7 +15,7 @@ const initState = {
   lastName: {},
   preferredName: {},
   dateOfBirth: {
-    value: '02/24/1955'
+    value: '1955-02-24T17:00:00.000Z'
   },
   sex: {},
   addressOne: {},

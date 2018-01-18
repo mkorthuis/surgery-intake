@@ -6,6 +6,7 @@ import {
   HelpBlock,
   Checkbox
 } from 'react-bootstrap';
+import DatePicker from 'react-16-bootstrap-date-picker';
 
 const FieldGroup = (props) => {
   const {
@@ -21,7 +22,8 @@ const FieldGroup = (props) => {
   const fieldTypes = {
     "text": getText,
     "select": getSelect,
-    "checkbox": getCheckbox
+    "checkbox": getCheckbox,
+    "datePicker": getDatePicker
   }
 
   function getValidation() {
@@ -35,10 +37,10 @@ const FieldGroup = (props) => {
   function getEnabledText() {
     return (
       <FormGroup controlId={id} validationState={getValidation()}>
-          {label && <ControlLabel>{label}</ControlLabel>}
-          <FormControl type={type} defaultValue={value.value} {...otherProps} />
-          {getHelp() && <HelpBlock>{getHelp()}</HelpBlock>}
-          <FormControl.Feedback />
+        {label && <ControlLabel>{label}</ControlLabel>}
+        <FormControl type={type} defaultValue={value.value} {...otherProps} />
+        {getHelp() && <HelpBlock>{getHelp()}</HelpBlock>}
+        <FormControl.Feedback />
       </FormGroup>
     )
   }
@@ -46,16 +48,27 @@ const FieldGroup = (props) => {
   function getDisabledText() {
     return (
       <FormGroup controlId={id} validationState={getValidation()}>
-          {label && <ControlLabel>{label}</ControlLabel>}
-    <FormControl type={type} defaultValue={value.value} disabled {...otherProps} />
-          {getHelp() && <HelpBlock>{getHelp()}</HelpBlock>}
-          <FormControl.Feedback />
+        {label && <ControlLabel>{label}</ControlLabel>}
+        <FormControl type={type} defaultValue={value.value} disabled {...otherProps} />
+        {getHelp() && <HelpBlock>{getHelp()}</HelpBlock>}
+        <FormControl.Feedback />
       </FormGroup>
     )
   }
 
   function getText() {
     return disabled ? getDisabledText() : getEnabledText();
+  }
+
+  function getDatePicker() {
+    return (
+      <FormGroup controlId={id} validationState={getValidation()}>
+        {label && <ControlLabel>{label}</ControlLabel>}
+        <DatePicker id={id} value={value.value} {...otherProps} />
+        {getHelp() && <HelpBlock>{getHelp()}</HelpBlock>}
+        <FormControl.Feedback />
+      </FormGroup>
+    )
   }
 
   function getSelect() {

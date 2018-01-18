@@ -25,8 +25,7 @@ import RegisterPageFive from './page-five'
 class Registration extends Component {
 
   handleInputChange = (evt) => {
-    const value = evt.target.type === 'checkbox' ? evt.target.checked : evt.target.value;
-
+    var value = evt.target.type === 'checkbox' ? evt.target.checked : evt.target.value;
     this.props.updateRegistrationValue({
       [evt.target.id]: value
     });

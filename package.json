@@ -7,11 +7,13 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "create-react-class": "^15.6.2",
     "node-sass-chokidar": "^0.0.3",
     "npm-run-all": "^4.1.2",
     "pinkie-promise": "^2.0.1",
     "pinky-promise": "^0.1.1",
     "react": "^16.2.0",
+    "react-16-bootstrap-date-picker": "^5.1.2",
     "react-bootstrap": "^0.32.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",

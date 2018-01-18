@@ -20,6 +20,8 @@ import {
   validate,
   setDateOfBirth
 } from '../../actions/authentication'
+import DatePicker from 'react-16-bootstrap-date-picker';
+
 import './index.css'
 
 class Login extends Component {
@@ -34,7 +36,7 @@ class Login extends Component {
   }
 
   updateDateOfBirth = (evt) => {
-    this.props.setDateOfBirth(evt.target.value);
+    this.props.setDateOfBirth(evt);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -47,13 +49,14 @@ class Login extends Component {
     return (
       <div className="container">
           <div className="Absolute-Center is-Responsive">
+            
             <Panel>
               <Panel.Heading>We want to make sure who you are</Panel.Heading>
               <Panel.Body>
                 <form onSubmit={this.handleValidation}>
                   <FormGroup validationState={(this.props.touched && !this.props.valid) ? 'error' : ''}>
                     <ControlLabel>Please enter your date of birth</ControlLabel>
-                    <FormControl type="text" id="dateOfBirth" onChange={this.updateDateOfBirth} />
+                    <DatePicker id="dateOfBirth" value={this.props.enteredDateOfBirth} onChange={this.updateDateOfBirth} />
                     {(this.props.touched && !this.props.valid) && <HelpBlock>{this.props.message}</HelpBlock>}
                   </FormGroup>
                   <Button bsStyle="primary" type="submit">Submit</Button>

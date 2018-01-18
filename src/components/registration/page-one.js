@@ -11,6 +11,9 @@ import {
   Panel,
   Button
 } from 'react-bootstrap'
+import {
+  updateRegistrationValue
+} from '../../actions/registration'
 import FieldGroup from '../forms/field-group'
 import {
   states
@@ -28,6 +31,12 @@ class PageOne extends Component {
       formValues[fields[i]] = this.props[fields[i]].value;
     }
     this.props.validate(formValues, 1);
+  }
+
+  handleDateOFBirthChange = (value) => {
+    this.props.updateRegistrationValue({
+      'dateOfBirth': value
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -83,10 +92,10 @@ class PageOne extends Component {
           <Col md={4}>
             <FieldGroup 
               id="dateOfBirth"
-              type="text"
+              type="datePicker"
               label="Patient Date of Birth"
               value={this.props.dateOfBirth}
-              onChange={this.props.handleInputChange}
+              onChange={this.handleDateOFBirthChange}
             />
           </Col>
           <Col md={2}>
@@ -246,6 +255,6 @@ export default connect(
     workPhoneExtension: state.registration.workPhoneExtension,
     validation: state.registration.validation['1']
   }), {
-
+    updateRegistrationValue
   }
 )(PageOne)
