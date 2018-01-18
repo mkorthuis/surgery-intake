@@ -15,13 +15,6 @@ import store, {
   history
 } from './store';
 
-import {
-  fetchData
-} from './actions/registration'
-
-//For Testing
-//store.dispatch(fetchData());
-
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
