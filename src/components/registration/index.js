@@ -12,7 +12,8 @@ import {
 import {
   updateRegistrationValue,
   validateFields,
-  updatePage
+  updatePage,
+  load
 } from '../../actions/registration'
 
 import RegisterPageOne from './page-one'
@@ -23,6 +24,11 @@ import RegisterPageFive from './page-five'
 
 
 class Registration extends Component {
+
+  constructor(props) {
+    super();
+    props.load(props.emailToken);
+  }
 
   handleInputChange = (evt) => {
     var value = evt.target.type === 'checkbox' ? evt.target.checked : evt.target.value;
@@ -95,10 +101,12 @@ class Registration extends Component {
 
 export default connect(
   (state) => ({
-    page: state.registration.page
+    page: state.registration.page,
+    emailToken: state.authentication.emailToken
   }), {
     updateRegistrationValue,
     validateFields,
-    updatePage
+    updatePage,
+    load
   }
 )(Registration)

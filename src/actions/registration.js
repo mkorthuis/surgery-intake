@@ -13,6 +13,7 @@ import {
   dateOfBirth
 } from './validation/rules'
 import RegistrationApi from '../api/registration-api'
+import moment from 'moment-es6'
 
 var validateRules = {
   //Page One
@@ -86,12 +87,17 @@ export function updatePage(page) {
   }
 }
 
-export function fetchData() {
+export function load(token) {
   return function(dispatch) {
-    return RegistrationApi.getData().then(registration => {
-      dispatch(updatePage(4));
+    return RegistrationApi.getCurrentMedicalHistory(token).then(patientHistory => {
+      var patientData = {
+        firstName: patientHistory.first_name,
+        lastName: patientHistory.last_name,
+        dateOfBirth: patientHistory.date_of_birth ? moment(patientHistory.date_of_birth, 'YYYY-MM-DD').toISOString() : ''
+      };
+      dispatch(updateRegistrationValue(patientData));
     }).catch(error => {
       throw (error);
-    });
-  };
+    })
+  }
 }

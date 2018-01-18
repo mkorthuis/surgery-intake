@@ -10,12 +10,16 @@ const initState = {
   page: 1,
 
   //Page One
-  firstName: {},
+  firstName: {
+    value: ''
+  },
   middleInitial: {},
-  lastName: {},
+  lastName: {
+    value: ''
+  },
   preferredName: {},
   dateOfBirth: {
-    value: '1955-02-24T17:00:00.000Z'
+    value: ''
   },
   sex: {},
   addressOne: {},

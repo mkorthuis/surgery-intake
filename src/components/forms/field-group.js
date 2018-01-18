@@ -38,7 +38,7 @@ const FieldGroup = (props) => {
     return (
       <FormGroup controlId={id} validationState={getValidation()}>
         {label && <ControlLabel>{label}</ControlLabel>}
-        <FormControl type={type} defaultValue={value.value} {...otherProps} />
+        <FormControl type={type} value={value.value} {...otherProps} />
         {getHelp() && <HelpBlock>{getHelp()}</HelpBlock>}
         <FormControl.Feedback />
       </FormGroup>
@@ -49,7 +49,7 @@ const FieldGroup = (props) => {
     return (
       <FormGroup controlId={id} validationState={getValidation()}>
         {label && <ControlLabel>{label}</ControlLabel>}
-        <FormControl type={type} defaultValue={value.value} disabled {...otherProps} />
+        <FormControl type={type} value={value.value} disabled {...otherProps} />
         {getHelp() && <HelpBlock>{getHelp()}</HelpBlock>}
         <FormControl.Feedback />
       </FormGroup>
