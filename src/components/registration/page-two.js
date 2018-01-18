@@ -265,7 +265,7 @@ class PageTwo extends Component {
                 />
             </Col>
           </Row>
-          {this.props.docPerforming.value !== -1 || this.getUnkownDoctor()}
+          {this.props.docPerforming.value !== '-1' || this.getUnkownDoctor()}
           <Row>
             <Col md={6}>
               <FieldGroup
@@ -411,7 +411,7 @@ class PageTwo extends Component {
               />
           </Col>
         </Row>
-        {this.props.familyMemberContactAddress.value !== 'yes' || this.displayFamilyMemberAddress()}
+        {this.props.familyMemberContactAddress.value !== 'no' || this.displayFamilyMemberAddress()}
       </span>
     )
   }
