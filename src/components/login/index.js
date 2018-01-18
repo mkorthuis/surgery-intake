@@ -12,7 +12,6 @@ import {
   Button,
   FormGroup,
   ControlLabel,
-  FormControl,
   HelpBlock
 } from 'react-bootstrap'
 import {
@@ -54,7 +53,7 @@ class Login extends Component {
               <Panel.Heading>We want to make sure who you are</Panel.Heading>
               <Panel.Body>
                 <form onSubmit={this.handleValidation}>
-                  <FormGroup validationState={(this.props.touched && !this.props.valid) ? 'error' : ''}>
+                  <FormGroup validationState={(this.props.touched && !this.props.valid) ? 'error' : null}>
                     <ControlLabel>Please enter your date of birth</ControlLabel>
                     <DatePicker id="dateOfBirth" value={this.props.enteredDateOfBirth} onChange={this.updateDateOfBirth} />
                     {(this.props.touched && !this.props.valid) && <HelpBlock>{this.props.message}</HelpBlock>}
