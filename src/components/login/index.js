@@ -85,7 +85,6 @@ class Login extends Component {
 export default connect(
   (state) => ({
     loggedIn: state.authentication.loggedIn,
-    actualDateOfBirth: state.registration.dateOfBirth.value,
     enteredDateOfBirth: state.authentication.dateOfBirth,
     message: state.authentication.message,
     valid: state.authentication.valid,
