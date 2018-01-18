@@ -8,6 +8,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "create-react-class": "^15.6.2",
+    "moment-es6": "^1.0.0",
     "node-sass-chokidar": "^0.0.3",
     "npm-run-all": "^4.1.2",
     "pinkie-promise": "^2.0.1",

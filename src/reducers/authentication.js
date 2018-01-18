@@ -1,5 +1,6 @@
 export const LOGIN = "LOGIN";
 export const CHANGE_DATE_OF_BIRTH = "CHANGE_DATE_OF_BIRTH";
+export const CHANGE_EMAIL_TOKEN = "CHANGE_EMAIL_TOKEN";
 export const VALIDATE = "VALIDATE";
 
 const initState = {
@@ -7,7 +8,8 @@ const initState = {
   dateOfBirth: '',
   message: '',
   valid: false,
-  touched: false
+  touched: false,
+  emailToken: null
 };
 
 export default (state = initState, action) => {
@@ -25,6 +27,10 @@ export default (state = initState, action) => {
     case CHANGE_DATE_OF_BIRTH:
       return Object.assign({}, state, {
         dateOfBirth: action.payload
+      });
+    case CHANGE_EMAIL_TOKEN:
+      return Object.assign({}, state, {
+        emailToken: action.payload
       });
     default:
       return state

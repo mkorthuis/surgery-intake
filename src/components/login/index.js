@@ -17,7 +17,8 @@ import {
 import {
   login,
   validate,
-  setDateOfBirth
+  setDateOfBirth,
+  setEmailToken
 } from '../../actions/authentication'
 import DatePicker from 'react-16-bootstrap-date-picker';
 
@@ -25,13 +26,16 @@ import './index.css'
 
 class Login extends Component {
 
+  constructor(props) {
+    super();
+    if (props.location.search && props.location.search.startsWith('?') && props.location.search.length > 1) {
+      props.setEmailToken(props.location.search.substring(1));
+    }
+  }
+
   handleValidation = (evt) => {
     evt.preventDefault();
-    if (this.props.actualDateOfBirth === this.props.enteredDateOfBirth) {
-      this.props.validate(true, '');
-    } else {
-      this.props.validate(false, 'Invalid date format ( _ _ / _ _ / _ _ _ _ ). Please enter 02/24/1955');
-    }
+    this.props.validate(this.props.emailToken, this.props.enteredDateOfBirth);
   }
 
   updateDateOfBirth = (evt) => {
@@ -85,10 +89,12 @@ export default connect(
     enteredDateOfBirth: state.authentication.dateOfBirth,
     message: state.authentication.message,
     valid: state.authentication.valid,
-    touched: state.authentication.touched
+    touched: state.authentication.touched,
+    emailToken: state.authentication.emailToken
   }), {
     login,
     validate,
-    setDateOfBirth
+    setDateOfBirth,
+    setEmailToken
   }
 )(Login);

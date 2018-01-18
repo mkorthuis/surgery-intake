@@ -14,7 +14,7 @@ yarn add redux react-redux react-router-dom react-router-redux@next redux-thunk
 #For Running multiple commands
 yarn add npm-run-all
 
-yarn add lodash
+yarn add lodash moment-es6
 
 #Updates to package.json. Keep test and eject
   "build-css": "node-sass-chokidar src/ -o src/",
