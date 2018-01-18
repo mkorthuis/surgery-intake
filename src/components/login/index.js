@@ -73,7 +73,10 @@ class Login extends Component {
 
   getRedirect() {
     return (
-      <Redirect to="/registration" />
+      <Redirect to={{
+      pathname: '/registration/',
+      search: this.props.emailToken
+    }} />
     )
   }
 
