@@ -56,13 +56,13 @@ class Registration extends Component {
       <Grid>
       <Nav bsStyle="pills" activeKey={this.props.page} onSelect={this.handleNavSelect}>
         <NavItem eventKey={1} >
-          Overview
+          Procedure 
         </NavItem>
         <NavItem eventKey={2} >
-          Account Registration
+          Contact Information
         </NavItem>
         <NavItem eventKey={3}>
-          Patient & Visit Information
+          Contact Preferences
         </NavItem>
         <NavItem eventKey={4}>
           Health History

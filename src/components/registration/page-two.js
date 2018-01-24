@@ -26,7 +26,7 @@ class PageTwo extends Component {
   handleSubmit = (evt) => {
     evt.preventDefault();
     var formValues = {};
-    var fields = ['firstName', 'middleInitial', 'lastName', 'preferredName', 'dateOfBirth', 'sex', 'addressOne', 'addressTwo', 'city', 'state', 'homePhone', 'mobilePhone', 'workPhone', 'workPhoneExtension'];
+    var fields = ['firstName', 'middleName', 'lastName', 'preferredName', 'dateOfBirth', 'sex', 'addressOne', 'addressTwo', 'city', 'state', 'homePhone', 'mobilePhone', 'workPhone', 'workPhoneExtension'];
     for (var i in fields) {
       formValues[fields[i]] = this.props[fields[i]].value;
     }
@@ -51,7 +51,7 @@ class PageTwo extends Component {
         <Panel.Heading>Patient Information</Panel.Heading>
         <Panel.Body>
         <Row>
-          <Col md={5}>
+          <Col md={3}>
             <FieldGroup
               id="firstName"
               type="text"
@@ -60,21 +60,30 @@ class PageTwo extends Component {
               onChange={this.props.handleInputChange}
               />
           </Col>
-          <Col md={2}>
+          <Col md={3}>
             <FieldGroup
               id="middleInitial"
               type="text"
-              label="Middle Initial"
-              value={this.props.middleInitial}
+              label="Middle Name"
+              value={this.props.middleName}
               onChange={this.props.handleInputChange}
               />
           </Col>
-          <Col md={5}>
+          <Col md={4}>
             <FieldGroup
               id="lastName"
               type="text"
               label="Last Name"
               value={this.props.lastName}
+              onChange={this.props.handleInputChange}
+              />
+          </Col>
+          <Col md={2}>
+            <FieldGroup
+              id="suffix"
+              type="text"
+              label="Suffix (e.g., Jr., Sr.)"
+              value={this.props.suffix}
               onChange={this.props.handleInputChange}
               />
           </Col>
@@ -93,7 +102,7 @@ class PageTwo extends Component {
             <FieldGroup 
               id="dateOfBirth"
               type="datePicker"
-              label="Patient Date of Birth"
+              label="Patient Date of Birth  ( MM / DD / YYYY )"
               value={this.props.dateOfBirth}
               onChange={this.handleDateOFBirthChange}
             />
@@ -142,7 +151,7 @@ class PageTwo extends Component {
             </Col>
           </Row>
           <Row>
-            <Col md={8}>
+            <Col md={7}>
               <FieldGroup
                 id="city"
                 type="text"
@@ -151,13 +160,22 @@ class PageTwo extends Component {
                 onChange={this.props.handleInputChange}
               />
             </Col>
-            <Col md={4}>
+            <Col md={3}>
               <FieldGroup
                 id="state"
                 type="select"
                 label="State"
                 value={this.props.state}
                 options={union([{name:'Select', value:''}],states)}
+                onChange={this.props.handleInputChange}
+              />
+            </Col>
+            <Col md={2}>
+              <FieldGroup
+                id="zip"
+                type="text"
+                label="Zip"
+                value={this.props.zip}
                 onChange={this.props.handleInputChange}
               />
             </Col>
@@ -192,6 +210,17 @@ class PageTwo extends Component {
               />
             </Col>
           </Row>
+          <Row> 
+            <Col xs={12}>
+              <FieldGroup
+                id="emailAddress"
+                type="text"
+                label="Email Address"
+                value={this.props.emailAddress}
+                onChange={this.props.handleInputChange}
+                />
+            </Col>
+          </Row>
           <Row>
             <Col md={8}>
               <FieldGroup
@@ -217,13 +246,46 @@ class PageTwo extends Component {
     )
   }
 
+  getInsuranceInformation() {
+    return (
+      <Panel>
+        <Panel.Heading>Insurance Information</Panel.Heading>
+        <Panel.Body>
+          <Row>
+            <Col md={6}>
+              <FieldGroup
+                id="primaryInsuranceType"
+                type="select"
+                label="Primary Insurance"
+                value={this.props.primaryInsuranceType}
+                options={[{value:'',name:'Select'},{value:'insuranceCompany',name:'Insurance Company'},{value:'medicare',name:'Medicare'},{value:'medicaid',name:'Medicaid'},{value:'workersComp',name:'Workers Compensation'},{value:'medex',name:'Medex'},{value:'tricare',name:'Tricare'},{value:'selfPay',name:'Self Pay'},{value:'other',name:'Other'}]}
+                onChange={this.props.handleInputChange}
+                />
+            </Col>
+            <Col md={6}>
+              <FieldGroup
+                id="secondaryInsurance"
+                type="select"
+                label="Secondary Insurance?"
+                value={this.props.secondaryInsurance}
+                options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
+                onChange={this.props.handleInputChange}
+                />
+            </Col>
+          </Row>
+        </Panel.Body>
+      </Panel>
+    )
+  }
+
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
         <Grid>
           {this.getPatientInformation()}
-          {this.getPatientAddress()}
           {this.getContactNumbers()}
+          {this.getPatientAddress()}
+          {this.getInsuranceInformation()}
           <Row>
             <Col xs={12}>
               <Button bsStyle="primary" type="submit">
@@ -240,8 +302,9 @@ class PageTwo extends Component {
 export default connect(
   (state) => ({
     firstName: state.registration.firstName,
-    middleInitial: state.registration.middleInitial,
+    middleName: state.registration.middleName,
     lastName: state.registration.lastName,
+    suffix: state.registration.suffix,
     preferredName: state.registration.preferredName,
     dateOfBirth: state.registration.dateOfBirth,
     sex: state.registration.sex,
@@ -249,10 +312,15 @@ export default connect(
     addressTwo: state.registration.addressTwo,
     city: state.registration.city,
     state: state.registration.state,
+    zip: state.registration.zip,
     mobilePhone: state.registration.mobilePhone,
     homePhone: state.registration.homePhone,
     workPhone: state.registration.workPhone,
     workPhoneExtension: state.registration.workPhoneExtension,
+    emailAddress: state.registration.emailAddress,
+    primaryInsuranceType: state.registration.primaryInsuranceType,
+    secondaryInsurance: state.registration.secondaryInsurance,
+
     validation: state.registration.validation['2']
   }), {
     updateRegistrationValue

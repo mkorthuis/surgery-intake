@@ -34,8 +34,9 @@ class PageFive extends Component {
         <Panel.Heading>Review Information</Panel.Heading>
         <Panel.Body>
           {this.getRowEntry('First Name', this.props.firstName.value)}
-          {this.getRowEntry('Middle Initial', this.props.middleInitial.value)}
+          {this.getRowEntry('Middle Name', this.props.middleName.value)}
           {this.getRowEntry('Last Name', this.props.lastName.value)}
+          {this.getRowEntry('Suffix', this.props.suffix.value)}
           {this.getRowEntry('Preferred Name', this.props.preferredName.value)}
           {this.getRowEntry('Date of Birth', this.props.dateOfBirth.value)}
           {this.getRowEntry('Sex', this.props.sex.value)}
@@ -43,6 +44,7 @@ class PageFive extends Component {
           {this.getRowEntry('Address Two', this.props.addressTwo.value)}
           {this.getRowEntry('City', this.props.city.value)}
           {this.getRowEntry('State', this.props.state.value)}
+          {this.getRowEntry('Zip', this.props.zip.value)}
           {this.getRowEntry('Mobile Phone', this.props.mobilePhone.value)}
           {this.getRowEntry('Home Phone', this.props.homePhone.value)}
           {this.getRowEntry('Work Phone', this.props.workPhone.value)}
@@ -59,8 +61,6 @@ class PageFive extends Component {
           {this.getRowEntry('I understand and accept the Acknowledgement of Ownership.', this.props.ackOwnership.value)}
           {this.getRowEntry('Who is performing the procedure, surgery or consult?', this.props.docPerforming.value)}
           {this.getRowEntry('Procedure Site', this.props.procedureSite.value)}
-          {this.getRowEntry('Type of Procedure, Surgery, or Consult', this.props.procedureSurgeryConsultType.value)}
-          {this.getRowEntry('Reason for Procedure, Surgery, or Consult', this.props.procedureSurgeryConsultReason.value)}
           {this.getRowEntry('Choose a weekday phone number', this.props.weekdayPhoneNumber.value)}
           {this.getRowEntry('Choose the number where the healthcare team can leave a voice message', this.props.voiceMailNumber.value)}
           {this.getRowEntry('Can the healthcare team send you a text message with healthcare information?', this.props.textMessageApproval.value)}
@@ -97,8 +97,9 @@ class PageFive extends Component {
 export default connect(
   (state) => ({
     firstName: state.registration.firstName,
-    middleInitial: state.registration.middleInitial,
+    middleName: state.registration.middleName,
     lastName: state.registration.lastName,
+    suffix: state.registration.suffix,
     preferredName: state.registration.preferredName,
     dateOfBirth: state.registration.dateOfBirth,
     sex: state.registration.sex,
@@ -106,6 +107,7 @@ export default connect(
     addressTwo: state.registration.addressTwo,
     city: state.registration.city,
     state: state.registration.state,
+    zip: state.registration.zip,
     mobilePhone: state.registration.mobilePhone,
     homePhone: state.registration.homePhone,
     workPhone: state.registration.workPhone,
@@ -122,8 +124,6 @@ export default connect(
     ackOwnership: state.registration.ackOwnership,
     docPerforming: state.registration.docPerforming,
     procedureSite: state.registration.procedureSite,
-    procedureSurgeryConsultType: state.registration.procedureSurgeryConsultType,
-    procedureSurgeryConsultReason: state.registration.procedureSurgeryConsultReason,
     weekdayPhoneNumber: state.registration.weekdayPhoneNumber,
     voiceMailNumber: state.registration.voiceMailNumber,
     textMessageApproval: state.registration.textMessageApproval,

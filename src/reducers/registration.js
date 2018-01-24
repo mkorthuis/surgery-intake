@@ -13,10 +13,11 @@ const initState = {
   firstName: {
     value: ''
   },
-  middleInitial: {},
+  middleName: {},
   lastName: {
     value: ''
   },
+  suffix: {},
   preferredName: {},
   dateOfBirth: {
     value: ''
@@ -26,10 +27,12 @@ const initState = {
   addressTwo: {},
   city: {},
   state: {},
+  zip: {},
   mobilePhone: {},
   homePhone: {},
   workPhone: {},
   workPhoneExtension: {},
+  emailAddress: {},
 
   //Page Two
   institutionName: {
@@ -51,12 +54,12 @@ const initState = {
   correctFacility: {},
   understandPatientNotice: {},
   ackOwnership: {},
+  correctProcedure: {},
   docPerforming: {},
   unknownDocPerforming: {},
+  procedurePerformed: {},
   procedureDate: {},
   procedureSite: {},
-  procedureSurgeryConsultType: {},
-  procedureSurgeryConsultReason: {},
   weekdayPhoneNumber: {},
   voiceMailNumber: {},
   textMessageApproval: {},

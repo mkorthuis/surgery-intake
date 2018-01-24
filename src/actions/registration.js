@@ -18,7 +18,7 @@ import moment from 'moment-es6'
 var validateRules = {
   //Page One
   firstName: [required, maxLength(50)],
-  middleInitial: [maxLength(2)],
+  middleName: [],
   lastName: [required, maxLength(50)],
   preferredName: [maxLength(100)],
   dateOfBirth: [required, dateOfBirth],
@@ -27,10 +27,12 @@ var validateRules = {
   addressTwo: [required],
   city: [required],
   state: [required],
+  zip: [required],
   mobilePhone: [phoneNumber],
   homePhone: [phoneNumber],
   workPhone: [phoneNumber],
   workPhoneExtension: [number],
+  emailAddress: [required],
 
   //Page Two
   procedureSurgeryConsultType: [required],
