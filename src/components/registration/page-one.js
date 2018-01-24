@@ -5,225 +5,33 @@ import {
   connect
 } from 'react-redux'
 import {
+  Panel,
   Grid,
   Row,
   Col,
-  Panel,
   Button
 } from 'react-bootstrap'
-import {
-  updateRegistrationValue
-} from '../../actions/registration'
-import FieldGroup from '../forms/field-group'
-import {
-  states
-} from '../forms/lists'
-import union from 'lodash/union'
 
 class PageOne extends Component {
 
-
   handleSubmit = (evt) => {
     evt.preventDefault();
-    var formValues = {};
-    var fields = ['firstName', 'middleInitial', 'lastName', 'preferredName', 'dateOfBirth', 'sex', 'addressOne', 'addressTwo', 'city', 'state', 'homePhone', 'mobilePhone', 'workPhone', 'workPhoneExtension'];
-    for (var i in fields) {
-      formValues[fields[i]] = this.props[fields[i]].value;
-    }
-    this.props.validate(formValues, 1);
-  }
-
-  handleDateOFBirthChange = (value) => {
-    this.props.updateRegistrationValue({
-      'dateOfBirth': value
-    });
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.validation) {
-      this.props.goToPage(2);
-    }
-  }
-
-  getPatientInformation() {
-    return (
-      <Panel>
-        <Panel.Heading>Patient Information</Panel.Heading>
-        <Panel.Body>
-        <Row>
-          <Col md={5}>
-            <FieldGroup
-              id="firstName"
-              type="text"
-              label="First Name"
-              value={this.props.firstName}
-              onChange={this.props.handleInputChange}
-              />
-          </Col>
-          <Col md={2}>
-            <FieldGroup
-              id="middleInitial"
-              type="text"
-              label="Middle Initial"
-              value={this.props.middleInitial}
-              onChange={this.props.handleInputChange}
-              />
-          </Col>
-          <Col md={5}>
-            <FieldGroup
-              id="lastName"
-              type="text"
-              label="Last Name"
-              value={this.props.lastName}
-              onChange={this.props.handleInputChange}
-              />
-          </Col>
-        </Row>
-        <Row> 
-          <Col md={6}>
-            <FieldGroup
-              id="preferredName"
-              type="text"
-              label="Preferred Name"
-              value={this.props.preferredName}
-              onChange={this.props.handleInputChange}
-              />
-          </Col>
-          <Col md={4}>
-            <FieldGroup 
-              id="dateOfBirth"
-              type="datePicker"
-              label="Patient Date of Birth"
-              value={this.props.dateOfBirth}
-              onChange={this.handleDateOFBirthChange}
-            />
-          </Col>
-          <Col md={2}>
-            <FieldGroup
-              id="sex"
-              type="select"
-              label="Sex"
-              value={this.props.sex}
-              options={[{name: 'Select', value:''}, {name:'Male', value:'male'}, {name:'Female', value:'female'}]}
-              onChange={this.props.handleInputChange}
-            />
-          </Col>
-        </Row>
-        </Panel.Body>
-      </Panel>
-    )
-  }
-
-  getPatientAddress() {
-    return (
-      <Panel>
-        <Panel.Heading>Patient Address</Panel.Heading>
-        <Panel.Body>
-          <Row>
-            <Col xs={12}>
-              <FieldGroup
-                id="addressOne"
-                type="text"
-                label="Address 1"
-                value={this.props.addressOne}
-                onChange={this.props.handleInputChange}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              <FieldGroup
-                id="addressTwo"
-                type="text"
-                label="Address 2"
-                value={this.props.addressTwo}
-                onChange={this.props.handleInputChange}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col md={8}>
-              <FieldGroup
-                id="city"
-                type="text"
-                label="City"
-                value={this.props.city}
-                onChange={this.props.handleInputChange}
-              />
-            </Col>
-            <Col md={4}>
-              <FieldGroup
-                id="state"
-                type="select"
-                label="State"
-                value={this.props.state}
-                options={union([{name:'Select', value:''}],states)}
-                onChange={this.props.handleInputChange}
-              />
-            </Col>
-          </Row>
-        </Panel.Body>
-      </Panel>
-    )
-  }
-
-  getContactNumbers() {
-    return (
-      <Panel>
-        <Panel.Heading>Contact Numbers</Panel.Heading>
-        <Panel.Body>
-          <Row>
-            <Col md={6}>
-              <FieldGroup
-                id="mobilePhone"
-                type="text"
-                label="Mobile Phone"
-                value={this.props.mobilePhone}
-                onChange={this.props.handleInputChange}
-                />
-            </Col>
-            <Col md={6}>
-              <FieldGroup
-                id="homePhone"
-                type="text"
-                label="Home Phone"
-                value={this.props.homePhone}
-                onChange={this.props.handleInputChange}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col md={8}>
-              <FieldGroup
-                id="workPhone"
-                type="text"
-                label="Work Phone"
-                value={this.props.workPhone}
-                onChange={this.props.handleInputChange}
-                />
-            </Col>
-            <Col md={4}>
-              <FieldGroup
-                id="workPhoneExtension"
-                type="text"
-                label="Extension"
-                value={this.props.workPhoneExtension}
-                onChange={this.props.handleInputChange}
-                />
-            </Col>
-          </Row>
-        </Panel.Body>
-      </Panel>
-    )
+    this.props.goToPage(2);
   }
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
         <Grid>
-          {this.getPatientInformation()}
-          {this.getPatientAddress()}
-          {this.getContactNumbers()}
+          <Panel>
+            <Panel.Heading>Overview</Panel.Heading>
+            <Panel.Body>
+              <p>Sed varius metus non tellus dapibus accumsan. Pellentesque tincidunt elementum odio, a sodales nunc bibendum ac. Nam sagittis porta molestie. Vestibulum in auctor neque. Fusce pulvinar placerat nulla eu fermentum. Proin facilisis, ipsum eu tincidunt ultrices, lorem turpis fermentum nunc, ut rhoncus enim ex vel neque. In ac arcu ac lorem cursus hendrerit non quis elit. Curabitur vel urna in turpis tincidunt hendrerit. Vivamus ac eros eu neque iaculis faucibus. Praesent sed vulputate felis, nec posuere ex. Sed fringilla posuere magna. Integer fringilla iaculis odio, in ultrices leo commodo imperdiet. Fusce tristique risus a mauris eleifend sodales. Morbi faucibus aliquet nibh, non fermentum orci aliquet nec.</p>
+              <p>Curabitur venenatis eget purus sit amet vehicula. Morbi ac nunc vel magna porta imperdiet vitae non augue. Donec posuere diam quis est ornare, placerat ullamcorper magna placerat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras purus purus, vulputate sit amet ultricies auctor, tristique ut orci. Maecenas in ipsum id quam ullamcorper lobortis. Nunc a dolor sit amet metus fringilla congue non sit amet ante. Vestibulum leo mauris, porta ac turpis et, iaculis euismod urna. Duis consectetur massa at mi dignissim lacinia. Nunc commodo viverra dapibus. Pellentesque at enim eu nibh aliquam placerat. In ultrices, velit ut porttitor tincidunt, elit nibh elementum leo, eu aliquam tortor ipsum ut nibh.</p>
+              <p>Curabitur id ultricies lectus. Morbi eros velit, venenatis id enim in, venenatis ultrices ante. In hac habitasse platea dictumst. Donec aliquam semper ligula quis maximus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque in tincidunt sapien. In quis tellus vel elit pretium aliquet. Cras tristique imperdiet lacus eu ullamcorper. Donec quis viverra erat. Vestibulum lobortis ipsum eu erat sagittis, id aliquet nibh molestie. Fusce convallis, nunc sit amet vestibulum tincidunt, nulla leo ornare nulla, vitae commodo ante nisi vel dui. Curabitur sagittis fermentum orci in viverra. Donec consectetur aliquet diam ut dignissim. Integer vitae felis quis nulla varius aliquam quis posuere quam. Nam quam dui, ultrices ut interdum id, tincidunt eget justo.</p>
+              <p>In the pages that follow you will be asked questions regarding your medical history which will help your surgeon and the care team to better serve you. Please answer all questions to the best of your ability.</p>
+            </Panel.Body>
+          </Panel>
           <Row>
             <Col xs={12}>
               <Button bsStyle="primary" type="submit">
@@ -239,22 +47,8 @@ class PageOne extends Component {
 
 export default connect(
   (state) => ({
-    firstName: state.registration.firstName,
-    middleInitial: state.registration.middleInitial,
-    lastName: state.registration.lastName,
-    preferredName: state.registration.preferredName,
-    dateOfBirth: state.registration.dateOfBirth,
-    sex: state.registration.sex,
-    addressOne: state.registration.addressOne,
-    addressTwo: state.registration.addressTwo,
-    city: state.registration.city,
-    state: state.registration.state,
-    mobilePhone: state.registration.mobilePhone,
-    homePhone: state.registration.homePhone,
-    workPhone: state.registration.workPhone,
-    workPhoneExtension: state.registration.workPhoneExtension,
-    validation: state.registration.validation['1']
+
   }), {
-    updateRegistrationValue
+
   }
 )(PageOne)

@@ -21,6 +21,7 @@ import RegisterPageTwo from './page-two'
 import RegisterPageThree from './page-three'
 import RegisterPageFour from './page-four'
 import RegisterPageFive from './page-five'
+import RegisterPageSix from './page-six'
 
 
 class Registration extends Component {
@@ -55,15 +56,18 @@ class Registration extends Component {
       <Grid>
       <Nav bsStyle="pills" activeKey={this.props.page} onSelect={this.handleNavSelect}>
         <NavItem eventKey={1} >
+          Overview
+        </NavItem>
+        <NavItem eventKey={2} >
           Account Registration
         </NavItem>
-        <NavItem eventKey={2}>
+        <NavItem eventKey={3}>
           Patient & Visit Information
         </NavItem>
-        <NavItem eventKey={3}>
+        <NavItem eventKey={4}>
           Health History
         </NavItem>
-        <NavItem eventKey={4}>
+        <NavItem eventKey={5}>
           Review & Send
         </NavItem>
       </Nav>
@@ -82,7 +86,9 @@ class Registration extends Component {
       case 4:
         return <RegisterPageFour handleInputChange={this.handleInputChange} validate={this.validateFields} goToPage={this.goToPage} />;
       case 5:
-        return <RegisterPageFive />
+        return <RegisterPageFive handleInputChange={this.handleInputChange} validate={this.validateFields} goToPage={this.goToPage} />;
+      case 6:
+        return <RegisterPageSix />
       default:
         return <RegisterPageOne handleInputChange={this.handleInputChange} validate={this.validateFields} goToPage={this.goToPage} />;
     }

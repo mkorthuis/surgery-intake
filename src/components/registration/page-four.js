@@ -11,66 +11,279 @@ import {
 import {
   connect
 } from 'react-redux'
+import FieldGroup from '../forms/field-group'
 
 class PageFour extends Component {
 
   handleSubmit = (evt) => {
-    this.props.goToPage(5);
+    evt.preventDefault();
+    var formValues = {};
+    var fields = [
+      'height',
+      'weight',
+      'cigaretteSmoker',
+      'cigarSmoker',
+      'drink',
+      'alcoholAbuse',
+      'drugs',
+      'physicalActivity',
+      'malignantHypertermia',
+      'pseudocholinesteraseDeficiency',
+      'motionSickness',
+      'nauseaVomiting',
+      'adverseReaction',
+      'ekg',
+      'chestXray',
+      'sleepApnea',
+      'cardiacStress',
+      'cardiacEcho',
+      'cardiacCatheterization'
+    ];
+
+    for (var i in fields) {
+      formValues[fields[i]] = this.props[fields[i]].value;
+    }
+    this.props.validate(formValues, 4);
   }
 
-  getRowEntry = (name, value) => {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.validation) {
+      this.props.goToPage(5);
+    }
+  }
+
+  getBasicScreening() {
     return (
-      <Row>
-        <Col xs={12}>
-          <b>{name}:</b> {value}
-        </Col>
-      </Row>
+      <Panel>
+        <Panel.Heading>Basic Screening</Panel.Heading>
+        <Panel.Body>
+          <Row>
+            <Col md={6}>
+              <FieldGroup
+                id="height"
+                type="text"
+                label="Height? (inches)"
+                value={this.props.height}
+                onChange={this.props.handleInputChange} 
+                />
+            </Col>
+            <Col md={6}>
+              <FieldGroup
+                id="weight"
+                type="text"
+                label="Weight? (lbs)"
+                value={this.props.weight}
+                onChange={this.props.handleInputChange} 
+                />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={6}>
+              <FieldGroup
+                id="cigaretteSmoker"
+                type="select"
+                label="Smoking status?"
+                value={this.props.cigaretteSmoker}
+                options={[{name:'Select', value:''},{name:'Never Smoked', value:'never'},{name:'Former Smoked', value:'former'},{name:'Current Smoker', value:'current'}]}
+                onChange={this.props.handleInputChange} 
+                />
+            </Col>
+            <Col md={6}>
+              <FieldGroup
+                id="cigarSmoker"
+                type="select"
+                label="Cigar smoker, pipe smoker, and/or tobacco chewer?"
+                value={this.props.cigarSmoker}
+                options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
+                onChange={this.props.handleInputChange} 
+                />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={6}>
+              <FieldGroup
+                id="drink"
+                type="select"
+                label="Drink beer, wine or liquor?"
+                value={this.props.drink}
+                options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
+                onChange={this.props.handleInputChange} 
+                />              
+            </Col>
+            <Col md={6}>
+              <FieldGroup
+                id="alcoholAbuse"
+                type="select"
+                label="History of alcohol abuse?"
+                value={this.props.alcoholAbuse}
+                options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
+                onChange={this.props.handleInputChange} 
+                />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={6}>
+              <FieldGroup
+                id="drugs"
+                type="select"
+                label="History of using recreational or street drugs?"
+                value={this.props.drugs}
+                options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
+                onChange={this.props.handleInputChange} 
+                />
+            </Col>
+            <Col md={6}>
+              <FieldGroup
+                id="physicalActivity"
+                type="select"
+                label="Physicial activity level?"
+                value={this.props.physicalActivity}
+                options={[{name:'Select', value:''},{name:'High', value:'high'},{name:'Medium', value:'medium'},{name:'Low', value:'low'}]}
+                onChange={this.props.handleInputChange} 
+                />
+            </Col>
+          </Row>
+        </Panel.Body>
+      </Panel>
     )
   }
 
-  getPatientInformation() {
+  getHistoryAnesthesiaComplications() {
     return (
       <Panel>
-        <Panel.Heading>Review Information</Panel.Heading>
+        <Panel.Heading>History of Anesthesia Complications</Panel.Heading>
         <Panel.Body>
-          {this.getRowEntry('First Name', this.props.firstName.value)}
-          {this.getRowEntry('Middle Initial', this.props.middleInitial.value)}
-          {this.getRowEntry('Last Name', this.props.lastName.value)}
-          {this.getRowEntry('Preferred Name', this.props.preferredName.value)}
-          {this.getRowEntry('Date of Birth', this.props.dateOfBirth.value)}
-          {this.getRowEntry('Sex', this.props.sex.value)}
-          {this.getRowEntry('Address One', this.props.addressOne.value)}
-          {this.getRowEntry('Address Two', this.props.addressTwo.value)}
-          {this.getRowEntry('City', this.props.city.value)}
-          {this.getRowEntry('State', this.props.state.value)}
-          {this.getRowEntry('Mobile Phone', this.props.mobilePhone.value)}
-          {this.getRowEntry('Home Phone', this.props.homePhone.value)}
-          {this.getRowEntry('Work Phone', this.props.workPhone.value)}
-          {this.getRowEntry('Work Phone Extension', this.props.workPhoneExtension.value)}
-          
-          {this.getRowEntry('Institution Name', this.props.institutionName.value)}
-          {this.getRowEntry('Institution Address One', this.props.institutionAddressOne.value)}
-          {this.getRowEntry('Institution Address Two', this.props.institutionAddressTwo.value)}
-          {this.getRowEntry('Institution City', this.props.institutionCity.value)}
-          {this.getRowEntry('Institution State', this.props.institutionState.value)}
-          {this.getRowEntry('Institution Zip', this.props.institutionZip.value)}
-          {this.getRowEntry('Correct Facility', this.props.correctFacility.value)}
-          {this.getRowEntry('I understand and accept the Notice of Patients.', this.props.understandPatientNotice.value)}
-          {this.getRowEntry('I understand and accept the Acknowledgement of Ownership.', this.props.ackOwnership.value)}
-          {this.getRowEntry('Who is performing the procedure, surgery or consult?', this.props.docPerforming.value)}
-          {this.getRowEntry('Procedure Site', this.props.procedureSite.value)}
-          {this.getRowEntry('Type of Procedure, Surgery, or Consult', this.props.procedureSurgeryConsultType.value)}
-          {this.getRowEntry('Reason for Procedure, Surgery, or Consult', this.props.procedureSurgeryConsultReason.value)}
-          {this.getRowEntry('Choose a weekday phone number', this.props.weekdayPhoneNumber.value)}
-          {this.getRowEntry('Choose the number where the healthcare team can leave a voice message', this.props.voiceMailNumber.value)}
-          {this.getRowEntry('Can the healthcare team send you a text message with healthcare information?', this.props.textMessageApproval.value)}
-          {this.getRowEntry('In case of an emergency, is there a family member we should contact?', this.props.familyMemberContact.value)}
-          {this.getRowEntry('Family Member Relationship to the Patient',this.props.familyMemberRelationship.value)}
-          {this.getRowEntry('Family Member First Name', this.props.familyMemberFirstName.value)}
-          {this.getRowEntry('Family Member Last Name', this.props.familyMemberLastName.value)}
-          {this.getRowEntry('Does this family member have the same address as the patient?', this.props.familyMemberContactAddress.value)}
-          {this.getRowEntry('Primay Insurance',this.props.primaryInsuranceType.value)}
-          {this.getRowEntry('Secondary Insurance', this.props.secondaryInsurance.value)}
+          <Row>
+            <Col md={6}>
+              <FieldGroup
+                id="malignantHypertermia"
+                type="select"
+                label="History of malignant hypertermia?"
+                value={this.props.malignantHypertermia}
+                options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
+                onChange={this.props.handleInputChange} 
+                />
+            </Col>
+            <Col md={6}>
+              <FieldGroup
+                id="pseudocholinesteraseDeficiency"
+                type="select"
+                label="History of pseudocholinesterase deficiency?"
+                value={this.props.pseudocholinesteraseDeficiency}
+                options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
+                onChange={this.props.handleInputChange} 
+                />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={6}>
+              <FieldGroup
+                id="motionSickness"
+                type="select"
+                label="Motion sickness?"
+                value={this.props.motionSickness}
+                options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
+                onChange={this.props.handleInputChange} 
+                />
+            </Col>
+            <Col md={6}>
+              <FieldGroup
+                id="nauseaVomiting"
+                type="select"
+                label="Postoperative nausea and vomiting?"
+                value={this.props.nauseaVomiting}
+                options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
+                onChange={this.props.handleInputChange} 
+                />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={12}>
+              <FieldGroup
+                id="adverseReaction"
+                type="text"
+                label="Other serious adverse reactions to anesthesia medications?"
+                value={this.props.adverseReaction}
+                onChange={this.props.handleInputChange} 
+                />
+            </Col>
+          </Row>
+        </Panel.Body>
+      </Panel>
+    )
+  }
+
+  getDiagnosticTesting() {
+    return (
+      <Panel>
+        <Panel.Heading>Recent or Planned Diagnostic Testing</Panel.Heading>
+        <Panel.Body>
+          <Row>
+            <Col md={6}>
+              <FieldGroup
+                id="ekg"
+                type="select"
+                label="EKG?"
+                value={this.props.ekg}
+                options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
+                onChange={this.props.handleInputChange} 
+                />
+            </Col>
+            <Col md={6}>
+              <FieldGroup
+                id="chestXray"
+                type="select"
+                label="Chest XRAY?"
+                value={this.props.chestXray}
+                options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
+                onChange={this.props.handleInputChange} 
+                />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={6}>
+              <FieldGroup
+                id="sleepApnea"
+                type="select"
+                label="Sleep Apnea Study?"
+                value={this.props.sleepApnea}
+                options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
+                onChange={this.props.handleInputChange} 
+                />
+            </Col>
+            <Col md={6}>
+              <FieldGroup
+                id="cardiacStress"
+                type="select"
+                label="Cardiac (Heart) Stress Test?"
+                value={this.props.cardiacStress}
+                options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
+                onChange={this.props.handleInputChange} 
+                />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={6}>
+              <FieldGroup
+                id="cardiacEcho"
+                type="select"
+                label="Cardiac (Heart) Echo (Ultrasound)?"
+                value={this.props.cardiacEcho}
+                options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
+                onChange={this.props.handleInputChange} 
+                />
+            </Col>
+            <Col md={6}>
+              <FieldGroup
+                id="cardiacCatheterization"
+                type="select"
+                label="Cardiac Catheterization?"
+                value={this.props.cardiacCatheterization}
+                options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
+                onChange={this.props.handleInputChange} 
+                />
+            </Col>
+          </Row>
         </Panel.Body>
       </Panel>
     )
@@ -80,11 +293,13 @@ class PageFour extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <Grid>
-          {this.getPatientInformation()}
+          {this.getBasicScreening()}
+          {this.getHistoryAnesthesiaComplications()}
+          {this.getDiagnosticTesting()}
           <Row>
             <Col xs={12}>
               <Button bsStyle="primary" type="submit">
-                Submit
+                Save and continue
               </Button>
             </Col>
           </Row>
@@ -96,44 +311,26 @@ class PageFour extends Component {
 
 export default connect(
   (state) => ({
-    firstName: state.registration.firstName,
-    middleInitial: state.registration.middleInitial,
-    lastName: state.registration.lastName,
-    preferredName: state.registration.preferredName,
-    dateOfBirth: state.registration.dateOfBirth,
-    sex: state.registration.sex,
-    addressOne: state.registration.addressOne,
-    addressTwo: state.registration.addressTwo,
-    city: state.registration.city,
-    state: state.registration.state,
-    mobilePhone: state.registration.mobilePhone,
-    homePhone: state.registration.homePhone,
-    workPhone: state.registration.workPhone,
-    workPhoneExtension: state.registration.workPhoneExtension,
-
-    institutionName: state.registration.institutionName,
-    institutionAddressOne: state.registration.institutionAddressOne,
-    institutionAddressTwo: state.registration.institutionAddressTwo,
-    institutionCity: state.registration.institutionCity,
-    institutionState: state.registration.institutionState,
-    institutionZip: state.registration.institutionZip,
-    correctFacility: state.registration.correctFacility,
-    understandPatientNotice: state.registration.understandPatientNotice,
-    ackOwnership: state.registration.ackOwnership,
-    docPerforming: state.registration.docPerforming,
-    procedureSite: state.registration.procedureSite,
-    procedureSurgeryConsultType: state.registration.procedureSurgeryConsultType,
-    procedureSurgeryConsultReason: state.registration.procedureSurgeryConsultReason,
-    weekdayPhoneNumber: state.registration.weekdayPhoneNumber,
-    voiceMailNumber: state.registration.voiceMailNumber,
-    textMessageApproval: state.registration.textMessageApproval,
-    familyMemberContact: state.registration.familyMemberContact,
-    familyMemberRelationship: state.registration.familyMemberRelationship,
-    familyMemberFirstName: state.registration.familyMemberFirstName,
-    familyMemberLastName: state.registration.familyMemberLastName,
-    familyMemberContactAddress: state.registration.familyMemberContactAddress,
-    primaryInsuranceType: state.registration.primaryInsuranceType,
-    secondaryInsurance: state.registration.secondaryInsurance
+    height: state.registration.height,
+    weight: state.registration.weight,
+    cigaretteSmoker: state.registration.cigaretteSmoker,
+    cigarSmoker: state.registration.cigarSmoker,
+    drink: state.registration.drink,
+    alcoholAbuse: state.registration.alcoholAbuse,
+    drugs: state.registration.drugs,
+    physicalActivity: state.registration.physicalActivity,
+    malignantHypertermia: state.registration.malignantHypertermia,
+    pseudocholinesteraseDeficiency: state.registration.pseudocholinesteraseDeficiency,
+    motionSickness: state.registration.motionSickness,
+    nauseaVomiting: state.registration.nauseaVomiting,
+    adverseReaction: state.registration.adverseReaction,
+    ekg: state.registration.ekg,
+    chestXray: state.registration.chestXray,
+    sleepApnea: state.registration.sleepApnea,
+    cardiacStress: state.registration.cardiacStress,
+    cardiacEcho: state.registration.cardiacEcho,
+    cardiacCatheterization: state.registration.cardiacCatheterization,
+    validation: state.registration.validation['4']
   }), {
 
   }
