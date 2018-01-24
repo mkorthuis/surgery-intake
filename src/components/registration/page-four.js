@@ -12,8 +12,13 @@ import {
   connect
 } from 'react-redux'
 import FieldGroup from '../forms/field-group'
+import union from 'lodash/union'
 
 class PageFour extends Component {
+
+  constructor() {
+    super();
+  }
 
   handleSubmit = (evt) => {
     evt.preventDefault();
@@ -32,6 +37,11 @@ class PageFour extends Component {
       'motionSickness',
       'nauseaVomiting',
       'adverseReaction',
+      'snoreLoudly',
+      'feelTired',
+      'observedStopBreathing',
+      'highBloodPressure',
+      'neckCircumference',
       'ekg',
       'chestXray',
       'sleepApnea',
@@ -50,6 +60,20 @@ class PageFour extends Component {
     if (nextProps.validation) {
       this.props.goToPage(5);
     }
+  }
+
+  getNeckCircumferenceList() {
+    const start = 6;
+    const end = 25;
+    const step = .25;
+    var list = [];
+    for (var i = start; i <= end; i = i + step) {
+      list.push({
+        name: i,
+        value: i
+      });
+    }
+    return list;
   }
 
   getBasicScreening() {
@@ -140,6 +164,62 @@ class PageFour extends Component {
                 value={this.props.physicalActivity}
                 options={[{name:'Select', value:''},{name:'High', value:'high'},{name:'Medium', value:'medium'},{name:'Low', value:'low'}]}
                 onChange={this.props.handleInputChange} 
+                />
+            </Col>
+          </Row>
+          <Row> 
+            <Col md={6}>
+              <FieldGroup
+                id="snoreLoudly"
+                type="select"
+                label="Do you SNORE loudly (louder than talking or heard through closed doors)?"
+                value={this.props.snoreLoudly}
+                options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
+                onChange={this.props.handleInputChange} 
+                />
+            </Col>
+            <Col md={6}>
+              <FieldGroup
+                id="feelTired"
+                type="select"
+                label="Do you often feel TIRED, fatigued, or sleepy during daytime?"
+                value={this.props.feelTired}
+                options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
+                onChange={this.props.handleInputChange} 
+                />
+            </Col>
+          </Row>
+          <Row> 
+            <Col md={6}>
+              <FieldGroup
+                id="observedStopBreathing"
+                type="select"
+                label="Has anyone OBSERVED you stop breathing during your sleep?"
+                value={this.props.observedStopBreathing}
+                options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
+                onChange={this.props.handleInputChange} 
+                />
+            </Col>
+            <Col md={6}>
+              <FieldGroup
+                id="highBloodPressure"
+                type="select"
+                label="Do you have or are you being treated for high blood PRESSURE?"
+                value={this.props.highBloodPressure}
+                options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
+                onChange={this.props.handleInputChange} 
+                />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={6}>
+              <FieldGroup
+                id="neckCircumference"
+                type="select"
+                label="What is your neck circumference? (in inches)"
+                value={this.props.neckCircumference}
+                options={union([{name:'Select', value:''}],this.getNeckCircumferenceList())}
+                onChange={this.props.handleInputChange}
                 />
             </Col>
           </Row>
@@ -324,6 +404,12 @@ export default connect(
     motionSickness: state.registration.motionSickness,
     nauseaVomiting: state.registration.nauseaVomiting,
     adverseReaction: state.registration.adverseReaction,
+    snoreLoudly: state.registration.snoreLoudly,
+    feelTired: state.registration.feelTired,
+    observedStopBreathing: state.registration.observedStopBreathing,
+    highBloodPressure: state.registration.highBloodPressure,
+    neckCircumference: state.registration.neckCircumference,
+
     ekg: state.registration.ekg,
     chestXray: state.registration.chestXray,
     sleepApnea: state.registration.sleepApnea,
