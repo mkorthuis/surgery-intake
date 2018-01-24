@@ -53,7 +53,7 @@ class Registration extends Component {
   getNavBar() {
     return (
       <Grid>
-      <Nav bsStyle="pills" onSelect={this.handleNavSelect}>
+      <Nav bsStyle="pills" activeKey={this.props.page} onSelect={this.handleNavSelect}>
         <NavItem eventKey={1} >
           Account Registration
         </NavItem>
@@ -90,7 +90,7 @@ class Registration extends Component {
 
   render() {
     return (
-      <div>
+      <div class="container">
         {this.getNavBar()}
         {this.getPage()}
       </div>

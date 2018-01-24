@@ -62,7 +62,7 @@ class Login extends Component {
                     <DatePicker id="dateOfBirth" value={this.props.enteredDateOfBirth} onChange={this.updateDateOfBirth} />
                     {(this.props.touched && !this.props.valid) && <HelpBlock>{this.props.message}</HelpBlock>}
                   </FormGroup>
-                  <Button bsStyle="primary" type="submit">Submit</Button>
+                  <Button bsStyle="primary" type="submit">Get started</Button>
                 </form>
               </Panel.Body>
             </Panel>

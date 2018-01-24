@@ -299,7 +299,7 @@ class PageThree extends Component {
           <Row>
             <Col xs={12}>
               <Button bsStyle="primary" type="submit">
-                Submit
+                Save and continue
               </Button>
             </Col>
           </Row>
