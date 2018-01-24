@@ -64,7 +64,7 @@ class PageOne extends Component {
   }];
 
   getProcedureInfo() {
-    if (this.props.correctProcedure.value != "no") {
+    if (this.props.correctProcedure.value !== "no") {
       return (
         <span>
           <b>Name of Surgeon:</b> {this.props.docPerforming.value}<br />

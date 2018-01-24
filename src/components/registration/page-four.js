@@ -16,10 +16,6 @@ import union from 'lodash/union'
 
 class PageFour extends Component {
 
-  constructor() {
-    super();
-  }
-
   handleSubmit = (evt) => {
     evt.preventDefault();
     var formValues = {};
