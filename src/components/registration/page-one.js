@@ -31,7 +31,6 @@ class PageOne extends Component {
       'procedurePerformed',
       'procedureDate',
       'procedureSite',
-      'procedureSurgeryConsultReason',
       'institutionName',
       'institutionAddressOne',
       'institutionAddressTwo',
