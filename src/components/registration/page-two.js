@@ -281,12 +281,12 @@ class PageTwo extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <Grid>
+        <Grid className="main-grid">
           {this.getPatientInformation()}
           {this.getContactNumbers()}
           {this.getPatientAddress()}
           {this.getInsuranceInformation()}
-          <Row>
+          <Row className="last-row">
             <Col xs={12}>
               <Button bsStyle="primary" type="submit">
                 Save and continue

@@ -7,7 +7,8 @@ import {
 import {
   Nav,
   NavItem,
-  Grid
+  Grid,
+  Navbar
 } from 'react-bootstrap'
 import {
   updateRegistrationValue,
@@ -23,6 +24,7 @@ import RegisterPageFour from './page-four'
 import RegisterPageFive from './page-five'
 import RegisterPageSix from './page-six'
 
+import './index.css';
 
 class Registration extends Component {
 
@@ -53,24 +55,26 @@ class Registration extends Component {
 
   getNavBar() {
     return (
-      <Grid>
-      <Nav bsStyle="pills" activeKey={this.props.page} onSelect={this.handleNavSelect}>
-        <NavItem eventKey={1} >
-          Procedure 
-        </NavItem>
-        <NavItem eventKey={2} >
-          Contact Information
-        </NavItem>
-        <NavItem eventKey={3}>
-          Contact Preferences
-        </NavItem>
-        <NavItem eventKey={4}>
-          Health History
-        </NavItem>
-        <NavItem eventKey={5}>
-          Review & Send
-        </NavItem>
-      </Nav>
+      <Grid className="main-grid">
+        <Navbar inverse className="navbar-margin">
+          <Nav bsStyle="pills" activeKey={this.props.page} onSelect={this.handleNavSelect} >
+            <NavItem eventKey={1} >
+              Procedure 
+            </NavItem>
+            <NavItem eventKey={2} >
+              Contact Information
+            </NavItem>
+            <NavItem eventKey={3}>
+              Contact Preferences
+            </NavItem>
+            <NavItem eventKey={4}>
+              Health History
+            </NavItem>
+            <NavItem eventKey={5}>
+              Review & Send
+            </NavItem>
+          </Nav>
+        </Navbar>
       </Grid>
     );
   }
@@ -96,7 +100,7 @@ class Registration extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div>
         {this.getNavBar()}
         {this.getPage()}
       </div>

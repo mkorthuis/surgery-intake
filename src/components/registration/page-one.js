@@ -317,7 +317,7 @@ class PageOne extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <Grid>
+        <Grid className="main-grid">
           <Panel>
             <Panel.Heading>Overview</Panel.Heading>
             <Panel.Body>
@@ -328,7 +328,7 @@ class PageOne extends Component {
           {this.getProcedure()}
           {this.getMedicalFacility()}
           {this.getDisclosuresPolicies()}          
-          <Row>
+          <Row className="last-row">
             <Col xs={12}>
               <Button bsStyle="primary" type="submit">
                 Save and continue

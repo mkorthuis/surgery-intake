@@ -319,11 +319,11 @@ class PageThree extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <Grid>
+        <Grid className="main-grid">
           {this.getContactPreferences()}
           {this.getFamilyContact()}
           {this.getRideHomeInformation()}
-          <Row>
+          <Row className="last-row">
             <Col xs={12}>
               <Button bsStyle="primary" type="submit">
                 Save and continue

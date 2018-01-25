@@ -79,9 +79,9 @@ class PageFive extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <Grid>
+        <Grid className="main-grid">
           {this.getPatientInformation()}
-          <Row>
+          <Row className="last-row">
             <Col xs={12}>
               <Button bsStyle="primary" type="submit">
                 Submit

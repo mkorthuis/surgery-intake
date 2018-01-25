@@ -7,8 +7,7 @@ import {
   ConnectedRouter
 } from 'react-router-redux';
 import registerServiceWorker from './registerServiceWorker';
-import 'bootstrap/dist/css/bootstrap.css';
-
+import 'bootswatch/yeti/bootstrap.css'
 import './index.css';
 import App from './App';
 import store, {
