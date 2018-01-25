@@ -11,3 +11,270 @@
 .last-row {
   margin-bottom:15px;
 }
+
+// Colors
+$white: #fff;
+$active-color: #008cba;
+$active-text-color: $white;
+$inactive-color: #5AAECD;
+$inactive-text-color: #CBE3ED;
+
+// Font size
+$progress-font-size: 13px;
+
+// Spacing, height, and widths
+$progress-margin-mobile: 5px; // Space between steps on mobile
+$progress-margin-desktop: 10px; // Space between steps on desktop
+$progress-indicator-height: 40px; // Height of the indicator
+$mobile-active-step-baseline: 66%; // The percentage width of the active step on mobile
+
+// Breakpoints
+$bp-1: 760px; // For demo purposes, the breakpoint between mobile and desktop styles
+
+
+// Clearfix mixins
+@mixin clear {
+    clear: both;
+    display: table;
+    content: "";
+}
+@mixin clear-after {
+    &:after {
+        @include clear;
+    }
+}
+
+// Styles for the "circle" content. Many settings are tied to the $progress-indicator-height for convenient defaults, but can easily be tweaked.
+@mixin nav_progress__number-base {
+    position: absolute;    
+    border-radius: 50%;
+    border: 2px solid $inactive-text-color;
+    width: #{$progress-indicator-height * 0.7 };
+    height: #{$progress-indicator-height * 0.7 };
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: #{$progress-indicator-height / 4 };
+    line-height: #{$progress-indicator-height * 0.7 - 4px }; // 4px is the border width on the top plus the bottom.
+}
+
+@mixin mobile-active-step-width( $numSteps ) {
+    // The width baseline is set, then adjusted depending on the number of steps and the established margin width.
+    width: calc( #{$mobile-active-step-baseline} - ( #{$progress-margin-mobile} * ( #{$numSteps} - 1 ) ) );
+}
+@mixin mobile-inactive-step-width( $numSteps ) {
+    // Take (100% minus the width baseline), then divide that up evenly between the number of inactive steps.
+    width: calc( ( 100% -  #{$mobile-active-step-baseline} ) / ( #{$numSteps} - 1 ) );
+}
+@mixin desktop-step-width( $numSteps ) {
+    // Each step width is 100% / numSteps, minus the padding for all but the last step.
+    width: calc( ( 100% / #{$numSteps} ) - ( #{$progress-margin-desktop} * ( ( #{$numSteps} - 1 ) / #{$numSteps} ) ) );
+}
+
+// Styles for creating a chevron/arrow on each end of a progress step (on desktop)
+@mixin border-arrow( $size, $color) {
+    content: "";  
+    position: absolute;
+    top: 0;
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-left: $size solid $color;
+}
+
+.nav_progress {
+    @include clear-after;
+    cursor: default; // Discourage user highlight.
+    speak: none; // Accessibility
+    margin-top:15px;
+    margin-bottom:20px;    
+    font-size: $progress-font-size;
+
+    // Mobile Steps all default to active styles
+    &__step {
+        @include mobile-inactive-step-width(4);
+        position: relative;
+        float: left;
+        overflow: hidden;
+
+        background-color: $active-color;
+        color: $white;
+        transition: background-color 250ms ease-out, width 250ms ease-out;
+
+        &:not(:last-child) {
+            margin-right: $progress-margin-mobile; // All but the last step get margin-right.
+        }
+
+        .progress--five & {
+            @include mobile-inactive-step-width(5); // 4 total steps
+        }
+
+        // Mobile/desktop active steps have active styles
+        &--active {
+            @include mobile-active-step-width(4); // 4 total steps
+            
+            background-color: $active-color;
+            color: $active-text-color;
+            transition: background-color 250ms ease-out, width 250ms ease-out;
+
+            .progress--five & {
+                @include mobile-active-step-width(5); // 5 total steps
+            }
+
+            // Mobile steps following the active step have inactive styles
+            & ~ .nav_progress__step {
+                background-color: $inactive-color;
+                color: $inactive-text-color;
+            }
+        }
+
+
+        // Desktop steps all default to inactive styles
+        @media screen and (min-width: $bp-1) {
+            @include desktop-step-width(4); // 4 total steps
+            border-radius: 0;
+            overflow: visible;
+            
+            transition: width 0s ease-out; // No width transition going from mobile to desktop step sizes
+            background-color: $inactive-color;
+            color: $inactive-text-color;
+
+            .progress--five & {
+                @include desktop-step-width(5); // 5 total steps
+            }
+
+            &::before { // The indent on the left of each step.
+                @include border-arrow( #{$progress-indicator-height / 2 }, $white );
+                left: 0;
+            }
+
+            &::after { // The point on the right of each step.
+                @include border-arrow( #{$progress-indicator-height / 2 }, $inactive-color );
+                left: 99.9%; /* Not 100% because of IE subpixel rendering bug */
+                z-index: 2; // ::after arrows overlap the following step's ::before arrow.
+            }
+
+            &:first-child {
+
+                &::before {
+                    display: none; // First step has no ::before arrow.
+                }
+            }
+
+            &:last-child {
+
+                &::after {
+                    display: none; // Last step has no ::after arrow.
+                }
+            }
+
+            &:not(:first-child) {
+                padding-left: #{$progress-indicator-height / 2 };
+            }
+
+            &:not(:last-child) {
+                margin-right: $progress-margin-desktop;
+            }
+
+            // Desktop active steps have active styles 
+            &--active {
+                background-color: $active-color;
+                color: $active-text-color;
+
+                &::after {
+                    border-left-color: $active-color;
+                }
+            }
+        }
+
+    }
+
+    &__label {
+        height: $progress-indicator-height; // When the height changes, the border-arrow settings must change. 
+        transform-style: preserve-3d; // Prevents blurriness when progress__title is transformed.
+        
+        cursor: pointer;
+        
+        .nav_progress__step--active & {
+            margin-right: #{$progress-indicator-height / 4 };// Padding so that step titles don't run up against edge.
+        }
+        
+        @media screen and (min-width: $bp-1) {
+            margin-right: #{$progress-indicator-height / 4 };// Padding so that step titles don't run up against edge.
+        }
+
+    }
+
+    &__badge {
+        text-align: center;
+        font-weight: 700;
+
+        &::after {
+            content: "\2714"; // I suggest you use a custom icon font. This character appears different in different browsers.
+            font-size: 1.28571em; // default (16/14)em
+
+            // Active step checkmarks and future step checkmarks are hidden.
+            .nav_progress__step--active &, .nav_progress__step--active ~ .nav_progress__step & {
+                display: none;
+            }
+        }
+
+        // Inactive step badges are just centered numbers on mobile.
+        .nav_progress__step:not(.nav_progress__step--active) & {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            @media screen and (min-width: $bp-1) {
+                // Inactive step badges get circles on desktop.
+                // Top is reset by progress__number-base mixin.
+                @include nav_progress__number-base;
+                left: 0;
+                transform: translateY(-50%);
+            }
+        }
+        
+        // Active step badges are always in circles
+        .nav_progress__step--active & {
+            @include nav_progress__number-base;
+            border-color: $active-text-color;
+        }
+
+    }
+
+    &__number {
+        display: none;
+        font-size: 1.14286em;
+
+        // Show number if in an active step or following an active step.
+        .nav_progress__step--active &, .nav_progress__step--active ~ .nav_progress__step & {
+            display: inline;
+        }
+    }
+
+    &__title {
+        position: absolute;
+        left: #{$progress-indicator-height + 6px };
+        top: 50%;
+        transform: translateY(-50%);
+        
+        font-size: 1em; // default 14em
+        font-weight: 300;
+        z-index: 3;
+
+        // With 5 (or more) steps, I recommend decreasing the font size so that labels have more space. Line wraps will remain centered, and 12px looks better on two lines.
+        .progress--five & {
+            font-size: 0.8571em; // default (12/14)em
+        }
+
+        // Hide inactive step titles on mobile.
+        .nav_progress__step:not(.nav_progress__step--active) & {
+            display: none;
+
+            // Show inactive step titles on desktop.
+            @media screen and (min-width: $bp-1) {
+                display: inline-block;
+            }
+        }
+
+    }
+}

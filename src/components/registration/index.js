@@ -5,10 +5,7 @@ import {
   connect
 } from 'react-redux'
 import {
-  Nav,
-  NavItem,
-  Grid,
-  Navbar
+  Grid
 } from 'react-bootstrap'
 import {
   updateRegistrationValue,
@@ -53,32 +50,6 @@ class Registration extends Component {
     this.props.validateFields(fields, page);
   }
 
-  getNavBar() {
-    return (
-      <Grid className="main-grid">
-        <Navbar inverse className="navbar-margin">
-          <Nav bsStyle="pills" activeKey={this.props.page} onSelect={this.handleNavSelect} >
-            <NavItem eventKey={1} >
-              Procedure 
-            </NavItem>
-            <NavItem eventKey={2} >
-              Contact Information
-            </NavItem>
-            <NavItem eventKey={3}>
-              Contact Preferences
-            </NavItem>
-            <NavItem eventKey={4}>
-              Health History
-            </NavItem>
-            <NavItem eventKey={5}>
-              Review & Send
-            </NavItem>
-          </Nav>
-        </Navbar>
-      </Grid>
-    );
-  }
-
   getPage() {
     switch (this.props.page) {
       case 1:
@@ -98,11 +69,42 @@ class Registration extends Component {
     }
   }
 
+  getNavClassName(page) {
+    return this.props.page === page ? "nav_progress__step nav_progress__step--active" : "nav_progress__step"
+  }
+
+  getNavItem(description, pageNumber) {
+    return (
+      <div id="1" className={this.getNavClassName(pageNumber)} onClick={() => this.goToPage(pageNumber)}>
+        <div className="nav_progress__label">
+          <span className="nav_progress__badge">
+            <span className="nav_progress__number">{pageNumber}</span>
+          </span>
+          <span className="nav_progress__title">{description}</span>
+        </div>
+      </div>
+    )
+  }
+
+  getNavBar() {
+    return (
+      <Grid className="main-grid">
+        <div className="nav_progress progress--five">
+          {this.getNavItem('Procedure', 1)}
+          {this.getNavItem('Contact Information', 2)}
+          {this.getNavItem('Contact Preferences', 3)}
+          {this.getNavItem('Health History', 4)}
+          {this.getNavItem('Review & Send', 5)}
+        </div>
+      </Grid>
+    );
+  }
+
   render() {
     return (
       <div>
-        {this.getNavBar()}
-        {this.getPage()}
+        {this.getNavBar()} 
+        {this.getPage()} 
       </div>
     )
   }
