@@ -16,6 +16,9 @@ import {
 import {
   states
 } from '../forms/lists'
+import {
+  updateRegistrationValue
+} from '../../actions/registration'
 import FieldGroup from '../forms/field-group'
 import union from 'lodash/union'
 
@@ -54,6 +57,12 @@ class PageOne extends Component {
     }
   }
 
+  handleProcedureDateChange = (value) => {
+    this.props.updateRegistrationValue({
+      'procedureDate': value
+    });
+  }
+
   docs = [{
     name: 'Murali Menon',
     value: 1
@@ -82,20 +91,7 @@ class PageOne extends Component {
             </Col>
           </Row>
           <Row>
-            <Col xs={12}>
-              <FieldGroup
-                id="docPerforming"
-                type="select"
-                label="Who is performing the procedure, surgery or consult?"
-                value={this.props.docPerforming}
-                options={union([{name:'Select', value:''}],this.docs, [{name:'Doctor name not listed', value:'-1'}])}
-                onChange={this.props.handleInputChange}
-                />
-            </Col>
-          </Row>
-          {this.props.docPerforming.value !== '-1' || this.getUnkownDoctor()}
-          <Row>
-            <Col md={5}>
+            <Col xs={7}>
               <FieldGroup
                 id="procedurePerformed"
                 type="text"
@@ -104,7 +100,7 @@ class PageOne extends Component {
                 onChange={this.props.handleInputChange}
                 />
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <FieldGroup
                 id="procedureSite"
                 type="select"
@@ -114,13 +110,26 @@ class PageOne extends Component {
                 onChange={this.props.handleInputChange}
                 />
             </Col>
-            <Col md={3}>
+          </Row>
+          {this.props.docPerforming.value !== '-1' || this.getUnkownDoctor()}
+          <Row>
+            <Col md={8}>
+              <FieldGroup
+                id="docPerforming"
+                type="select"
+                label="Who is performing the procedure, surgery or consult?"
+                value={this.props.docPerforming}
+                options={union([{name:'Select', value:''}],this.docs, [{name:'Doctor name not listed', value:'-1'}])}
+                onChange={this.props.handleInputChange}
+                />
+            </Col>
+            <Col md={4}>
               <FieldGroup
                 id="procedureDate"
-                type="text"
+                type="datePicker"
                 label="Procedure Date"
                 value={this.props.procedureDate}
-                onChange={this.props.handleInputChange}
+                onChange={this.handleProcedureDateChange}
                 />
             </Col>
           </Row>
@@ -364,6 +373,6 @@ export default connect(
 
     validation: state.registration.validation['1']
   }), {
-
+    updateRegistrationValue
   }
 )(PageOne)
