@@ -12,6 +12,10 @@
   margin-bottom:15px;
 }
 
+
+
+// https://codepen.io/james-tw/pen/vLayNw
+
 // Colors
 $white: #fff;
 $active-color: #008cba;
@@ -261,9 +265,8 @@ $bp-1: 760px; // For demo purposes, the breakpoint between mobile and desktop st
         font-weight: 300;
         z-index: 3;
 
-        // With 5 (or more) steps, I recommend decreasing the font size so that labels have more space. Line wraps will remain centered, and 12px looks better on two lines.
         .progress--five & {
-            font-size: 0.8571em; // default (12/14)em
+            font-size: 12px;
         }
 
         // Hide inactive step titles on mobile.
