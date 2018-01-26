@@ -91,7 +91,7 @@ class PageOne extends Component {
             </Col>
           </Row>
           <Row>
-            <Col xs={7}>
+            <Col md={7}>
               <FieldGroup
                 id="procedurePerformed"
                 type="text"
