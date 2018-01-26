@@ -28,51 +28,165 @@ class PageFive extends Component {
     )
   }
 
+  getReview() {
+    return (
+      <Panel>
+      <Panel.Heading>Review Information</Panel.Heading>
+      <Panel.Body>
+      Please review the information below.  If it is correct, please send.
+      </Panel.Body>
+    </Panel>
+    )
+  }
+
+  getProcedureInformation() {
+    return (
+      <Panel>
+      <Panel.Heading>Procedure Information</Panel.Heading>
+      <Panel.Body>
+        {this.getRowEntry('Name of Surgeon', this.props.registration.docPerforming.value)}
+        {this.getRowEntry('Procedure to Perform', this.props.registration.procedurePerformed.value)}
+        {this.getRowEntry('Procedure Site', this.props.registration.procedureSite.value)}
+        {this.getRowEntry('Procedure Date', this.props.registration.procedureDate.value)}
+      </Panel.Body>
+    </Panel>
+    )
+  }
+
+  getMedicalFacility() {
+    return (
+      <Panel>
+      <Panel.Heading>Medical Facility</Panel.Heading>
+      <Panel.Body>
+        {this.getRowEntry('Name', this.props.registration.institutionName.value)}
+        {this.getRowEntry('Address Line One', this.props.registration.institutionAddressOne.value)}
+        {this.getRowEntry('Address Line Two', this.props.registration.institutionAddressTwo.value)}
+        {this.getRowEntry('City', this.props.registration.institutionCity.value)}
+        {this.getRowEntry('State', this.props.registration.institutionState.value)}
+        {this.getRowEntry('Zip', this.props.registration.institutionZip.value)}
+      </Panel.Body>
+    </Panel>
+    )
+  }
+
   getPatientInformation() {
     return (
       <Panel>
-        <Panel.Heading>Review Information</Panel.Heading>
-        <Panel.Body>
-          {this.getRowEntry('First Name', this.props.firstName.value)}
-          {this.getRowEntry('Middle Name', this.props.middleName.value)}
-          {this.getRowEntry('Last Name', this.props.lastName.value)}
-          {this.getRowEntry('Suffix', this.props.suffix.value)}
-          {this.getRowEntry('Preferred Name', this.props.preferredName.value)}
-          {this.getRowEntry('Date of Birth', this.props.dateOfBirth.value)}
-          {this.getRowEntry('Sex', this.props.sex.value)}
-          {this.getRowEntry('Address One', this.props.addressOne.value)}
-          {this.getRowEntry('Address Two', this.props.addressTwo.value)}
-          {this.getRowEntry('City', this.props.city.value)}
-          {this.getRowEntry('State', this.props.state.value)}
-          {this.getRowEntry('Zip', this.props.zip.value)}
-          {this.getRowEntry('Mobile Phone', this.props.mobilePhone.value)}
-          {this.getRowEntry('Home Phone', this.props.homePhone.value)}
-          {this.getRowEntry('Work Phone', this.props.workPhone.value)}
-          {this.getRowEntry('Work Phone Extension', this.props.workPhoneExtension.value)}
-          
-          {this.getRowEntry('Institution Name', this.props.institutionName.value)}
-          {this.getRowEntry('Institution Address One', this.props.institutionAddressOne.value)}
-          {this.getRowEntry('Institution Address Two', this.props.institutionAddressTwo.value)}
-          {this.getRowEntry('Institution City', this.props.institutionCity.value)}
-          {this.getRowEntry('Institution State', this.props.institutionState.value)}
-          {this.getRowEntry('Institution Zip', this.props.institutionZip.value)}
-          {this.getRowEntry('Correct Facility', this.props.correctFacility.value)}
-          {this.getRowEntry('I understand and accept the Notice of Patients.', this.props.understandPatientNotice.value)}
-          {this.getRowEntry('I understand and accept the Acknowledgement of Ownership.', this.props.ackOwnership.value)}
-          {this.getRowEntry('Who is performing the procedure, surgery or consult?', this.props.docPerforming.value)}
-          {this.getRowEntry('Procedure Site', this.props.procedureSite.value)}
-          {this.getRowEntry('Choose a weekday phone number', this.props.weekdayPhoneNumber.value)}
-          {this.getRowEntry('Choose the number where the healthcare team can leave a voice message', this.props.voiceMailNumber.value)}
-          {this.getRowEntry('Can the healthcare team send you a text message with healthcare information?', this.props.textMessageApproval.value)}
-          {this.getRowEntry('In case of an emergency, is there a family member we should contact?', this.props.familyMemberContact.value)}
-          {this.getRowEntry('Family Member Relationship to the Patient',this.props.familyMemberRelationship.value)}
-          {this.getRowEntry('Family Member First Name', this.props.familyMemberFirstName.value)}
-          {this.getRowEntry('Family Member Last Name', this.props.familyMemberLastName.value)}
-          {this.getRowEntry('Does this family member have the same address as the patient?', this.props.familyMemberContactAddress.value)}
-          {this.getRowEntry('Primay Insurance',this.props.primaryInsuranceType.value)}
-          {this.getRowEntry('Secondary Insurance', this.props.secondaryInsurance.value)}
-        </Panel.Body>
-      </Panel>
+      <Panel.Heading>Patient Information</Panel.Heading>
+      <Panel.Body>
+        {this.getRowEntry('First Name', this.props.registration.firstName.value)}
+        {this.getRowEntry('Middle Name', this.props.registration.middleName.value)}
+        {this.getRowEntry('Last Name', this.props.registration.lastName.value)}
+        {this.getRowEntry('Preferred Name', this.props.registration.preferredName.value)}
+        {this.getRowEntry('Date of Birth', this.props.registration.dateOfBirth.value)}
+        {this.getRowEntry('Gender', this.props.registration.sex.value)}
+      </Panel.Body>
+    </Panel>
+    )
+  }
+
+  getContactNumbers() {
+    return (
+      <Panel>
+      <Panel.Heading>Contact Numbers</Panel.Heading>
+      <Panel.Body>
+        {this.getRowEntry('Mobile Phone', this.props.registration.mobilePhone.value)}
+        {this.getRowEntry('Home Phone', this.props.registration.homePhone.value)}
+        {this.getRowEntry('Email Address', this.props.registration.emailAddress.value)}
+        {this.getRowEntry('Work Phone', this.props.registration.workPhone.value)}
+        {this.getRowEntry('Extension', this.props.registration.workPhoneExtension.value)}
+      </Panel.Body>
+    </Panel>
+    )
+  }
+
+  getPatientAddress() {
+    return (
+      <Panel>
+      <Panel.Heading>Patient Address</Panel.Heading>
+      <Panel.Body>
+        {this.getRowEntry('Address Line One', this.props.registration.addressOne.value)}
+        {this.getRowEntry('Address Line Two', this.props.registration.addressTwo.value)}
+        {this.getRowEntry('City', this.props.registration.city.value)}
+        {this.getRowEntry('State', this.props.registration.state.value)}
+        {this.getRowEntry('Zip', this.props.registration.zip.value)}
+      </Panel.Body>
+    </Panel>
+    )
+  }
+
+  getInsuranceInformation() {
+    return (
+      <Panel>
+      <Panel.Heading>Insurance Information</Panel.Heading>
+      <Panel.Body>
+        {this.getRowEntry('Primary Insurance', this.props.registration.primaryInsuranceType.value)}
+        {this.getRowEntry('Secondary Insurance', this.props.registration.secondaryInsurance.value)}
+      </Panel.Body>
+    </Panel>
+    )
+  }
+
+  getContactPreferences() {
+    return (
+      <Panel>
+      <Panel.Heading>Contact Preferences</Panel.Heading>
+      <Panel.Body>
+        {this.getRowEntry('Weekday contact phone number', this.props.registration.weekdayPhoneNumber.value)}
+        {this.getRowEntry('Voicemail contact phone number', this.props.registration.voiceMailNumber.value)}
+        {this.getRowEntry('Can we send text messages', this.props.registration.textMessageApproval.value)}
+      </Panel.Body>
+    </Panel>
+    )
+  }
+
+  getFamilyContact() {
+    return (
+      <Panel>
+      <Panel.Heading>Family Contact</Panel.Heading>
+      <Panel.Body>
+      </Panel.Body>
+    </Panel>
+    )
+  }
+
+  getRideHome() {
+    return (
+      <Panel>
+      <Panel.Heading>Ride Home Information</Panel.Heading>
+      <Panel.Body>
+      </Panel.Body>
+    </Panel>
+    )
+  }
+
+  getBasicScreening() {
+    return (
+      <Panel>
+      <Panel.Heading>Basic Screening</Panel.Heading>
+      <Panel.Body>
+      </Panel.Body>
+    </Panel>
+    )
+  }
+
+  getAnesthesia() {
+    return (
+      <Panel>
+      <Panel.Heading>History of Anesthesia Complications</Panel.Heading>
+      <Panel.Body>
+      </Panel.Body>
+    </Panel>
+    )
+  }
+
+  getDiagnostic() {
+    return (
+      <Panel>
+      <Panel.Heading>Recent or Planned Diagnostic Testing</Panel.Heading>
+      <Panel.Body>
+      </Panel.Body>
+    </Panel>
     )
   }
 
@@ -80,7 +194,19 @@ class PageFive extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <Grid className="main-grid">
+          {this.getReview()}
+          {this.getProcedureInformation()}
+          {this.getMedicalFacility()}
           {this.getPatientInformation()}
+          {this.getContactNumbers()}
+          {this.getPatientAddress()}
+          {this.getInsuranceInformation()}
+          {this.getContactPreferences()}
+          {this.getFamilyContact()}
+          {this.getRideHome()}
+          {this.getBasicScreening()}
+          {this.getAnesthesia()}
+          {this.getDiagnostic()}
           <Row className="last-row">
             <Col xs={12}>
               <Button bsStyle="primary" type="submit">
@@ -96,44 +222,7 @@ class PageFive extends Component {
 
 export default connect(
   (state) => ({
-    firstName: state.registration.firstName,
-    middleName: state.registration.middleName,
-    lastName: state.registration.lastName,
-    suffix: state.registration.suffix,
-    preferredName: state.registration.preferredName,
-    dateOfBirth: state.registration.dateOfBirth,
-    sex: state.registration.sex,
-    addressOne: state.registration.addressOne,
-    addressTwo: state.registration.addressTwo,
-    city: state.registration.city,
-    state: state.registration.state,
-    zip: state.registration.zip,
-    mobilePhone: state.registration.mobilePhone,
-    homePhone: state.registration.homePhone,
-    workPhone: state.registration.workPhone,
-    workPhoneExtension: state.registration.workPhoneExtension,
-
-    institutionName: state.registration.institutionName,
-    institutionAddressOne: state.registration.institutionAddressOne,
-    institutionAddressTwo: state.registration.institutionAddressTwo,
-    institutionCity: state.registration.institutionCity,
-    institutionState: state.registration.institutionState,
-    institutionZip: state.registration.institutionZip,
-    correctFacility: state.registration.correctFacility,
-    understandPatientNotice: state.registration.understandPatientNotice,
-    ackOwnership: state.registration.ackOwnership,
-    docPerforming: state.registration.docPerforming,
-    procedureSite: state.registration.procedureSite,
-    weekdayPhoneNumber: state.registration.weekdayPhoneNumber,
-    voiceMailNumber: state.registration.voiceMailNumber,
-    textMessageApproval: state.registration.textMessageApproval,
-    familyMemberContact: state.registration.familyMemberContact,
-    familyMemberRelationship: state.registration.familyMemberRelationship,
-    familyMemberFirstName: state.registration.familyMemberFirstName,
-    familyMemberLastName: state.registration.familyMemberLastName,
-    familyMemberContactAddress: state.registration.familyMemberContactAddress,
-    primaryInsuranceType: state.registration.primaryInsuranceType,
-    secondaryInsurance: state.registration.secondaryInsurance
+    registration: state.registration
   }), {
 
   }

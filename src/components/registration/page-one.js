@@ -185,7 +185,7 @@ class PageOne extends Component {
       return (
         <Row>
           <Col xs={12}>
-            <p>You have chosen to send your medical information to:</p>
+            <p>The medical facility for your operation is:</p>
             <p>
               <b>{this.props.institutionName.value}</b><br />
               {this.props.institutionAddressOne.value}<br />
@@ -273,7 +273,7 @@ class PageOne extends Component {
   getMedicalFacility() {
     return (
       <Panel>
-        <Panel.Heading>Validate Medical Facility</Panel.Heading>
+        <Panel.Heading>Medical Facility</Panel.Heading>
         <Panel.Body>
           {this.getInstitutionInfo()}
           <Row>
