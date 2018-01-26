@@ -35,7 +35,7 @@ export function validate(token, dateOfBirth) {
       type: VALIDATE,
       payload: {
         valid: false,
-        message: 'Invalid date format ( _ _ / _ _ / _ _ _ _ ). Please enter 01/01/1958',
+        message: 'Invalid date.  Please enter with the following format: MM/DD/YYYY **01/01/1958**',
         touched: true
       }
     });
@@ -45,7 +45,7 @@ export function validate(token, dateOfBirth) {
       type: VALIDATE,
       payload: {
         valid: false,
-        message: 'Invalid link. Please reopen your email and open the entire link.',
+        message: 'Invalid access. Please reopen your email and click your personalized link again',
         touched: true
       }
     });

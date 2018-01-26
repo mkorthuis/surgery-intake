@@ -82,7 +82,8 @@ const initState = {
   rideHomeRelationship: {},
 
   //Page Three
-  height: {},
+  heightFeet: {},
+  heightInches: {},
   weight: {},
   cigaretteSmoker: {},
   cigarSmoker: {},

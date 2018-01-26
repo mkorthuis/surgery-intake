@@ -78,13 +78,24 @@ class PageFour extends Component {
         <Panel.Heading>Basic Screening</Panel.Heading>
         <Panel.Body>
           <Row>
-            <Col md={6}>
+            <Col md={3}>
               <FieldGroup
-                id="height"
-                type="text"
-                label="Height? (inches)"
-                value={this.props.height}
+                id="heightFeet"
+                type="select"
+                label="Height?"
+                value={this.props.heightFeet}
                 onChange={this.props.handleInputChange} 
+                options={[{name:'Feet', value:''},{name:'0', value:'0'},{name:'1', value:'1'},{name:'2', value:'2'},{name:'3', value:'3'},{name:'4', value:'4'},{name:'5', value:'5'},{name:'6', value:'6'},{name:'7', value:'7'}]}
+                />
+            </Col>
+            <Col md={3} >
+              <FieldGroup
+                id="heightInches"
+                type="select"
+                label="&nbsp;"
+                value={this.props.heightInches}
+                onChange={this.props.handleInputChange} 
+                options={[{name:'Inches', value:''},{name:'0', value:'0'},{name:'1', value:'1'},{name:'2', value:'2'},{name:'3', value:'3'},{name:'4', value:'4'},{name:'5', value:'5'},{name:'6', value:'6'},{name:'7', value:'7'},{name:'8', value:'8'},{name:'9', value:'9'},{name:'10', value:'10'},{name:'11', value:'11'},{name:'12', value:'12'}]}
                 />
             </Col>
             <Col md={6}>
@@ -387,7 +398,8 @@ class PageFour extends Component {
 
 export default connect(
   (state) => ({
-    height: state.registration.height,
+    heightFeet: state.registration.heightFeet,
+    heightInches: state.registration.heightInches,
     weight: state.registration.weight,
     cigaretteSmoker: state.registration.cigaretteSmoker,
     cigarSmoker: state.registration.cigarSmoker,

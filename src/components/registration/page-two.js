@@ -19,6 +19,7 @@ import {
   states
 } from '../forms/lists'
 import union from 'lodash/union'
+import moment from 'moment-es6';
 
 class PageTwo extends Component {
 
@@ -33,10 +34,21 @@ class PageTwo extends Component {
     this.props.validate(formValues, 2);
   }
 
-  handleDateOFBirthChange = (value) => {
-    this.props.updateRegistrationValue({
-      'dateOfBirth': value
-    });
+  handleDateOFBirthChange = (formatted, raw) => {
+    //Since we know it is a DOB, we are smarter than the regular parser
+    if (formatted) {
+      this.props.updateRegistrationValue({
+        'dateOfBirth': formatted
+      });
+    } else if (!formatted && moment(raw, ['M/D/YYYY'], true).isValid()) {
+      this.props.updateRegistrationValue({
+        'dateOfBirth': moment(raw, ['M/D/YYYY']).toISOString()
+      });
+    } else {
+      this.props.updateRegistrationValue({
+        'dateOfBirth': null
+      });
+    }
   }
 
   componentWillReceiveProps(nextProps) {

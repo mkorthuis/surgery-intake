@@ -95,7 +95,18 @@ export function load(token) {
       var patientData = {
         firstName: patientHistory.first_name,
         lastName: patientHistory.last_name,
-        dateOfBirth: patientHistory.date_of_birth ? moment(patientHistory.date_of_birth, 'YYYY-MM-DD').toISOString() : ''
+        dateOfBirth: patientHistory.date_of_birth ? moment(patientHistory.date_of_birth, 'YYYY-MM-DD').toISOString() : '',
+        sex: patientHistory.birth_sex,
+        suffix: patientHistory.suffix,
+        mobilePhone: patientHistory.mobile_number,
+        homePhone: patientHistory.home_phone,
+        workPhone: patientHistory.work_other_number,
+        emailAddress: patientHistory.email,
+        addressOne: patientHistory.address1,
+        addressTwo: patientHistory.address2,
+        city: patientHistory.city,
+        postalCode: patientHistory.postalcode,
+        state: patientHistory.state
       };
       dispatch(updateRegistrationValue(patientData));
     }).catch(error => {
