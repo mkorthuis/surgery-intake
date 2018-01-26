@@ -22,7 +22,7 @@ import {
   setDateOfBirth,
   setEmailToken
 } from '../../actions/authentication'
-import DatePicker from 'react-16-bootstrap-date-picker';
+import DatePicker from 'react-bootstrap-date-picker';
 
 import './index.css'
 
@@ -67,7 +67,7 @@ class Login extends Component {
                       <form onSubmit={this.handleValidation}>
                         <FormGroup validationState={(this.props.touched && !this.props.valid) ? 'error' : null}>
                           <ControlLabel>Please enter your date of birth to confirm who you are</ControlLabel>
-                          <DatePicker id="dateOfBirth" value={this.props.enteredDateOfBirth} onChange={this.updateDateOfBirth} />
+                          <DatePicker calendarDisabled={true} id="dateOfBirth" value={this.props.enteredDateOfBirth} onChange={this.updateDateOfBirth} />
                           {(this.props.touched && !this.props.valid) && <HelpBlock>{this.props.message}</HelpBlock>}
                         </FormGroup>
                         <Button bsStyle="primary" type="submit">Continue</Button>

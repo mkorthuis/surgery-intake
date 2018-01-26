@@ -44,6 +44,7 @@ class Registration extends Component {
 
   goToPage = (pageId) => {
     this.props.updatePage(pageId);
+    window.scrollTo(0, 0)
   }
 
   validateFields = (fields, page) => {

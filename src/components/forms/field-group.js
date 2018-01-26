@@ -6,7 +6,7 @@ import {
   HelpBlock,
   Checkbox
 } from 'react-bootstrap';
-import DatePicker from 'react-16-bootstrap-date-picker';
+import DatePicker from 'react-bootstrap-date-picker';
 
 const FieldGroup = (props) => {
   const {
