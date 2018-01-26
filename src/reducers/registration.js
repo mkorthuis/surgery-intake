@@ -10,31 +10,14 @@ const initState = {
   page: 1,
 
   //Page One
-  firstName: {
-    value: ''
-  },
-  middleName: {},
-  lastName: {
-    value: ''
-  },
-  suffix: {},
-  preferredName: {},
-  dateOfBirth: {
-    value: ''
-  },
-  sex: {},
-  addressOne: {},
-  addressTwo: {},
-  city: {},
-  state: {},
-  zip: {},
-  mobilePhone: {},
-  homePhone: {},
-  workPhone: {},
-  workPhoneExtension: {},
-  emailAddress: {},
+  correctProcedure: {},
+  docPerforming: {},
+  unknownDocPerforming: {},
+  procedurePerformed: {},
+  procedureDate: {},
+  procedureSite: {},
 
-  //Page Two
+  correctFacility: {},
   institutionName: {
     value: 'Test Institution'
   },
@@ -51,15 +34,37 @@ const initState = {
   institutionZip: {
     value: '024746'
   },
-  correctFacility: {},
   understandPatientNotice: {},
   ackOwnership: {},
-  correctProcedure: {},
-  docPerforming: {},
-  unknownDocPerforming: {},
-  procedurePerformed: {},
-  procedureDate: {},
-  procedureSite: {},
+
+  //Page Two
+  firstName: {
+    value: ''
+  },
+  middleName: {},
+  lastName: {
+    value: ''
+  },
+  suffix: {},
+  preferredName: {},
+  dateOfBirth: {
+    value: ''
+  },
+  sex: {},
+  mobilePhone: {},
+  homePhone: {},
+  emailAddress: {},
+  workPhone: {},
+  workPhoneExtension: {},
+  addressOne: {},
+  addressTwo: {},
+  city: {},
+  state: {},
+  zip: {},
+  primaryInsuranceType: {},
+  secondaryInsurance: {},
+
+  //Page Three
   weekdayPhoneNumber: {},
   voiceMailNumber: {},
   textMessageApproval: {},
@@ -73,15 +78,13 @@ const initState = {
   familyMemberCity: {},
   familyMemberState: {},
   familyMemberZip: {},
-  primaryInsuranceType: {},
-  secondaryInsurance: {},
   rideHomeFirstName: {},
   rideHomeLastName: {},
   rideHomePrimaryPhone: {},
   rideHomeOtherPhone: {},
   rideHomeRelationship: {},
 
-  //Page Three
+  //Page Four
   heightFeet: {},
   heightInches: {},
   weight: {},
