@@ -306,15 +306,29 @@ class PageOne extends Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <FormGroup>
-                <Checkbox id="understandPatientNotice" onChange={this.props.handleInputChange} defaultChecked={this.props.understandPatientNotice.value}  inline>I understand and accept the Notice of Patients.</Checkbox> <a href="https://stanfordhealthcare.org/content/dam/SHC/patientsandvisitors/your-hospital-stay/docs/authorization-disclosure-health-information-2016.pdf" target="blank">PDF</a>
+              <FormGroup validationState={(this.props.understandPatientNotice.touched ? this.props.understandPatientNotice.validation : null) || this.props.understandPatientNotice.serverValidation} >
+                <Checkbox 
+                  id="understandPatientNotice" 
+                  onChange={this.props.handleInputChange} 
+                  defaultChecked={this.props.understandPatientNotice.value}  
+                  inline>
+                  I understand and accept the Notice of Patients.
+                </Checkbox> 
+                <a href="https://stanfordhealthcare.org/content/dam/SHC/patientsandvisitors/your-hospital-stay/docs/authorization-disclosure-health-information-2016.pdf" target="blank">PDF</a>
               </FormGroup>
             </Col>
           </Row>
           <Row>
             <Col xs={12}>
-              <FormGroup>
-                <Checkbox id="ackOwnership" onChange={this.props.handleInputChange} defaultChecked={this.props.ackOwnership.value}  inline>I understand and accept the Acknowledgement of Ownership.</Checkbox> <a href="https://stanfordhealthcare.org/content/dam/SHC/patientsandvisitors/your-hospital-stay/docs/authorization-disclosure-health-information-2016.pdf" target="blank">PDF</a>
+              <FormGroup validationState={(this.props.ackOwnership.touched ? this.props.ackOwnership.validation : null) || this.props.ackOwnership.serverValidation}>
+                <Checkbox 
+                  id="ackOwnership"
+                  onChange={this.props.handleInputChange} 
+                  defaultChecked={this.props.ackOwnership.value} 
+                  inline>
+                  I understand and accept the Acknowledgement of Ownership.
+                </Checkbox> 
+                <a href="https://stanfordhealthcare.org/content/dam/SHC/patientsandvisitors/your-hospital-stay/docs/authorization-disclosure-health-information-2016.pdf" target="blank">PDF</a>
               </FormGroup>
             </Col>
           </Row>

@@ -27,6 +27,11 @@ const dateOfBirth = value => {
     }
   }
 }
+const checked = value => {
+  if (!value) {
+    return "Please confirm to continue"
+  }
+}
 
 
 
@@ -39,5 +44,6 @@ module.exports = {
   tooOld: tooOld,
   alphaNumeric: alphaNumeric,
   phoneNumber: phoneNumber,
-  dateOfBirth: dateOfBirth
+  dateOfBirth: dateOfBirth,
+  checked: checked
 }

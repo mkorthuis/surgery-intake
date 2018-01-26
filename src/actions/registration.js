@@ -10,37 +10,97 @@ import {
   maxLength,
   number,
   phoneNumber,
-  dateOfBirth
+  dateOfBirth,
+  checked
 } from './validation/rules'
 import RegistrationApi from '../api/registration-api'
 import moment from 'moment-es6'
 
 var validateRules = {
   //Page One
+  correctProcedure: [required],
+  docPerforming: [],
+  unknownDocPerforming: [],
+  procedurePerformed: [],
+  procedureDate: [],
+  procedureSite: [],
+  correctFacility: [required],
+  institutionName: [],
+  institutionAddressOne: [],
+  institutionAddressTwo: [],
+  institutionCity: [],
+  institutionState: [],
+  institutionZip: [],
+  understandPatientNotice: [checked],
+  ackOwnership: [checked],
+
+  //Page Two
   firstName: [required, maxLength(50)],
-  middleName: [],
+  middleName: [maxLength(50)],
   lastName: [required, maxLength(50)],
+  suffix: [maxLength(5)],
   preferredName: [maxLength(100)],
   dateOfBirth: [required, dateOfBirth],
   sex: [required],
+  mobilePhone: [phoneNumber],
+  homePhone: [phoneNumber],
+  emailAddress: [required],
+  workPhone: [phoneNumber],
+  workPhoneExtension: [number],
   addressOne: [required],
   addressTwo: [required],
   city: [required],
   state: [required],
   zip: [required],
-  mobilePhone: [phoneNumber],
-  homePhone: [phoneNumber],
-  workPhone: [phoneNumber],
-  workPhoneExtension: [number],
-  emailAddress: [required],
-
-  //Page Two
-  procedureSurgeryConsultType: [required],
-  procedureSurgeryConsultReason: [required],
+  primaryInsuranceType: [required],
+  secondaryInsurance: [required],
 
   //Page Three
-  height: [required, number],
-  weight: [required, number]
+  weekdayPhoneNumber: [required],
+  voiceMailNumber: [required],
+  textMessageApproval: [required],
+  familyMemberContact: [required],
+  familyMemberRelationship: [],
+  familyMemberFirstName: [],
+  familyMemberLastName: [],
+  familyMemberContactAddress: [],
+  familyMemberAddressOne: [],
+  familyMemberAddressTwo: [],
+  familyMemberCity: [],
+  familyMemberState: [],
+  familyMemberZip: [],
+  rideHomeFirstName: [required],
+  rideHomeLastName: [required],
+  rideHomePrimaryPhone: [required],
+  rideHomeOtherPhone: [],
+  rideHomeRelationship: [required],
+
+  //Page Four
+  heightFeet: [required, number],
+  heightInches: [required, number],
+  weight: [required, number],
+  cigaretteSmoker: [required],
+  cigarSmoker: [required],
+  drink: [required],
+  alcoholAbuse: [required],
+  drugs: [required],
+  physicalActivity: [required],
+  snoreLoudly: [required],
+  feelTired: [required],
+  observedStopBreathing: [required],
+  highBloodPressure: [required],
+  neckCircumference: [required],
+  malignantHypertermia: [required],
+  pseudocholinesteraseDeficiency: [required],
+  motionSickness: [required],
+  nauseaVomiting: [required],
+  adverseReaction: [],
+  ekg: [required],
+  chestXray: [required],
+  sleepApnea: [required],
+  cardiacStress: [required],
+  cardiacEcho: [required],
+  cardiacCatheterization: [required]
 }
 
 export function updateRegistrationValue(change) {
@@ -97,16 +157,16 @@ export function load(token) {
         lastName: patientHistory.last_name,
         dateOfBirth: patientHistory.date_of_birth ? moment(patientHistory.date_of_birth, 'YYYY-MM-DD').toISOString() : '',
         sex: patientHistory.birth_sex,
-        suffix: patientHistory.suffix,
-        mobilePhone: patientHistory.mobile_number,
-        homePhone: patientHistory.home_phone,
-        workPhone: patientHistory.work_other_number,
-        emailAddress: patientHistory.email,
-        addressOne: patientHistory.address1,
-        addressTwo: patientHistory.address2,
-        city: patientHistory.city,
-        postalCode: patientHistory.postalcode,
-        state: patientHistory.state
+        suffix: patientHistory.suffix ? patientHistory.suffix : '',
+        mobilePhone: patientHistory.mobile_number ? patientHistory.mobile_number : '',
+        homePhone: patientHistory.home_phone ? patientHistory.home_phone : '',
+        workPhone: patientHistory.work_other_number ? patientHistory.work_other_number : '',
+        emailAddress: patientHistory.email ? patientHistory.email : '',
+        addressOne: patientHistory.address1 ? patientHistory.address1 : '',
+        addressTwo: patientHistory.address2 ? patientHistory.address2 : '',
+        city: patientHistory.city ? patientHistory.city : '',
+        postalCode: patientHistory.postalcode ? patientHistory.postalcode : '',
+        state: patientHistory.state ? patientHistory.state : ''
       };
       dispatch(updateRegistrationValue(patientData));
     }).catch(error => {

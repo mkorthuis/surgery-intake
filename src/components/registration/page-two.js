@@ -27,7 +27,7 @@ class PageTwo extends Component {
   handleSubmit = (evt) => {
     evt.preventDefault();
     var formValues = {};
-    var fields = ['firstName', 'middleName', 'lastName', 'preferredName', 'dateOfBirth', 'sex', 'addressOne', 'addressTwo', 'city', 'state', 'homePhone', 'mobilePhone', 'workPhone', 'workPhoneExtension'];
+    var fields = ['firstName', 'middleName', 'lastName', 'suffix', 'preferredName', 'dateOfBirth', 'sex', 'addressOne', 'addressTwo', 'city', 'state', 'homePhone', 'mobilePhone', 'workPhone', 'workPhoneExtension'];
     for (var i in fields) {
       formValues[fields[i]] = this.props[fields[i]].value;
     }

@@ -20,7 +20,8 @@ class PageFour extends Component {
     evt.preventDefault();
     var formValues = {};
     var fields = [
-      'height',
+      'heightFeet',
+      'heightInches',
       'weight',
       'cigaretteSmoker',
       'cigarSmoker',

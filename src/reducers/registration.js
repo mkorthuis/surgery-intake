@@ -45,7 +45,9 @@ const initState = {
   lastName: {
     value: ''
   },
-  suffix: {},
+  suffix: {
+    value: ''
+  },
   preferredName: {},
   dateOfBirth: {
     value: ''
