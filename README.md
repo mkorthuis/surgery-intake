@@ -6,7 +6,7 @@
 create-react-app surgery-intake
 
 # UI functionality
-yarn add react-bootstrap node-sass-chokidar bootstrap react-router-bootstrap create-react-class https://github.com/mkorthuis/react-bootstrap-date-picker.git#feature/option-disable-calendar bootswatch@3.3.7
+yarn add react-bootstrap node-sass-chokidar bootstrap react-router-bootstrap create-react-class https://github.com/mkorthuis/react-bootstrap-date-picker.git bootswatch@3.3.7
 
 # Redux and Router
 yarn add redux react-redux react-router-dom react-router-redux@next redux-thunk

@@ -29,6 +29,28 @@ export function setEmailToken(token) {
 }
 
 export function validate(token, dateOfBirth) {
+
+  if (!dateOfBirth) {
+    return ({
+      type: VALIDATE,
+      payload: {
+        valid: false,
+        message: 'Invalid date format ( _ _ / _ _ / _ _ _ _ ). Please enter 01/01/1958',
+        touched: true
+      }
+    });
+  }
+  if (!token) {
+    return ({
+      type: VALIDATE,
+      payload: {
+        valid: false,
+        message: 'Invalid link. Please reopen your email and open the entire link.',
+        touched: true
+      }
+    });
+  }
+
   return function(dispatch) {
     var formattedDOB = moment(dateOfBirth).format('YYYY-MM-DD')
     return RegistrationApi.validatePatientDateOfBirth(token, formattedDOB).then(valid => {
@@ -36,7 +58,7 @@ export function validate(token, dateOfBirth) {
         type: VALIDATE,
         payload: {
           valid: (valid && valid === "true"),
-          message: (valid && valid === "true") ? '' : 'Invalid date format ( _ _ / _ _ / _ _ _ _ ). Please enter 01/01/1958',
+          message: (valid && valid === "true") ? '' : 'We could not validate your date of birth',
           touched: true
         }
       })

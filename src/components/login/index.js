@@ -23,6 +23,7 @@ import {
   setEmailToken
 } from '../../actions/authentication'
 import DatePicker from 'react-bootstrap-date-picker';
+import moment from 'moment-es6';
 
 import './index.css'
 
@@ -40,8 +41,19 @@ class Login extends Component {
     this.props.validate(this.props.emailToken, this.props.enteredDateOfBirth);
   }
 
-  updateDateOfBirth = (evt) => {
-    this.props.setDateOfBirth(evt);
+  updateDateOfBirth = (formatted, raw) => {
+    //Since we know it is a DOB, we are smarter than the regular parser
+    if (formatted) {
+      this.props.setDateOfBirth(formatted);
+    } else if (!formatted && moment(raw, ['MM/DD/YY', 'M/D/YYYY', 'M/D/YY'], true).isValid()) {
+      moment.parseTwoDigitYear = function(input) {
+        const currentYear = parseInt(new Date().getFullYear().toString().substr(-2), 10);
+        return parseInt(input, 10) + (parseInt(input, 10) > currentYear ? 1900 : 2000);
+      };
+      this.props.setDateOfBirth(moment(raw, ['MM/DD/YY', 'M/D/YYYY', 'M/D/YY']).toISOString());
+    } else {
+      this.props.setDateOfBirth(null);
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -67,7 +79,7 @@ class Login extends Component {
                       <form onSubmit={this.handleValidation}>
                         <FormGroup validationState={(this.props.touched && !this.props.valid) ? 'error' : null}>
                           <ControlLabel>Please enter your date of birth to confirm who you are</ControlLabel>
-                          <DatePicker calendarDisabled={true} id="dateOfBirth" value={this.props.enteredDateOfBirth} onChange={this.updateDateOfBirth} />
+                          <DatePicker dateFormat="MM/DD/YYYY" calendarDisabled={true} id="displayDateOfBirth" value={this.props.displayDateOfBirth} onChange={this.updateDateOfBirth} />
                           {(this.props.touched && !this.props.valid) && <HelpBlock>{this.props.message}</HelpBlock>}
                         </FormGroup>
                         <Button bsStyle="primary" type="submit">Continue</Button>
@@ -99,6 +111,7 @@ export default connect(
   (state) => ({
     loggedIn: state.authentication.loggedIn,
     enteredDateOfBirth: state.authentication.dateOfBirth,
+    displayDateOfBirth: state.authentication.displayDateOfBirth,
     message: state.authentication.message,
     valid: state.authentication.valid,
     touched: state.authentication.touched,

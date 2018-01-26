@@ -111,7 +111,7 @@ class PageTwo extends Component {
             <FieldGroup
               id="sex"
               type="select"
-              label="Sex"
+              label="Gender"
               value={this.props.sex}
               options={[{name: 'Select', value:''}, {name:'Male', value:'male'}, {name:'Female', value:'female'}]}
               onChange={this.props.handleInputChange}

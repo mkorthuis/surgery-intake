@@ -6,6 +6,7 @@ export const VALIDATE = "VALIDATE";
 const initState = {
   loggedIn: false,
   dateOfBirth: '',
+  displayDateOfBirth: null,
   message: '',
   valid: false,
   touched: false,
