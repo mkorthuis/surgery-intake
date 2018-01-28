@@ -1,21 +1,44 @@
 import React, {
   Component
-} from 'react'
+} from 'react';
 import {
   Grid,
   Row,
   Col,
   Panel,
   Button
-} from 'react-bootstrap'
+} from 'react-bootstrap';
 import {
   connect
-} from 'react-redux'
+} from 'react-redux';
+import {
+  states,
+  procedureSites,
+  docs,
+  yesNo,
+  gender,
+  insuranceTypes,
+  phoneTypes,
+  relationships,
+  smokerList,
+  activity,
+  neckCircumference
+} from '../forms/lists';
+import find from 'lodash/find';
+import moment from 'moment-es6';
+
 
 class PageFive extends Component {
 
   handleSubmit = (evt) => {
     this.props.goToPage(6);
+  }
+
+  getListValue = (list, value) => {
+    var obj = find(list, {
+      value: value
+    });
+    return obj ? obj.name : '';
   }
 
   getRowEntry = (name, value) => {
@@ -44,10 +67,10 @@ class PageFive extends Component {
       <Panel>
       <Panel.Heading>Procedure Information</Panel.Heading>
       <Panel.Body>
-        {this.getRowEntry('Name of Surgeon', this.props.registration.docPerforming.value)}
+        {this.getRowEntry('Name of Surgeon', this.getListValue(docs, this.props.registration.docPerforming.value))}
         {this.getRowEntry('Procedure to Perform', this.props.registration.procedurePerformed.value)}
-        {this.getRowEntry('Procedure Site', this.props.registration.procedureSite.value)}
-        {this.getRowEntry('Procedure Date', this.props.registration.procedureDate.value)}
+        {this.getRowEntry('Procedure Site', this.getListValue(procedureSites, this.props.registration.procedureSite.value))}
+        {this.getRowEntry('Procedure Date', moment(this.props.registration.procedureDate.value).format("M/D/YYYY"))}
       </Panel.Body>
     </Panel>
     )
@@ -62,7 +85,7 @@ class PageFive extends Component {
         {this.getRowEntry('Address Line One', this.props.registration.institutionAddressOne.value)}
         {this.getRowEntry('Address Line Two', this.props.registration.institutionAddressTwo.value)}
         {this.getRowEntry('City', this.props.registration.institutionCity.value)}
-        {this.getRowEntry('State', this.props.registration.institutionState.value)}
+        {this.getRowEntry('State', this.getListValue(states, this.props.registration.institutionState.value))}
         {this.getRowEntry('Zip', this.props.registration.institutionZip.value)}
       </Panel.Body>
     </Panel>
@@ -78,8 +101,8 @@ class PageFive extends Component {
         {this.getRowEntry('Middle Name', this.props.registration.middleName.value)}
         {this.getRowEntry('Last Name', this.props.registration.lastName.value)}
         {this.getRowEntry('Preferred Name', this.props.registration.preferredName.value)}
-        {this.getRowEntry('Date of Birth', this.props.registration.dateOfBirth.value)}
-        {this.getRowEntry('Gender', this.props.registration.sex.value)}
+        {this.getRowEntry('Date of Birth', moment(this.props.registration.dateOfBirth.value).format('M/D/YYYY'))}
+        {this.getRowEntry('Gender', this.getListValue(gender, this.props.registration.sex.value))}
       </Panel.Body>
     </Panel>
     )
@@ -108,7 +131,7 @@ class PageFive extends Component {
         {this.getRowEntry('Address Line One', this.props.registration.addressOne.value)}
         {this.getRowEntry('Address Line Two', this.props.registration.addressTwo.value)}
         {this.getRowEntry('City', this.props.registration.city.value)}
-        {this.getRowEntry('State', this.props.registration.state.value)}
+        {this.getRowEntry('State', this.getListValue(states, this.props.registration.state.value))}
         {this.getRowEntry('Zip', this.props.registration.zip.value)}
       </Panel.Body>
     </Panel>
@@ -120,8 +143,8 @@ class PageFive extends Component {
       <Panel>
       <Panel.Heading>Insurance Information</Panel.Heading>
       <Panel.Body>
-        {this.getRowEntry('Primary Insurance', this.props.registration.primaryInsuranceType.value)}
-        {this.getRowEntry('Secondary Insurance', this.props.registration.secondaryInsurance.value)}
+        {this.getRowEntry('Primary Insurance', this.getListValue(insuranceTypes, this.props.registration.primaryInsuranceType.value))}
+        {this.getRowEntry('Secondary Insurance', this.getListValue(yesNo, this.props.registration.secondaryInsurance.value))}
       </Panel.Body>
     </Panel>
     )
@@ -132,9 +155,9 @@ class PageFive extends Component {
       <Panel>
       <Panel.Heading>Contact Preferences</Panel.Heading>
       <Panel.Body>
-        {this.getRowEntry('Weekday contact phone number', this.props.registration.weekdayPhoneNumber.value)}
-        {this.getRowEntry('Voicemail contact phone number', this.props.registration.voiceMailNumber.value)}
-        {this.getRowEntry('Can we send text messages', this.props.registration.textMessageApproval.value)}
+        {this.getRowEntry('Weekday contact phone number', this.getListValue(phoneTypes, this.props.registration.weekdayPhoneNumber.value))}
+        {this.getRowEntry('Voicemail contact phone number', this.getListValue(phoneTypes, this.props.registration.voiceMailNumber.value))}
+        {this.getRowEntry('Can we send text messages', this.getListValue(yesNo, this.props.registration.textMessageApproval.value))}
       </Panel.Body>
     </Panel>
     )
@@ -145,6 +168,14 @@ class PageFive extends Component {
       <Panel>
       <Panel.Heading>Family Contact</Panel.Heading>
       <Panel.Body>
+        {this.getRowEntry('First Name', this.props.registration.familyMemberFirstName.value)}
+        {this.getRowEntry('Last Name', this.props.registration.familyMemberLastName.value)}
+        {this.getRowEntry('Relationship', this.getListValue(relationships, this.props.registration.familyMemberRelationship.value))}
+        {this.getRowEntry('Address Line One', this.props.registration.familyMemberAddressOne.value)}
+        {this.getRowEntry('Address Line Two', this.props.registration.familyMemberAddressTwo.value)}
+        {this.getRowEntry('City', this.props.registration.familyMemberCity.value)}
+        {this.getRowEntry('State', this.getListValue(states, this.props.registration.familyMemberState.value))}
+        {this.getRowEntry('Zip', this.props.registration.familyMemberZip.value)}
       </Panel.Body>
     </Panel>
     )
@@ -155,6 +186,11 @@ class PageFive extends Component {
       <Panel>
       <Panel.Heading>Ride Home Information</Panel.Heading>
       <Panel.Body>
+        {this.getRowEntry('First Name', this.props.registration.rideHomeFirstName.value)}  
+        {this.getRowEntry('Last Name', this.props.registration.rideHomeLastName.value)}
+        {this.getRowEntry('Primary Phone', this.props.registration.rideHomePrimaryPhone.value)}
+        {this.getRowEntry('Other Phone', this.props.registration.rideHomeOtherPhone.value)}
+        {this.getRowEntry('Relationship', this.getListValue(relationships, this.props.registration.rideHomeRelationship.value))}
       </Panel.Body>
     </Panel>
     )
@@ -165,6 +201,19 @@ class PageFive extends Component {
       <Panel>
       <Panel.Heading>Basic Screening</Panel.Heading>
       <Panel.Body>
+        {this.getRowEntry('Height? (ft, in)', this.props.registration.heightFeet.value + this.props.registration.heightInches.value)}
+        {this.getRowEntry('Weight? (lbs)', this.props.registration.weight.value)}
+        {this.getRowEntry('Smoking status?', this.getListValue(smokerList, this.props.registration.cigaretteSmoker.value))}
+        {this.getRowEntry('Cigar smoker, pipe smoker, and/or tobacco chewer?', this.getListValue(yesNo, this.props.registration.cigarSmoker.value))}
+        {this.getRowEntry('Drink beer, wine or liquor?', this.getListValue(yesNo, this.props.registration.drink.value))}
+        {this.getRowEntry('History of alcohol abuse?', this.getListValue(yesNo, this.props.registration.alcoholAbuse.value))}
+        {this.getRowEntry('History of using recreational or street drugs?', this.getListValue(yesNo, this.props.registration.drugs.value))}
+        {this.getRowEntry('Physicial activity level?', this.getListValue(activity, this.props.registration.physicalActivity.value))}
+        {this.getRowEntry('Do you SNORE loudly (louder than talking or heard through closed doors)?', this.getListValue(yesNo, this.props.registration.snoreLoudly.value))}
+        {this.getRowEntry('Do you often feel TIRED, fatigued, or sleepy during daytime?', this.getListValue(yesNo, this.props.registration.feelTired.value))}
+        {this.getRowEntry('Has anyone OBSERVED you stop breathing during your sleep?', this.getListValue(yesNo, this.props.registration.observedStopBreathing.value))}
+        {this.getRowEntry('Do you have or are you being treated for high blood PRESSURE?', this.getListValue(yesNo, this.props.registration.highBloodPressure.value))}
+        {this.getRowEntry('What is your neck circumference? (in inches)', this.getListValue(neckCircumference, this.props.registration.neckCircumference.value))}
       </Panel.Body>
     </Panel>
     )
@@ -175,6 +224,11 @@ class PageFive extends Component {
       <Panel>
       <Panel.Heading>History of Anesthesia Complications</Panel.Heading>
       <Panel.Body>
+        {this.getRowEntry('History of malignant hypertermia?', this.getListValue(yesNo, this.props.registration.malignantHypertermia.value))}
+        {this.getRowEntry('History of pseudocholinesterase deficiency?', this.getListValue(yesNo, this.props.registration.pseudocholinesteraseDeficiency.value))}
+        {this.getRowEntry('Motion sickness?', this.getListValue(yesNo, this.props.registration.motionSickness.value))}
+        {this.getRowEntry('Postoperative nausea and vomiting?', this.getListValue(yesNo, this.props.registration.nauseaVomiting.value))}
+        {this.getRowEntry('Other serious adverse reactions to anesthesia medications?', this.props.registration.adverseReaction.value)}
       </Panel.Body>
     </Panel>
     )
@@ -185,6 +239,12 @@ class PageFive extends Component {
       <Panel>
       <Panel.Heading>Recent or Planned Diagnostic Testing</Panel.Heading>
       <Panel.Body>
+        {this.getRowEntry('EKG?', this.getListValue(yesNo, this.props.registration.ekg.value))}
+        {this.getRowEntry('Chest XRAY?', this.getListValue(yesNo, this.props.registration.chestXray.value))}
+        {this.getRowEntry('Sleep Apnea Study?', this.getListValue(yesNo, this.props.registration.sleepApnea.value))}
+        {this.getRowEntry('Cardiac (Heart) Stress Test?', this.getListValue(yesNo, this.props.registration.cardiacStress.value))}
+        {this.getRowEntry('Cardiac (Heart) Echo (Ultrasound)?', this.getListValue(yesNo, this.props.registration.cardiacEcho.value))}
+        {this.getRowEntry('Cardiac Catheterization?', this.getListValue(yesNo, this.props.registration.cardiacCatheterization.value))}
       </Panel.Body>
     </Panel>
     )

@@ -14,7 +14,10 @@ import {
   Checkbox
 } from 'react-bootstrap'
 import {
-  states
+  states,
+  procedureSites,
+  docs,
+  yesNo
 } from '../forms/lists'
 import {
   updateRegistrationValue
@@ -63,14 +66,6 @@ class PageOne extends Component {
     });
   }
 
-  docs = [{
-    name: 'Murali Menon',
-    value: 1
-  }, {
-    name: 'Farbod Hagigi',
-    value: 2
-  }];
-
   getProcedureInfo() {
     if (this.props.correctProcedure.value !== "no") {
       return (
@@ -106,7 +101,7 @@ class PageOne extends Component {
                 type="select"
                 label="Procedure Site"
                 value={this.props.procedureSite}
-                options={[{name:'Select', value:''},{name:'Left', value:'left'},{name:'Right', value:'right'},{name:'Both', value:'both'},{name:'Not Applicable', value:'notApplicable'}]}
+                options={union([{name:'Select', value:''}],procedureSites)}
                 onChange={this.props.handleInputChange}
                 />
             </Col>
@@ -119,7 +114,7 @@ class PageOne extends Component {
                 type="select"
                 label="Who is performing the procedure, surgery or consult?"
                 value={this.props.docPerforming}
-                options={union([{name:'Select', value:''}],this.docs, [{name:'Doctor name not listed', value:'-1'}])}
+                options={union([{name:'Select', value:''}], docs, [{name:'Doctor name not listed', value:'-1'}])}
                 onChange={this.props.handleInputChange}
                 />
             </Col>
@@ -152,7 +147,7 @@ class PageOne extends Component {
                 type="select"
                 label="Is this procedure information correct?"
                 value={this.props.correctProcedure}
-                options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
+                options={union([{name:'Select', value:''}],yesNo)}
                 onChange={this.props.handleInputChange} 
                 />
             </Col>
@@ -283,7 +278,7 @@ class PageOne extends Component {
                 type="select"
                 label="Is this the correct facility?"
                 value={this.props.correctFacility}
-                options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
+                options={union([{name:'Select', value:''}],yesNo)}
                 onChange={this.props.handleInputChange} 
                 />
             </Col>

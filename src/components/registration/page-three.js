@@ -13,7 +13,10 @@ import {
   connect
 } from 'react-redux'
 import {
-  states
+  states,
+  phoneTypes,
+  yesNo,
+  relationships
 } from '../forms/lists'
 import union from 'lodash/union'
 
@@ -37,8 +40,6 @@ class PageThree extends Component {
       'familyMemberCity',
       'familyMemberState',
       'familyMemberZip',
-      'primaryInsuranceType',
-      'secondaryInsurance',
       'rideHomeFirstName',
       'rideHomeLastName',
       'rideHomePrimaryPhone',
@@ -70,7 +71,7 @@ class PageThree extends Component {
                 type="select"
                 label="Choose a weekday contact phone number"
                 value={this.props.weekdayPhoneNumber}
-                options={[{name:'Select', value:''},{name:'Mobile', value:'mobile'},{name:'Home', value:'home'},{name:'Work / Other', value:'work'}]}
+                options={union([{name:'Select', value:''}],phoneTypes)}
                 onChange={this.props.handleInputChange}
                 />
             </Col>
@@ -80,7 +81,7 @@ class PageThree extends Component {
                 type="select"
                 label="Choose the number where the healthcare team can leave a voice message"
                 value={this.props.voiceMailNumber}
-                options={[{name:'Select', value:''},{name:'Mobile', value:'mobile'},{name:'Home', value:'home'},{name:'Work / Other', value:'work'}]}
+                options={union([{name:'Select', value:''}],phoneTypes)}
                 onChange={this.props.handleInputChange}
                 />
             </Col>
@@ -92,7 +93,7 @@ class PageThree extends Component {
                 type="select"
                 label="Can the healthcare team send you a text message with healthcare information?"
                 value={this.props.textMessageApproval}
-                options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
+                options={union([{name:'Select', value:''}],yesNo)}
                 onChange={this.props.handleInputChange}
                 />
             </Col>
@@ -142,7 +143,7 @@ class PageThree extends Component {
               type="select"
               label="Family Member Relationship to the Patient"
               value={this.props.familyMemberRelationship}
-              options={[{name:'Select', value:''},{name:'Mother', value:'mother'},{name:'Father', value:'father'},{name:'Son', value:'son'},{name:'Daughter',value:'daughter'}]}
+              options={union([{name:'Select', value:''}],relationships)}
               onChange={this.props.handleInputChange}
               />
           </Col>
@@ -152,7 +153,7 @@ class PageThree extends Component {
               type="select"
               label="Does this family member have the same address as the patient?"
               value={this.props.familyMemberContactAddress}
-              options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
+              options={union([{name:'Select', value:''}],yesNo)}
               onChange={this.props.handleInputChange}
               />
           </Col>
@@ -200,7 +201,7 @@ class PageThree extends Component {
         <Row>
           <Col md={5} mdOffset={2}>
             <FieldGroup
-              id="city"
+              id="familyMemberCity"
               type="text"
               label="City"
               value={this.props.familyMemberCity}
@@ -209,7 +210,7 @@ class PageThree extends Component {
             </Col>
           <Col md={3}>
             <FieldGroup
-              id="state"
+              id="familyMemberState"
               type="select"
               label="State"
               value={this.props.familyMemberState}
@@ -219,7 +220,7 @@ class PageThree extends Component {
           </Col>
           <Col md={2}>
             <FieldGroup
-              id="zip"
+              id="familyMemberZip"
               type="text"
               label="Zip"
               value={this.props.familyMemberZip}
@@ -243,7 +244,7 @@ class PageThree extends Component {
                 type="select"
                 label="In case of an emergency, is there a family member we should contact?"
                 value={this.props.familyMemberContact}
-                options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
+                options={union([{name:'Select', value:''}],yesNo)}
                 onChange={this.props.handleInputChange}
                 />
             </Col>
@@ -306,7 +307,7 @@ class PageThree extends Component {
                 type="select"
                 label="Relationship"
                 value={this.props.rideHomeRelationship}
-                options={[{name:'Select', value:''},{name:'Mother', value:'mother'},{name:'Father', value:'father'},{name:'Son', value:'son'},{name:'Daughter',value:'daughter'},{name:'Other', value:'other'}]}
+                options={union([{name:'Select', value:''}],relationships)}
                 onChange={this.props.handleInputChange}
                 />
             </Col>

@@ -16,7 +16,10 @@ import {
 } from '../../actions/registration'
 import FieldGroup from '../forms/field-group'
 import {
-  states
+  states,
+  gender,
+  insuranceTypes,
+  yesNo
 } from '../forms/lists'
 import union from 'lodash/union'
 import moment from 'moment-es6';
@@ -74,7 +77,7 @@ class PageTwo extends Component {
           </Col>
           <Col md={3}>
             <FieldGroup
-              id="middleInitial"
+              id="middleName"
               type="text"
               label="Middle Name"
               value={this.props.middleName}
@@ -125,7 +128,7 @@ class PageTwo extends Component {
               type="select"
               label="Gender"
               value={this.props.sex}
-              options={[{name: 'Select', value:''}, {name:'Male', value:'male'}, {name:'Female', value:'female'}]}
+              options={union([{name:'Select', value:''}],gender)}
               onChange={this.props.handleInputChange}
             />
           </Col>
@@ -270,7 +273,7 @@ class PageTwo extends Component {
                 type="select"
                 label="Primary Insurance"
                 value={this.props.primaryInsuranceType}
-                options={[{value:'',name:'Select'},{value:'insuranceCompany',name:'Insurance Company'},{value:'medicare',name:'Medicare'},{value:'medicaid',name:'Medicaid'},{value:'workersComp',name:'Workers Compensation'},{value:'medex',name:'Medex'},{value:'tricare',name:'Tricare'},{value:'selfPay',name:'Self Pay'},{value:'other',name:'Other'}]}
+                options={union([{name:'Select', value:''}],insuranceTypes)}
                 onChange={this.props.handleInputChange}
                 />
             </Col>
@@ -280,7 +283,7 @@ class PageTwo extends Component {
                 type="select"
                 label="Secondary Insurance?"
                 value={this.props.secondaryInsurance}
-                options={[{name:'Select', value:''},{name:'Yes', value:'yes'},{name:'No', value:'no'}]}
+                options={union([{name:'Select', value:''}],yesNo)}
                 onChange={this.props.handleInputChange}
                 />
             </Col>
