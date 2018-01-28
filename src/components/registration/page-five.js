@@ -6,7 +6,8 @@ import {
   Row,
   Col,
   Panel,
-  Button
+  Button,
+  Alert
 } from 'react-bootstrap';
 import {
   connect
@@ -243,7 +244,46 @@ class PageFive extends Component {
     )
   }
 
+  getValidationAlert(isInvalid) {
+    if (isInvalid) {
+      return (
+        <Alert bsStyle="danger">
+          Please validate all data on {isInvalid} before continuing.
+        </Alert>
+      )
+    }
+  }
+
+  getButton(isInvalid) {
+    if (isInvalid) {
+      return (
+        <Button disabled bsStyle="primary" type="submit">
+          Submit
+        </Button>)
+    } else {
+      return (
+        <Button bsStyle="primary" type="submit">
+          Submit
+        </Button>)
+    }
+  }
+
   render() {
+    var isInvalid = null;
+    if (!this.props.registration.validation[4]) {
+      isInvalid = "the health history page / page 4";
+    }
+    if (!this.props.registration.validation[3]) {
+      isInvalid = "the contact preferences page / page 3";
+    }
+    if (!this.props.registration.validation[2]) {
+      isInvalid = "the contact information page / page 2";
+    }
+    if (!this.props.registration.validation[1]) {
+      isInvalid = "the procedure page / page 1";
+    }
+
+
     return (
       <form onSubmit={this.handleSubmit}>
         <Grid className="main-grid">
@@ -260,11 +300,10 @@ class PageFive extends Component {
           {this.getBasicScreening()}
           {this.getAnesthesia()}
           {this.getDiagnostic()}
+          {this.getValidationAlert(isInvalid)}
           <Row className="last-row">
             <Col xs={12}>
-              <Button bsStyle="primary" type="submit">
-                Submit
-              </Button>
+              {this.getButton(isInvalid)}
             </Col>
           </Row>
         </Grid>
