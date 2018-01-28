@@ -12,7 +12,8 @@ import {
   Button
 } from 'react-bootstrap'
 import {
-  updateRegistrationValue
+  updateRegistrationValue,
+  disableValidation
 } from '../../actions/registration'
 import FieldGroup from '../forms/field-group'
 import {
@@ -26,6 +27,8 @@ import moment from 'moment-es6';
 
 class PageTwo extends Component {
 
+  page = 2;
+
 
   handleSubmit = (evt) => {
     evt.preventDefault();
@@ -34,10 +37,12 @@ class PageTwo extends Component {
     for (var i in fields) {
       formValues[fields[i]] = this.props[fields[i]].value;
     }
-    this.props.validate(formValues, 2);
+    this.props.validate(formValues, this.page);
   }
 
   handleDateOFBirthChange = (formatted, raw) => {
+    this.props.disableValidation(this.page);
+
     //Since we know it is a DOB, we are smarter than the regular parser
     if (formatted) {
       this.props.updateRegistrationValue({
@@ -54,9 +59,14 @@ class PageTwo extends Component {
     }
   }
 
+  handleInputChange = (evt) => {
+    this.props.disableValidation(this.page);
+    this.props.handleInputChange(evt);
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.validation) {
-      this.props.goToPage(3);
+      this.props.goToPage(this.page + 1);
     }
   }
 
@@ -72,7 +82,7 @@ class PageTwo extends Component {
               type="text"
               label="First Name"
               value={this.props.firstName}
-              onChange={this.props.handleInputChange}
+              onChange={this.handleInputChange}
               />
           </Col>
           <Col md={3}>
@@ -81,7 +91,7 @@ class PageTwo extends Component {
               type="text"
               label="Middle Name"
               value={this.props.middleName}
-              onChange={this.props.handleInputChange}
+              onChange={this.handleInputChange}
               />
           </Col>
           <Col md={4}>
@@ -90,7 +100,7 @@ class PageTwo extends Component {
               type="text"
               label="Last Name"
               value={this.props.lastName}
-              onChange={this.props.handleInputChange}
+              onChange={this.handleInputChange}
               />
           </Col>
           <Col md={2}>
@@ -99,7 +109,7 @@ class PageTwo extends Component {
               type="text"
               label="Suffix (e.g., Jr., Sr.)"
               value={this.props.suffix}
-              onChange={this.props.handleInputChange}
+              onChange={this.handleInputChange}
               />
           </Col>
         </Row>
@@ -110,7 +120,7 @@ class PageTwo extends Component {
               type="text"
               label="Preferred Name"
               value={this.props.preferredName}
-              onChange={this.props.handleInputChange}
+              onChange={this.handleInputChange}
               />
           </Col>
           <Col md={4}>
@@ -129,7 +139,7 @@ class PageTwo extends Component {
               label="Gender"
               value={this.props.sex}
               options={union([{name:'Select', value:''}],gender)}
-              onChange={this.props.handleInputChange}
+              onChange={this.handleInputChange}
             />
           </Col>
         </Row>
@@ -150,7 +160,7 @@ class PageTwo extends Component {
                 type="text"
                 label="Address 1"
                 value={this.props.addressOne}
-                onChange={this.props.handleInputChange}
+                onChange={this.handleInputChange}
               />
             </Col>
           </Row>
@@ -161,7 +171,7 @@ class PageTwo extends Component {
                 type="text"
                 label="Address 2"
                 value={this.props.addressTwo}
-                onChange={this.props.handleInputChange}
+                onChange={this.handleInputChange}
               />
             </Col>
           </Row>
@@ -172,7 +182,7 @@ class PageTwo extends Component {
                 type="text"
                 label="City"
                 value={this.props.city}
-                onChange={this.props.handleInputChange}
+                onChange={this.handleInputChange}
               />
             </Col>
             <Col md={3}>
@@ -182,7 +192,7 @@ class PageTwo extends Component {
                 label="State"
                 value={this.props.state}
                 options={union([{name:'Select', value:''}],states)}
-                onChange={this.props.handleInputChange}
+                onChange={this.handleInputChange}
               />
             </Col>
             <Col md={2}>
@@ -191,7 +201,7 @@ class PageTwo extends Component {
                 type="text"
                 label="Zip"
                 value={this.props.zip}
-                onChange={this.props.handleInputChange}
+                onChange={this.handleInputChange}
               />
             </Col>
           </Row>
@@ -212,7 +222,7 @@ class PageTwo extends Component {
                 type="text"
                 label="Mobile Phone"
                 value={this.props.mobilePhone}
-                onChange={this.props.handleInputChange}
+                onChange={this.handleInputChange}
                 />
             </Col>
             <Col md={6}>
@@ -221,7 +231,7 @@ class PageTwo extends Component {
                 type="text"
                 label="Home Phone"
                 value={this.props.homePhone}
-                onChange={this.props.handleInputChange}
+                onChange={this.handleInputChange}
               />
             </Col>
           </Row>
@@ -232,7 +242,7 @@ class PageTwo extends Component {
                 type="text"
                 label="Email Address"
                 value={this.props.emailAddress}
-                onChange={this.props.handleInputChange}
+                onChange={this.handleInputChange}
                 />
             </Col>
           </Row>
@@ -243,7 +253,7 @@ class PageTwo extends Component {
                 type="text"
                 label="Work Phone"
                 value={this.props.workPhone}
-                onChange={this.props.handleInputChange}
+                onChange={this.handleInputChange}
                 />
             </Col>
             <Col md={4}>
@@ -252,7 +262,7 @@ class PageTwo extends Component {
                 type="text"
                 label="Extension"
                 value={this.props.workPhoneExtension}
-                onChange={this.props.handleInputChange}
+                onChange={this.handleInputChange}
                 />
             </Col>
           </Row>
@@ -274,7 +284,7 @@ class PageTwo extends Component {
                 label="Primary Insurance"
                 value={this.props.primaryInsuranceType}
                 options={union([{name:'Select', value:''}],insuranceTypes)}
-                onChange={this.props.handleInputChange}
+                onChange={this.handleInputChange}
                 />
             </Col>
             <Col md={6}>
@@ -284,7 +294,7 @@ class PageTwo extends Component {
                 label="Secondary Insurance?"
                 value={this.props.secondaryInsurance}
                 options={union([{name:'Select', value:''}],yesNo)}
-                onChange={this.props.handleInputChange}
+                onChange={this.handleInputChange}
                 />
             </Col>
           </Row>
@@ -338,6 +348,7 @@ export default connect(
 
     validation: state.registration.validation['2']
   }), {
-    updateRegistrationValue
+    updateRegistrationValue,
+    disableValidation
   }
 )(PageTwo)

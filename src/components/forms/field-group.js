@@ -75,7 +75,7 @@ const FieldGroup = (props) => {
     return (
       <FormGroup controlId={id} validationState={getValidation()}>
         {label && <ControlLabel>{label}</ControlLabel>}
-        <FormControl componentClass="select" placeholder="select" {...otherProps} >
+        <FormControl componentClass="select" value={value.value} placeholder="select" {...otherProps} >
         {
           options.map((option, index) => {
             return (<option key={index} value={option.value}>{option.name}</option>);

@@ -373,8 +373,8 @@ function getNeckCircumferenceList() {
   var list = [];
   for (var i = start; i <= end; i = i + step) {
     list.push({
-      name: i,
-      value: i
+      name: i.toString(),
+      value: i.toString()
     });
   }
   return list;

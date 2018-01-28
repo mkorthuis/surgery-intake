@@ -4,6 +4,7 @@ export const REGISTRATION_LOAD = "REGISTRATION_LOAD";
 export const UPDATE_REGISTRATION_VALUE = "UPDATE_REGISTRATION_VALUE";
 export const UPDATE_REGISTRATION_VALIDATION = "UPDATE_REGISTRATION_VALIDATION";
 export const UPDATE_PAGE = "UPDATE_PAGE";
+export const DISABLE_VALIDATION = "DISABLE_VALIDATION";
 
 const initState = {
   validation: {},
@@ -128,6 +129,10 @@ function updateValues(state, values) {
 export default (state = initState, action) => {
   var newState;
   switch (action.type) {
+    case DISABLE_VALIDATION:
+      newState = Object.assign({}, state);
+      newState.validation[action.payload] = false;
+      return newState;
     case UPDATE_REGISTRATION_VALUE:
       newState = Object.assign({}, state);
       updateValues(newState, action.payload);

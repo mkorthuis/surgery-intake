@@ -21,8 +21,13 @@ import {
 } from '../forms/lists'
 import FieldGroup from '../forms/field-group'
 import union from 'lodash/union'
+import {
+  disableValidation
+} from '../../actions/registration'
 
 class PageFour extends Component {
+
+  page = 4;
 
   handleSubmit = (evt) => {
     evt.preventDefault();
@@ -58,12 +63,17 @@ class PageFour extends Component {
     for (var i in fields) {
       formValues[fields[i]] = this.props[fields[i]].value;
     }
-    this.props.validate(formValues, 4);
+    this.props.validate(formValues, this.page);
+  }
+
+  handleInputChange = (evt) => {
+    this.props.disableValidation(this.page);
+    this.props.handleInputChange(evt);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.validation) {
-      this.props.goToPage(5);
+      this.props.goToPage(this.page + 1);
     }
   }
 
@@ -79,7 +89,7 @@ class PageFour extends Component {
                 type="select"
                 label="Height?"
                 value={this.props.heightFeet}
-                onChange={this.props.handleInputChange} 
+                onChange={this.handleInputChange} 
                 options={union([{name:'Feet', value:''}],feet)}
                 />
             </Col>
@@ -89,7 +99,7 @@ class PageFour extends Component {
                 type="select"
                 label="&nbsp;"
                 value={this.props.heightInches}
-                onChange={this.props.handleInputChange} 
+                onChange={this.handleInputChange} 
                 options={union([{name:'Inches', value:''}],inches)}
                 />
             </Col>
@@ -99,7 +109,7 @@ class PageFour extends Component {
                 type="text"
                 label="Weight? (lbs)"
                 value={this.props.weight}
-                onChange={this.props.handleInputChange} 
+                onChange={this.handleInputChange} 
                 />
             </Col>
           </Row>
@@ -111,7 +121,7 @@ class PageFour extends Component {
                 label="Smoking status?"
                 value={this.props.cigaretteSmoker}
                 options={union([{name:'Select', value:''}],smokerList)}
-                onChange={this.props.handleInputChange} 
+                onChange={this.handleInputChange} 
                 />
             </Col>
             <Col md={6}>
@@ -121,7 +131,7 @@ class PageFour extends Component {
                 label="Cigar smoker, pipe smoker, and/or tobacco chewer?"
                 value={this.props.cigarSmoker}
                 options={union([{name:'Select', value:''}],yesNo)}
-                onChange={this.props.handleInputChange} 
+                onChange={this.handleInputChange} 
                 />
             </Col>
           </Row>
@@ -133,7 +143,7 @@ class PageFour extends Component {
                 label="Drink beer, wine or liquor?"
                 value={this.props.drink}
                 options={union([{name:'Select', value:''}],yesNo)}
-                onChange={this.props.handleInputChange} 
+                onChange={this.handleInputChange} 
                 />              
             </Col>
             <Col md={6}>
@@ -143,7 +153,7 @@ class PageFour extends Component {
                 label="History of alcohol abuse?"
                 value={this.props.alcoholAbuse}
                 options={union([{name:'Select', value:''}],yesNo)}
-                onChange={this.props.handleInputChange} 
+                onChange={this.handleInputChange} 
                 />
             </Col>
           </Row>
@@ -155,7 +165,7 @@ class PageFour extends Component {
                 label="History of using recreational or street drugs?"
                 value={this.props.drugs}
                 options={union([{name:'Select', value:''}],yesNo)}
-                onChange={this.props.handleInputChange} 
+                onChange={this.handleInputChange} 
                 />
             </Col>
             <Col md={6}>
@@ -165,7 +175,7 @@ class PageFour extends Component {
                 label="Physicial activity level?"
                 value={this.props.physicalActivity}
                 options={union([{name:'Select', value:''}],activity)}
-                onChange={this.props.handleInputChange} 
+                onChange={this.handleInputChange} 
                 />
             </Col>
           </Row>
@@ -177,7 +187,7 @@ class PageFour extends Component {
                 label="Do you SNORE loudly (louder than talking or heard through closed doors)?"
                 value={this.props.snoreLoudly}
                 options={union([{name:'Select', value:''}],yesNo)}
-                onChange={this.props.handleInputChange} 
+                onChange={this.handleInputChange} 
                 />
             </Col>
             <Col md={6}>
@@ -187,7 +197,7 @@ class PageFour extends Component {
                 label="Do you often feel TIRED, fatigued, or sleepy during daytime?"
                 value={this.props.feelTired}
                 options={union([{name:'Select', value:''}],yesNo)}
-                onChange={this.props.handleInputChange} 
+                onChange={this.handleInputChange} 
                 />
             </Col>
           </Row>
@@ -199,7 +209,7 @@ class PageFour extends Component {
                 label="Has anyone OBSERVED you stop breathing during your sleep?"
                 value={this.props.observedStopBreathing}
                 options={union([{name:'Select', value:''}],yesNo)}
-                onChange={this.props.handleInputChange} 
+                onChange={this.handleInputChange} 
                 />
             </Col>
             <Col md={6}>
@@ -209,7 +219,7 @@ class PageFour extends Component {
                 label="Do you have or are you being treated for high blood PRESSURE?"
                 value={this.props.highBloodPressure}
                 options={union([{name:'Select', value:''}],yesNo)}
-                onChange={this.props.handleInputChange} 
+                onChange={this.handleInputChange} 
                 />
             </Col>
           </Row>
@@ -221,7 +231,7 @@ class PageFour extends Component {
                 label="What is your neck circumference? (in inches)"
                 value={this.props.neckCircumference}
                 options={union([{name:'Select', value:''}],neckCircumference)}
-                onChange={this.props.handleInputChange}
+                onChange={this.handleInputChange}
                 />
             </Col>
           </Row>
@@ -243,7 +253,7 @@ class PageFour extends Component {
                 label="History of malignant hypertermia?"
                 value={this.props.malignantHypertermia}
                 options={union([{name:'Select', value:''}],yesNo)}
-                onChange={this.props.handleInputChange} 
+                onChange={this.handleInputChange} 
                 />
             </Col>
             <Col md={6}>
@@ -253,7 +263,7 @@ class PageFour extends Component {
                 label="History of pseudocholinesterase deficiency?"
                 value={this.props.pseudocholinesteraseDeficiency}
                 options={union([{name:'Select', value:''}],yesNo)}
-                onChange={this.props.handleInputChange} 
+                onChange={this.handleInputChange} 
                 />
             </Col>
           </Row>
@@ -265,7 +275,7 @@ class PageFour extends Component {
                 label="Motion sickness?"
                 value={this.props.motionSickness}
                 options={union([{name:'Select', value:''}],yesNo)}
-                onChange={this.props.handleInputChange} 
+                onChange={this.handleInputChange} 
                 />
             </Col>
             <Col md={6}>
@@ -275,7 +285,7 @@ class PageFour extends Component {
                 label="Postoperative nausea and vomiting?"
                 value={this.props.nauseaVomiting}
                 options={union([{name:'Select', value:''}],yesNo)}
-                onChange={this.props.handleInputChange} 
+                onChange={this.handleInputChange} 
                 />
             </Col>
           </Row>
@@ -286,7 +296,7 @@ class PageFour extends Component {
                 type="text"
                 label="Other serious adverse reactions to anesthesia medications?"
                 value={this.props.adverseReaction}
-                onChange={this.props.handleInputChange} 
+                onChange={this.handleInputChange} 
                 />
             </Col>
           </Row>
@@ -308,7 +318,7 @@ class PageFour extends Component {
                 label="EKG?"
                 value={this.props.ekg}
                 options={union([{name:'Select', value:''}],yesNo)}
-                onChange={this.props.handleInputChange} 
+                onChange={this.handleInputChange} 
                 />
             </Col>
             <Col md={6}>
@@ -318,7 +328,7 @@ class PageFour extends Component {
                 label="Chest XRAY?"
                 value={this.props.chestXray}
                 options={union([{name:'Select', value:''}],yesNo)}
-                onChange={this.props.handleInputChange} 
+                onChange={this.handleInputChange} 
                 />
             </Col>
           </Row>
@@ -330,7 +340,7 @@ class PageFour extends Component {
                 label="Sleep Apnea Study?"
                 value={this.props.sleepApnea}
                 options={union([{name:'Select', value:''}],yesNo)}
-                onChange={this.props.handleInputChange} 
+                onChange={this.handleInputChange} 
                 />
             </Col>
             <Col md={6}>
@@ -340,7 +350,7 @@ class PageFour extends Component {
                 label="Cardiac (Heart) Stress Test?"
                 value={this.props.cardiacStress}
                 options={union([{name:'Select', value:''}],yesNo)}
-                onChange={this.props.handleInputChange} 
+                onChange={this.handleInputChange} 
                 />
             </Col>
           </Row>
@@ -352,7 +362,7 @@ class PageFour extends Component {
                 label="Cardiac (Heart) Echo (Ultrasound)?"
                 value={this.props.cardiacEcho}
                 options={union([{name:'Select', value:''}],yesNo)}
-                onChange={this.props.handleInputChange} 
+                onChange={this.handleInputChange} 
                 />
             </Col>
             <Col md={6}>
@@ -362,7 +372,7 @@ class PageFour extends Component {
                 label="Cardiac Catheterization?"
                 value={this.props.cardiacCatheterization}
                 options={union([{name:'Select', value:''}],yesNo)}
-                onChange={this.props.handleInputChange} 
+                onChange={this.handleInputChange} 
                 />
             </Col>
           </Row>
@@ -421,6 +431,6 @@ export default connect(
     cardiacCatheterization: state.registration.cardiacCatheterization,
     validation: state.registration.validation['4']
   }), {
-
+    disableValidation
   }
 )(PageFour)

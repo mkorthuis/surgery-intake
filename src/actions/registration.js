@@ -1,7 +1,8 @@
 import {
   UPDATE_REGISTRATION_VALUE,
   UPDATE_REGISTRATION_VALIDATION,
-  UPDATE_PAGE
+  UPDATE_PAGE,
+  DISABLE_VALIDATION
 } from '../reducers/registration'
 import forOwn from 'lodash/forOwn'
 import forEach from 'lodash/forEach'
@@ -101,6 +102,13 @@ var validateRules = {
   cardiacStress: [required],
   cardiacEcho: [required],
   cardiacCatheterization: [required]
+}
+
+export function disableValidation(page) {
+  return {
+    type: DISABLE_VALIDATION,
+    payload: page
+  }
 }
 
 export function updateRegistrationValue(change) {

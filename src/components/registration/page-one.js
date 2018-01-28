@@ -21,13 +21,16 @@ import {
   yesNo
 } from '../forms/lists'
 import {
-  updateRegistrationValue
+  updateRegistrationValue,
+  disableValidation
 } from '../../actions/registration'
 import FieldGroup from '../forms/field-group'
 import union from 'lodash/union'
 import moment from 'moment-es6';
 
 class PageOne extends Component {
+
+  page = 1;
 
   handleSubmit = (evt) => {
     evt.preventDefault();
@@ -53,19 +56,25 @@ class PageOne extends Component {
     for (var i in fields) {
       formValues[fields[i]] = this.props[fields[i]].value;
     }
-    this.props.validate(formValues, 1);
+    this.props.validate(formValues, this.page);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.validation) {
-      this.props.goToPage(2);
+      this.props.goToPage(this.page + 1);
     }
   }
 
   handleProcedureDateChange = (value) => {
+    this.props.disableValidation(this.page);
     this.props.updateRegistrationValue({
       'procedureDate': value
     });
+  }
+
+  handleInputChange = (evt) => {
+    this.props.disableValidation(this.page);
+    this.props.handleInputChange(evt);
   }
 
   getProcedureInfo() {
@@ -94,7 +103,7 @@ class PageOne extends Component {
                 type="text"
                 label="Procedure to Perform"
                 value={this.props.procedurePerformed}
-                onChange={this.props.handleInputChange}
+                onChange={this.handleInputChange}
                 />
             </Col>
             <Col md={5}>
@@ -104,7 +113,7 @@ class PageOne extends Component {
                 label="Procedure Site"
                 value={this.props.procedureSite}
                 options={union([{name:'Select', value:''}],procedureSites)}
-                onChange={this.props.handleInputChange}
+                onChange={this.handleInputChange}
                 />
             </Col>
           </Row>
@@ -117,7 +126,7 @@ class PageOne extends Component {
                 label="Who is performing the procedure, surgery or consult?"
                 value={this.props.docPerforming}
                 options={union([{name:'Select', value:''}], docs, [{name:'Doctor name not listed', value:'-1'}])}
-                onChange={this.props.handleInputChange}
+                onChange={this.handleInputChange}
                 />
             </Col>
             <Col md={4}>
@@ -150,7 +159,7 @@ class PageOne extends Component {
                 label="Is this procedure information correct?"
                 value={this.props.correctProcedure}
                 options={union([{name:'Select', value:''}],yesNo)}
-                onChange={this.props.handleInputChange} 
+                onChange={this.handleInputChange} 
                 />
             </Col>
           </Row>
@@ -168,7 +177,7 @@ class PageOne extends Component {
             type="text"
             label="Doctor Name"
             value={this.props.unknownDocPerforming}
-            onChange={this.props.handleInputChange}
+            onChange={this.handleInputChange}
             />
         </Col>
       </Row>
@@ -205,7 +214,7 @@ class PageOne extends Component {
               type="text"
               label=" Name"
               value={this.props.institutionName}
-              onChange={this.props.handleInputChange}
+              onChange={this.handleInputChange}
               />
           </Col>
         </Row>
@@ -216,7 +225,7 @@ class PageOne extends Component {
               type="text"
               label="Address Line One"
               value={this.props.institutionAddressOne}
-              onChange={this.props.handleInputChange}
+              onChange={this.handleInputChange}
               />
           </Col>
         </Row>
@@ -227,7 +236,7 @@ class PageOne extends Component {
               type="text"
               label="Address Line Two"
               value={this.props.institutionAddressTwo}
-              onChange={this.props.handleInputChange}
+              onChange={this.handleInputChange}
               />
           </Col>
         </Row>
@@ -238,7 +247,7 @@ class PageOne extends Component {
               type="text"
               label="City"
               value={this.props.institutionCity}
-              onChange={this.props.handleInputChange}
+              onChange={this.handleInputChange}
             />
             </Col>
           <Col md={4}>
@@ -248,7 +257,7 @@ class PageOne extends Component {
               label="State"
               value={this.props.institutionState}
               options={union([{name:'Select', value:''}],states)}
-              onChange={this.props.handleInputChange}
+              onChange={this.handleInputChange}
             />
           </Col>
           <Col md={3}>
@@ -257,7 +266,7 @@ class PageOne extends Component {
               type="text"
               label="Zip"
               value={this.props.institutionZip}
-              onChange={this.props.handleInputChange}
+              onChange={this.handleInputChange}
             />
           </Col>
         </Row>
@@ -281,7 +290,7 @@ class PageOne extends Component {
                 label="Is this the correct facility?"
                 value={this.props.correctFacility}
                 options={union([{name:'Select', value:''}],yesNo)}
-                onChange={this.props.handleInputChange} 
+                onChange={this.handleInputChange} 
                 />
             </Col>
           </Row>
@@ -306,7 +315,7 @@ class PageOne extends Component {
               <FormGroup validationState={(this.props.understandPatientNotice.touched ? this.props.understandPatientNotice.validation : null) || this.props.understandPatientNotice.serverValidation} >
                 <Checkbox 
                   id="understandPatientNotice" 
-                  onChange={this.props.handleInputChange} 
+                  onChange={this.handleInputChange} 
                   defaultChecked={this.props.understandPatientNotice.value}  
                   inline>
                   I understand and accept the Notice of Patients.
@@ -320,7 +329,7 @@ class PageOne extends Component {
               <FormGroup validationState={(this.props.ackOwnership.touched ? this.props.ackOwnership.validation : null) || this.props.ackOwnership.serverValidation}>
                 <Checkbox 
                   id="ackOwnership"
-                  onChange={this.props.handleInputChange} 
+                  onChange={this.handleInputChange} 
                   defaultChecked={this.props.ackOwnership.value} 
                   inline>
                   I understand and accept the Acknowledgement of Ownership.
@@ -384,6 +393,7 @@ export default connect(
 
     validation: state.registration.validation['1']
   }), {
-    updateRegistrationValue
+    updateRegistrationValue,
+    disableValidation
   }
 )(PageOne)

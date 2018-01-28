@@ -19,9 +19,14 @@ import {
   relationships
 } from '../forms/lists'
 import union from 'lodash/union'
+import {
+  disableValidation
+} from '../../actions/registration'
 
 
 class PageThree extends Component {
+
+  page = 3;
 
   handleSubmit = (evt) => {
     evt.preventDefault();
@@ -50,12 +55,17 @@ class PageThree extends Component {
     for (var i in fields) {
       formValues[fields[i]] = this.props[fields[i]].value;
     }
-    this.props.validate(formValues, 3);
+    this.props.validate(formValues, this.page);
+  }
+
+  handleInputChange = (evt) => {
+    this.props.disableValidation(this.page);
+    this.props.handleInputChange(evt);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.validation) {
-      this.props.goToPage(4);
+      this.props.goToPage(this.page + 1);
     }
   }
 
@@ -72,7 +82,7 @@ class PageThree extends Component {
                 label="Choose a weekday contact phone number"
                 value={this.props.weekdayPhoneNumber}
                 options={union([{name:'Select', value:''}],phoneTypes)}
-                onChange={this.props.handleInputChange}
+                onChange={this.handleInputChange}
                 />
             </Col>
             <Col md={6}>
@@ -82,7 +92,7 @@ class PageThree extends Component {
                 label="Choose the number where the healthcare team can leave a voice message"
                 value={this.props.voiceMailNumber}
                 options={union([{name:'Select', value:''}],phoneTypes)}
-                onChange={this.props.handleInputChange}
+                onChange={this.handleInputChange}
                 />
             </Col>
           </Row>
@@ -94,7 +104,7 @@ class PageThree extends Component {
                 label="Can the healthcare team send you a text message with healthcare information?"
                 value={this.props.textMessageApproval}
                 options={union([{name:'Select', value:''}],yesNo)}
-                onChange={this.props.handleInputChange}
+                onChange={this.handleInputChange}
                 />
             </Col>
           </Row>
@@ -123,7 +133,7 @@ class PageThree extends Component {
               type="text"
               label="Family Member First Name"
               value={this.props.familyMemberFirstName}
-              onChange={this.props.handleInputChange}
+              onChange={this.handleInputChange}
               />
           </Col>
           <Col md={6}>
@@ -132,7 +142,7 @@ class PageThree extends Component {
               type="text"
               label="Family Member Last Name"
               value={this.props.familyMemberLastName}
-              onChange={this.props.handleInputChange}
+              onChange={this.handleInputChange}
               />
           </Col>
         </Row>
@@ -144,7 +154,7 @@ class PageThree extends Component {
               label="Family Member Relationship to the Patient"
               value={this.props.familyMemberRelationship}
               options={union([{name:'Select', value:''}],relationships)}
-              onChange={this.props.handleInputChange}
+              onChange={this.handleInputChange}
               />
           </Col>
           <Col md={6}>
@@ -154,7 +164,7 @@ class PageThree extends Component {
               label="Does this family member have the same address as the patient?"
               value={this.props.familyMemberContactAddress}
               options={union([{name:'Select', value:''}],yesNo)}
-              onChange={this.props.handleInputChange}
+              onChange={this.handleInputChange}
               />
           </Col>
         </Row>
@@ -183,7 +193,7 @@ class PageThree extends Component {
               type="text"
               label="Address Line One"
               value={this.props.familyMemberAddressOne}
-              onChange={this.props.handleInputChange}
+              onChange={this.handleInputChange}
               />
           </Col>
         </Row>
@@ -194,7 +204,7 @@ class PageThree extends Component {
               type="text"
               label="Address Line Two"
               value={this.props.familyMemberAddressTwo}
-              onChange={this.props.handleInputChange}
+              onChange={this.handleInputChange}
               />
           </Col>
         </Row>
@@ -205,7 +215,7 @@ class PageThree extends Component {
               type="text"
               label="City"
               value={this.props.familyMemberCity}
-              onChange={this.props.handleInputChange}
+              onChange={this.handleInputChange}
             />
             </Col>
           <Col md={3}>
@@ -215,7 +225,7 @@ class PageThree extends Component {
               label="State"
               value={this.props.familyMemberState}
               options={union([{name:'Select', value:''}],states)}
-              onChange={this.props.handleInputChange}
+              onChange={this.handleInputChange}
             />
           </Col>
           <Col md={2}>
@@ -224,7 +234,7 @@ class PageThree extends Component {
               type="text"
               label="Zip"
               value={this.props.familyMemberZip}
-              onChange={this.props.handleInputChange}
+              onChange={this.handleInputChange}
             />
           </Col>
         </Row>
@@ -245,7 +255,7 @@ class PageThree extends Component {
                 label="In case of an emergency, is there a family member we should contact?"
                 value={this.props.familyMemberContact}
                 options={union([{name:'Select', value:''}],yesNo)}
-                onChange={this.props.handleInputChange}
+                onChange={this.handleInputChange}
                 />
             </Col>
           </Row>
@@ -267,7 +277,7 @@ class PageThree extends Component {
                 type="text"
                 label="First Name"
                 value={this.props.rideHomeFirstName}
-                onChange={this.props.handleInputChange}
+                onChange={this.handleInputChange}
                 />
             </Col>
             <Col md={6}>
@@ -276,7 +286,7 @@ class PageThree extends Component {
                 type="text"
                 label="Last Name"
                 value={this.props.rideHomeLastName}
-                onChange={this.props.handleInputChange}
+                onChange={this.handleInputChange}
                 />
             </Col>
           </Row>
@@ -287,7 +297,7 @@ class PageThree extends Component {
                 type="text"
                 label="Primary Phone"
                 value={this.props.rideHomePrimaryPhone}
-                onChange={this.props.handleInputChange}
+                onChange={this.handleInputChange}
                 />
             </Col>
             <Col md={6}>
@@ -296,7 +306,7 @@ class PageThree extends Component {
                 type="text"
                 label="Other Phone"
                 value={this.props.rideHomeOtherPhone}
-                onChange={this.props.handleInputChange}
+                onChange={this.handleInputChange}
                 />
             </Col>
           </Row>
@@ -308,7 +318,7 @@ class PageThree extends Component {
                 label="Relationship"
                 value={this.props.rideHomeRelationship}
                 options={union([{name:'Select', value:''}],relationships)}
-                onChange={this.props.handleInputChange}
+                onChange={this.handleInputChange}
                 />
             </Col>
           </Row>
@@ -359,6 +369,6 @@ export default connect(
     rideHomeRelationship: state.registration.rideHomeRelationship,
     validation: state.registration.validation['3']
   }), {
-
+    disableValidation
   }
 )(PageThree)
