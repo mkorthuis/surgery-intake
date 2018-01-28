@@ -30,7 +30,7 @@ class Registration extends Component {
     props.load(props.emailToken);
   }
 
-  handleInputChange = (evt, page) => {
+  handleInputChange = (evt) => {
     var value = evt.target.type === 'checkbox' ? evt.target.checked : evt.target.value;
     this.props.updateRegistrationValue({
       [evt.target.id]: value
