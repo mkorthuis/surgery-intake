@@ -14,6 +14,7 @@ import {
   Checkbox
 } from 'react-bootstrap'
 import {
+  getListValue,
   states,
   procedureSites,
   docs,
@@ -24,6 +25,7 @@ import {
 } from '../../actions/registration'
 import FieldGroup from '../forms/field-group'
 import union from 'lodash/union'
+import moment from 'moment-es6';
 
 class PageOne extends Component {
 
@@ -70,10 +72,10 @@ class PageOne extends Component {
     if (this.props.correctProcedure.value !== "no") {
       return (
         <span>
-          <b>Name of Surgeon:</b> {this.props.docPerforming.value}<br />
+          <b>Name of Surgeon:</b> {getListValue(docs, this.props.docPerforming.value)}<br />
           <b>Procedure to Perform:</b> {this.props.procedurePerformed.value}<br />
-          <b>Procedure Site:</b> {this.props.procedureSite.value}<br />
-          <b>Procedure Date:</b> {this.props.procedureDate.value}
+          <b>Procedure Site:</b> {getListValue(procedureSites, this.props.procedureSite.value)}<br />
+          <b>Procedure Date:</b> {(this.props.procedureDate.value || this.props.procedureDate.value==='') ? moment(this.props.procedureDate.value).format("M/D/YYYY") : ''}
           <hr />
         </span>
       )

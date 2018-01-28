@@ -1,4 +1,13 @@
-var states = [{
+import find from 'lodash/find';
+
+export var getListValue = (list, value) => {
+  var obj = find(list, {
+    value: value
+  });
+  return obj ? obj.name : '';
+}
+
+export var states = [{
   "name": "Alabama",
   "value": "AL"
 }, {
@@ -178,7 +187,7 @@ var states = [{
 }];
 
 
-var procedureSites =
+export var procedureSites =
   [{
     name: 'Left',
     value: 'left'
@@ -193,7 +202,7 @@ var procedureSites =
     value: 'notApplicable'
   }];
 
-var docs = [{
+export var docs = [{
   name: 'Murali Menon',
   value: '1'
 }, {
@@ -201,7 +210,7 @@ var docs = [{
   value: '2'
 }];
 
-var yesNo = [{
+export var yesNo = [{
   name: 'Yes',
   value: 'yes'
 }, {
@@ -209,7 +218,7 @@ var yesNo = [{
   value: 'no'
 }];
 
-var gender = [{
+export var gender = [{
   name: 'Male',
   value: 'male'
 }, {
@@ -217,7 +226,7 @@ var gender = [{
   value: 'female'
 }];
 
-var insuranceTypes = [{
+export var insuranceTypes = [{
   value: 'insuranceCompany',
   name: 'Insurance Company'
 }, {
@@ -243,7 +252,7 @@ var insuranceTypes = [{
   name: 'Other'
 }];
 
-var phoneTypes = [{
+export var phoneTypes = [{
   name: 'Mobile',
   value: 'mobile'
 }, {
@@ -254,7 +263,7 @@ var phoneTypes = [{
   value: 'work'
 }];
 
-var relationships = [{
+export var relationships = [{
   name: 'Mother',
   value: 'mother'
 }, {
@@ -268,7 +277,7 @@ var relationships = [{
   value: 'daughter'
 }];
 
-var feet = [{
+export var feet = [{
   name: '0',
   value: '0'
 }, {
@@ -294,7 +303,7 @@ var feet = [{
   value: '7'
 }];
 
-var inches = [{
+export var inches = [{
   name: '0',
   value: '0'
 }, {
@@ -335,7 +344,7 @@ var inches = [{
   value: '12'
 }];
 
-var smokerList = [{
+export var smokerList = [{
   name: 'Never Smoked',
   value: 'never'
 }, {
@@ -346,7 +355,7 @@ var smokerList = [{
   value: 'current'
 }];
 
-var activity = [{
+export var activity = [{
   name: 'High',
   value: 'high'
 }, {
@@ -371,20 +380,4 @@ function getNeckCircumferenceList() {
   return list;
 }
 
-var neckCircumference = getNeckCircumferenceList();
-
-module.exports = {
-  states: states,
-  procedureSites: procedureSites,
-  docs: docs,
-  yesNo: yesNo,
-  gender: gender,
-  insuranceTypes: insuranceTypes,
-  phoneTypes: phoneTypes,
-  relationships: relationships,
-  feet: feet,
-  inches: inches,
-  smokerList: smokerList,
-  activity: activity,
-  neckCircumference: neckCircumference
-}
+export var neckCircumference = getNeckCircumferenceList();
