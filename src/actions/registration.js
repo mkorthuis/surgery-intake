@@ -50,7 +50,7 @@ var validateRules = {
   workPhone: [phoneNumber],
   workPhoneExtension: [number],
   addressOne: [required],
-  addressTwo: [required],
+  addressTwo: [],
   city: [required],
   state: [required],
   zip: [required],
