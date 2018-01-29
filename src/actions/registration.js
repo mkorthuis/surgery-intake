@@ -165,11 +165,11 @@ export function updatePage(page) {
   }
 }
 
-export function save(token, original, changes) {
+export function save(token, original, changes, finalize) {
 
   var object = Object.assign(original, changes);
 
-  return RegistrationApi.updateMedicalHistory(token, object).then(response => {
+  return RegistrationApi.updateMedicalHistory(token, object, finalize).then(response => {
     console.log(response)
   }).catch(error => {
     throw (error);

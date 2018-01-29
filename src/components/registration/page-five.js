@@ -35,9 +35,8 @@ import moment from 'moment-es6';
 class PageFive extends Component {
 
   handleSubmit = (evt) => {
-    save(this.props.emailToken, this.props.original, {
-      medhis_state_id: 2
-    })
+    //Since we are just finalizing, there are no changes.  We are just passing the finalize param
+    save(this.props.emailToken, this.props.original, {}, true)
     this.props.goToPage(6);
   }
 

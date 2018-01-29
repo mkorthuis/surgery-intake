@@ -35,8 +35,8 @@ class RegistrationApi {
     })
   }
 
-  static updateMedicalHistory(token, data) {
-    return fetch(BASE_URL + 'updatemedhistoryform/' + token, {
+  static updateMedicalHistory(token, data, finalize) {
+    return fetch(BASE_URL + 'updatemedhistoryform/' + token + (finalize ? '?finalize=true' : ''), {
       method: 'POST',
       body: JSON.stringify(data)
     }).then(response => {
