@@ -5,6 +5,7 @@ export const UPDATE_REGISTRATION_VALUE = "UPDATE_REGISTRATION_VALUE";
 export const UPDATE_REGISTRATION_VALIDATION = "UPDATE_REGISTRATION_VALIDATION";
 export const UPDATE_PAGE = "UPDATE_PAGE";
 export const DISABLE_VALIDATION = "DISABLE_VALIDATION";
+export const STORE_ORIGINAL = "STORE_ORIGINAL";
 
 const initState = {
   validation: {},
@@ -14,7 +15,9 @@ const initState = {
   correctProcedure: {},
   docPerforming: {},
   unknownDocPerforming: {},
-  procedurePerformed: {},
+  procedurePerformed: {
+    value: ''
+  },
   procedureDate: {},
   procedureSite: {},
 
@@ -25,7 +28,9 @@ const initState = {
   institutionAddressOne: {
     value: '1167 Massachusetts Ave'
   },
-  institutionAddressTwo: {},
+  institutionAddressTwo: {
+    value: ''
+  },
   institutionCity: {
     value: 'Arlington'
   },
@@ -42,28 +47,50 @@ const initState = {
   firstName: {
     value: ''
   },
-  middleName: {},
+  middleName: {
+    value: ''
+  },
   lastName: {
     value: ''
   },
   suffix: {
     value: ''
   },
-  preferredName: {},
+  preferredName: {
+    value: ''
+  },
   dateOfBirth: {
     value: ''
   },
   sex: {},
-  mobilePhone: {},
-  homePhone: {},
-  emailAddress: {},
-  workPhone: {},
-  workPhoneExtension: {},
-  addressOne: {},
-  addressTwo: {},
-  city: {},
+  mobilePhone: {
+    value: ''
+  },
+  homePhone: {
+    value: ''
+  },
+  emailAddress: {
+    value: ''
+  },
+  workPhone: {
+    value: ''
+  },
+  workPhoneExtension: {
+    value: ''
+  },
+  addressOne: {
+    value: ''
+  },
+  addressTwo: {
+    value: ''
+  },
+  city: {
+    value: ''
+  },
   state: {},
-  zip: {},
+  zip: {
+    value: ''
+  },
   primaryInsuranceType: {},
   secondaryInsurance: {},
 
@@ -81,16 +108,26 @@ const initState = {
   familyMemberCity: {},
   familyMemberState: {},
   familyMemberZip: {},
-  rideHomeFirstName: {},
-  rideHomeLastName: {},
-  rideHomePrimaryPhone: {},
-  rideHomeOtherPhone: {},
+  rideHomeFirstName: {
+    value: ''
+  },
+  rideHomeLastName: {
+    value: ''
+  },
+  rideHomePrimaryPhone: {
+    value: ''
+  },
+  rideHomeOtherPhone: {
+    value: ''
+  },
   rideHomeRelationship: {},
 
   //Page Four
   heightFeet: {},
   heightInches: {},
-  weight: {},
+  weight: {
+    value: ''
+  },
   cigaretteSmoker: {},
   cigarSmoker: {},
   drink: {},
@@ -101,7 +138,9 @@ const initState = {
   pseudocholinesteraseDeficiency: {},
   motionSickness: {},
   nauseaVomiting: {},
-  adverseReaction: {},
+  adverseReaction: {
+    value: ''
+  },
   snoreLoudly: {},
   feelTired: {},
   observedStopBreathing: {},
@@ -129,6 +168,10 @@ function updateValues(state, values) {
 export default (state = initState, action) => {
   var newState;
   switch (action.type) {
+    case STORE_ORIGINAL:
+      return Object.assign({}, state, {
+        original: action.payload
+      })
     case DISABLE_VALIDATION:
       newState = Object.assign({}, state);
       newState.validation[action.payload] = false;

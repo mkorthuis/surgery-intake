@@ -18,6 +18,9 @@ import {
   yesNo,
   relationships
 } from '../forms/lists'
+import {
+  save
+} from '../../actions/registration'
 import union from 'lodash/union'
 import {
   disableValidation
@@ -65,6 +68,29 @@ class PageThree extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.validation) {
+
+      var changes = {
+        weekdayPhoneNumber: this.props.weekdayPhoneNumber.value,
+        voiceMailNumber: this.props.voiceMailNumber.value,
+        textMessageApproval: this.props.textMessageApproval.value,
+        familyMemberContact: this.props.familyMemberContact.value,
+        familyMemberRelationship: this.props.familyMemberRelationship.value,
+        familyMemberFirstName: this.props.familyMemberFirstName.value,
+        familyMemberLastName: this.props.familyMemberLastName.value,
+        familyMemberContactAddress: this.props.familyMemberContactAddress.value,
+        familyMemberAddressOne: this.props.familyMemberAddressOne.value,
+        familyMemberAddressTwo: this.props.familyMemberAddressTwo.value,
+        familyMemberCity: this.props.familyMemberCity.value,
+        familyMemberState: this.props.familyMemberState.value,
+        familyMemberZip: this.props.familyMemberZip.value,
+        rideHomeFirstName: this.props.rideHomeFirstName.value,
+        rideHomeLastName: this.props.rideHomeLastName.value,
+        rideHomePrimaryPhone: this.props.rideHomePrimaryPhone.value,
+        rideHomeOtherPhone: this.props.rideHomeOtherPhone.value,
+        rideHomeRelationship: this.props.rideHomeRelationship.value,
+      }
+
+      save(this.props.emailToken, this.props.original, changes);
       this.props.goToPage(this.page + 1);
     }
   }
@@ -367,7 +393,12 @@ export default connect(
     rideHomePrimaryPhone: state.registration.rideHomePrimaryPhone,
     rideHomeOtherPhone: state.registration.rideHomeOtherPhone,
     rideHomeRelationship: state.registration.rideHomeRelationship,
-    validation: state.registration.validation['3']
+
+    validation: state.registration.validation['3'],
+
+    original: state.registration.original,
+
+    emailToken: state.authentication.emailToken
   }), {
     disableValidation
   }

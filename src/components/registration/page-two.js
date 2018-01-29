@@ -13,7 +13,8 @@ import {
 } from 'react-bootstrap'
 import {
   updateRegistrationValue,
-  disableValidation
+  disableValidation,
+  save
 } from '../../actions/registration'
 import FieldGroup from '../forms/field-group'
 import {
@@ -33,7 +34,23 @@ class PageTwo extends Component {
   handleSubmit = (evt) => {
     evt.preventDefault();
     var formValues = {};
-    var fields = ['firstName', 'middleName', 'lastName', 'suffix', 'preferredName', 'dateOfBirth', 'sex', 'addressOne', 'addressTwo', 'city', 'state', 'homePhone', 'mobilePhone', 'workPhone', 'workPhoneExtension'];
+    var fields = [
+      'firstName',
+      'middleName',
+      'lastName',
+      'suffix',
+      'preferredName',
+      'dateOfBirth',
+      'sex',
+      'addressOne',
+      'addressTwo',
+      'city',
+      'state',
+      'homePhone',
+      'mobilePhone',
+      'workPhone',
+      'workPhoneExtension'
+    ];
     for (var i in fields) {
       formValues[fields[i]] = this.props[fields[i]].value;
     }
@@ -66,6 +83,30 @@ class PageTwo extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.validation) {
+      // TODO don't do the mapping here. Do it in the action.
+      var changes = {
+        first_name: this.props.firstName.value,
+        middle_name: this.props.middleName.value,
+        last_name: this.props.lastName.value,
+        suffix: this.props.suffix.value,
+        preferredName: this.props.preferredName.value,
+        dateOfBirth: this.props.dateOfBirth.value,
+        birth_sex: this.props.sex.value,
+        address1: this.props.addressOne.value,
+        address2: this.props.addressTwo.value,
+        city: this.props.city.value,
+        state_name: this.props.state.value,
+        postalcode: this.props.zip.value,
+        mobile_number: this.props.mobilePhone.value,
+        home_phone: this.props.homePhone.value,
+        work_other_number: this.props.workPhone.value,
+        workPhoneExtension: this.props.workPhoneExtension.value,
+        email: this.props.emailAddress.value,
+        primaryInsuranceType: this.props.primaryInsuranceType.value,
+        secondaryInsurance: this.props.secondaryInsurance.value,
+      }
+
+      save(this.props.emailToken, this.props.original, changes);
       this.props.goToPage(this.page + 1);
     }
   }
@@ -346,7 +387,11 @@ export default connect(
     primaryInsuranceType: state.registration.primaryInsuranceType,
     secondaryInsurance: state.registration.secondaryInsurance,
 
-    validation: state.registration.validation['2']
+    validation: state.registration.validation['2'],
+
+    original: state.registration.original,
+
+    emailToken: state.authentication.emailToken
   }), {
     updateRegistrationValue,
     disableValidation

@@ -13,6 +13,9 @@ import {
   connect
 } from 'react-redux';
 import {
+  save
+} from '../../actions/registration'
+import {
   getListValue,
   states,
   procedureSites,
@@ -32,6 +35,9 @@ import moment from 'moment-es6';
 class PageFive extends Component {
 
   handleSubmit = (evt) => {
+    save(this.props.emailToken, this.props.original, {
+      medhis_state_id: 2
+    })
     this.props.goToPage(6);
   }
 
@@ -314,7 +320,11 @@ class PageFive extends Component {
 
 export default connect(
   (state) => ({
-    registration: state.registration
+    registration: state.registration,
+
+    original: state.registration.original,
+
+    emailToken: state.authentication.emailToken
   }), {
 
   }

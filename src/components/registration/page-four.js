@@ -19,6 +19,9 @@ import {
   activity,
   neckCircumference
 } from '../forms/lists'
+import {
+  save
+} from '../../actions/registration'
 import FieldGroup from '../forms/field-group'
 import union from 'lodash/union'
 import {
@@ -73,6 +76,35 @@ class PageFour extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.validation) {
+      var changes = {
+        heightFeet: this.props.heightFeet.value,
+        heightInches: this.props.heightInches.value,
+        weight: this.props.weight.value,
+        cigaretteSmoker: this.props.cigaretteSmoker.value,
+        cigarSmoker: this.props.cigarSmoker.value,
+        drink: this.props.drink.value,
+        alcoholAbuse: this.props.alcoholAbuse.value,
+        drugs: this.props.drugs.value,
+        physicalActivity: this.props.physicalActivity.value,
+        malignantHypertermia: this.props.malignantHypertermia.value,
+        pseudocholinesteraseDeficiency: this.props.pseudocholinesteraseDeficiency.value,
+        motionSickness: this.props.motionSickness.value,
+        nauseaVomiting: this.props.nauseaVomiting.value,
+        adverseReaction: this.props.adverseReaction.value,
+        snoreLoudly: this.props.snoreLoudly.value,
+        feelTired: this.props.feelTired.value,
+        observedStopBreathing: this.props.observedStopBreathing.value,
+        highBloodPressure: this.props.highBloodPressure.value,
+        neckCircumference: this.props.neckCircumference.value,
+        ekg: this.props.ekg.value,
+        chestXray: this.props.chestXray.value,
+        sleepApnea: this.props.sleepApnea.value,
+        cardiacStress: this.props.cardiacStress.value,
+        cardiacEcho: this.props.cardiacEcho.value,
+        cardiacCatheterization: this.props.cardiacCatheterization.value
+      }
+
+      save(this.props.emailToken, this.props.original, changes)
       this.props.goToPage(this.page + 1);
     }
   }
@@ -429,7 +461,12 @@ export default connect(
     cardiacStress: state.registration.cardiacStress,
     cardiacEcho: state.registration.cardiacEcho,
     cardiacCatheterization: state.registration.cardiacCatheterization,
-    validation: state.registration.validation['4']
+
+    validation: state.registration.validation['4'],
+
+    original: state.registration.original,
+
+    emailToken: state.authentication.emailToken
   }), {
     disableValidation
   }

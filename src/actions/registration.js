@@ -2,7 +2,8 @@ import {
   UPDATE_REGISTRATION_VALUE,
   UPDATE_REGISTRATION_VALIDATION,
   UPDATE_PAGE,
-  DISABLE_VALIDATION
+  DISABLE_VALIDATION,
+  STORE_ORIGINAL
 } from '../reducers/registration'
 import forOwn from 'lodash/forOwn'
 import forEach from 'lodash/forEach'
@@ -124,6 +125,13 @@ export function updateRegistrationValue(change) {
   }
 }
 
+export function storeOriginal(original) {
+  return {
+    type: STORE_ORIGINAL,
+    payload: original
+  }
+}
+
 export function validateFields(fields, page) {
   var payload = {};
   var valid = true;
@@ -157,6 +165,17 @@ export function updatePage(page) {
   }
 }
 
+export function save(token, original, changes) {
+
+  var object = Object.assign(original, changes);
+
+  return RegistrationApi.updateMedicalHistory(token, object).then(response => {
+    console.log(response)
+  }).catch(error => {
+    throw (error);
+  })
+}
+
 export function load(token) {
   return function(dispatch) {
     return RegistrationApi.getCurrentMedicalHistory(token).then(patientHistory => {
@@ -164,7 +183,7 @@ export function load(token) {
         firstName: patientHistory.first_name,
         lastName: patientHistory.last_name,
         dateOfBirth: patientHistory.date_of_birth ? moment(patientHistory.date_of_birth, 'YYYY-MM-DD').toISOString() : '',
-        sex: patientHistory.birth_sex,
+        sex: patientHistory.birth_sex ? patientHistory.birth_sex : '',
         suffix: patientHistory.suffix ? patientHistory.suffix : '',
         mobilePhone: patientHistory.mobile_number ? patientHistory.mobile_number : '',
         homePhone: patientHistory.home_phone ? patientHistory.home_phone : '',
@@ -174,9 +193,10 @@ export function load(token) {
         addressTwo: patientHistory.address2 ? patientHistory.address2 : '',
         city: patientHistory.city ? patientHistory.city : '',
         postalCode: patientHistory.postalcode ? patientHistory.postalcode : '',
-        state: patientHistory.state ? patientHistory.state : ''
+        state_name: patientHistory.state ? patientHistory.state : ''
       };
       dispatch(updateRegistrationValue(patientData));
+      dispatch(storeOriginal(patientHistory));
     }).catch(error => {
       throw (error);
     })

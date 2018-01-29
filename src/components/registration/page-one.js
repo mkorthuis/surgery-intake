@@ -22,7 +22,8 @@ import {
 } from '../forms/lists'
 import {
   updateRegistrationValue,
-  disableValidation
+  disableValidation,
+  save
 } from '../../actions/registration'
 import FieldGroup from '../forms/field-group'
 import union from 'lodash/union'
@@ -60,7 +61,28 @@ class PageOne extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+
     if (nextProps.validation) {
+      var changes = {
+        correctProcedure: this.props.correctProcedure.value,
+        docPerforming: this.props.docPerforming.value,
+        unknownDocPerforming: this.props.unknownDocPerforming.value,
+        procedurePerformed: this.props.procedurePerformed.value,
+        procedureDate: this.props.procedureDate.value,
+        procedureSite: this.props.procedureSite.value,
+
+        correctFacility: this.props.correctFacility.value,
+        institutionName: this.props.institutionName.value,
+        institutionAddressOne: this.props.institutionAddressOne.value,
+        institutionAddressTwo: this.props.institutionAddressTwo.value,
+        institutionCity: this.props.institutionCity.value,
+        institutionState: this.props.institutionState.value,
+        institutionZip: this.props.institutionZip.value,
+
+        ackOwnership: this.props.ackOwnership.value,
+        understandPatientNotice: this.props.understandPatientNotice.value
+      }
+      save(this.props.emailToken, this.props.original, changes);
       this.props.goToPage(this.page + 1);
     }
   }
@@ -378,7 +400,6 @@ export default connect(
     procedurePerformed: state.registration.procedurePerformed,
     procedureDate: state.registration.procedureDate,
     procedureSite: state.registration.procedureSite,
-    procedureSurgeryConsultReason: state.registration.procedureSurgeryConsultReason,
 
     institutionName: state.registration.institutionName,
     institutionAddressOne: state.registration.institutionAddressOne,
@@ -391,7 +412,11 @@ export default connect(
     understandPatientNotice: state.registration.understandPatientNotice,
     ackOwnership: state.registration.ackOwnership,
 
-    validation: state.registration.validation['1']
+    validation: state.registration.validation['1'],
+
+    original: state.registration.original,
+
+    emailToken: state.authentication.emailToken
   }), {
     updateRegistrationValue,
     disableValidation
