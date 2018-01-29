@@ -200,8 +200,8 @@ class PageFive extends Component {
       <Panel>
       <Panel.Heading>Basic Screening</Panel.Heading>
       <Panel.Body>
-        {this.getRowEntry('Height? (ft, in)', this.props.registration.heightFeet.value + this.props.registration.heightInches.value)}
-        {this.getRowEntry('Weight? (lbs)', this.props.registration.weight.value)}
+        {this.getRowEntry('Height', (this.props.registration.heightFeet.value || '0') + ' ft, ' + (this.props.registration.heightInches.value || '0') + ' in')}
+        {this.getRowEntry('Weight? (lbs)', (this.props.registration.weight.value || '0') + ' lbs')}
         {this.getRowEntry('Smoking status?', getListValue(smokerList, this.props.registration.cigaretteSmoker.value))}
         {this.getRowEntry('Cigar smoker, pipe smoker, and/or tobacco chewer?', getListValue(yesNo, this.props.registration.cigarSmoker.value))}
         {this.getRowEntry('Drink beer, wine or liquor?', getListValue(yesNo, this.props.registration.drink.value))}
