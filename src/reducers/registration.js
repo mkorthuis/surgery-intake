@@ -100,14 +100,26 @@ const initState = {
   textMessageApproval: {},
   familyMemberContact: {},
   familyMemberRelationship: {},
-  familyMemberFirstName: {},
-  familyMemberLastName: {},
+  familyMemberFirstName: {
+    value: ''
+  },
+  familyMemberLastName: {
+    value: ''
+  },
   familyMemberContactAddress: {},
-  familyMemberAddressOne: {},
-  familyMemberAddressTwo: {},
-  familyMemberCity: {},
+  familyMemberAddressOne: {
+    value: ''
+  },
+  familyMemberAddressTwo: {
+    value: ''
+  },
+  familyMemberCity: {
+    value: ''
+  },
   familyMemberState: {},
-  familyMemberZip: {},
+  familyMemberZip: {
+    value: ''
+  },
   rideHomeFirstName: {
     value: ''
   },
