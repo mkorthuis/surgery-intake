@@ -180,20 +180,20 @@ export function load(token) {
   return function(dispatch) {
     return RegistrationApi.getCurrentMedicalHistory(token).then(patientHistory => {
       var patientData = {
-        firstName: patientHistory.first_name,
-        lastName: patientHistory.last_name,
-        dateOfBirth: patientHistory.date_of_birth ? moment(patientHistory.date_of_birth, 'YYYY-MM-DD').toISOString() : '',
-        sex: patientHistory.birth_sex ? patientHistory.birth_sex : '',
+        firstName: patientHistory.firstName,
+        lastName: patientHistory.lastName,
+        dateOfBirth: patientHistory.dateOfBirth ? moment(patientHistory.dateOfBirth, 'YYYY-MM-DD').toISOString() : '',
+        sex: patientHistory.sex ? patientHistory.sex : '',
         suffix: patientHistory.suffix ? patientHistory.suffix : '',
-        mobilePhone: patientHistory.mobile_number ? patientHistory.mobile_number : '',
-        homePhone: patientHistory.home_phone ? patientHistory.home_phone : '',
-        workPhone: patientHistory.work_other_number ? patientHistory.work_other_number : '',
-        emailAddress: patientHistory.email ? patientHistory.email : '',
-        addressOne: patientHistory.address1 ? patientHistory.address1 : '',
-        addressTwo: patientHistory.address2 ? patientHistory.address2 : '',
+        mobilePhone: patientHistory.mobilePhone ? patientHistory.mobilePhone : '',
+        homePhone: patientHistory.homePhone ? patientHistory.homePhone : '',
+        workPhone: patientHistory.workPhone ? patientHistory.workPhone : '',
+        emailAddress: patientHistory.emailAddress ? patientHistory.emailAddress : '',
+        addressOne: patientHistory.addressOne ? patientHistory.addressOne : '',
+        addressTwo: patientHistory.addressTwo ? patientHistory.addressTwo : '',
         city: patientHistory.city ? patientHistory.city : '',
-        postalCode: patientHistory.postalcode ? patientHistory.postalcode : '',
-        state_name: patientHistory.state ? patientHistory.state : ''
+        zip: patientHistory.zip ? patientHistory.zip : '',
+        state: patientHistory.state ? patientHistory.state : ''
       };
       dispatch(updateRegistrationValue(patientData));
       dispatch(storeOriginal(patientHistory));
