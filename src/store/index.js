@@ -16,7 +16,9 @@ import thunk from 'redux-thunk'
 import registrationReducer from '../reducers/registration'
 import authenticationReducer from '../reducers/authentication'
 
-export const history = createHistory()
+export const history = createHistory({
+  basename: '/base/'
+})
 
 const initialState = {}
 const enhancers = []
