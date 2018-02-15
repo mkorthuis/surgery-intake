@@ -5,7 +5,9 @@ import {
   FormControl,
   HelpBlock,
   Radio,
-  Checkbox
+  Checkbox,
+  Tooltip,
+  OverlayTrigger
 } from 'react-bootstrap';
 import DatePicker from 'react-bootstrap-date-picker';
 import './field-group.css'
@@ -18,6 +20,7 @@ const FieldGroup = (props) => {
     value,
     options,
     disabled,
+    question,
     ...otherProps
   } = props;
 
@@ -29,6 +32,14 @@ const FieldGroup = (props) => {
     "datePicker": getDatePicker
   }
 
+  function generateToolTip(text) {
+    return (
+      <Tooltip id="tooltip">
+        {text}
+      </Tooltip>
+    )
+  }
+
   function getValidation() {
     return (value.touched ? value.validation : null) || value.serverValidation
   }
@@ -38,10 +49,14 @@ const FieldGroup = (props) => {
   }
 
   function getEnabledText() {
+    var formControl = <FormControl type={type} value={value.value} {...otherProps} />;
+
+    var overlay = <OverlayTrigger placement="bottom" overlay={generateToolTip(question)}>{formControl}</OverlayTrigger>
+
     return (
       <FormGroup controlId={id} validationState={getValidation()}>
         {label && <ControlLabel>{label}</ControlLabel>}
-        <FormControl type={type} value={value.value} {...otherProps} />
+        {question ? overlay : formControl}
         {getHelp() && <HelpBlock>{getHelp()}</HelpBlock>}
         <FormControl.Feedback />
       </FormGroup>
@@ -98,9 +113,9 @@ const FieldGroup = (props) => {
         {
           options.map((option, index) => {
             if(option.value === value.value) {
-              return (<Radio name={id} id={id} value={option.value} checked="checked" inline {...otherProps} >{option.name}</Radio>);
+              return (<Radio name={id} key={option.value} value={option.value} checked="checked" inline {...otherProps} >{option.name}</Radio>);
             } else {
-              return (<Radio name={id} id={id} value={option.value} inline {...otherProps} >{option.name}</Radio>);
+              return (<Radio name={id} key={option.value} value={option.value} inline {...otherProps} >{option.name}</Radio>);
             }
           })
         }
