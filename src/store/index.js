@@ -17,7 +17,7 @@ import registrationReducer from '../reducers/registration'
 import authenticationReducer from '../reducers/authentication'
 
 export const history = createHistory({
-  basename: '/base/'
+  basename: '/lgh/medhiswebapp/'
 })
 
 const initialState = {}
