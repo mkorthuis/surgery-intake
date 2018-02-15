@@ -97,7 +97,11 @@ const FieldGroup = (props) => {
         {label && <ControlLabel>{label}</ControlLabel>}<br />
         {
           options.map((option, index) => {
-            return (<Radio name={id} id={id} value={option.value} inline {...otherProps} >{option.name}</Radio>);
+            if(option.value === value.value) {
+              return (<Radio name={id} id={id} value={option.value} checked="checked" inline {...otherProps} >{option.name}</Radio>);
+            } else {
+              return (<Radio name={id} id={id} value={option.value} inline {...otherProps} >{option.name}</Radio>);
+            }
           })
         }
         {getHelp() && <HelpBlock>{getHelp()}</HelpBlock>}
