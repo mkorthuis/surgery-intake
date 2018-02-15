@@ -10,7 +10,9 @@ const initState = {
   message: '',
   valid: false,
   touched: false,
-  emailToken: null
+  emailToken: null,
+  attempts: 0,
+  history: []
 };
 
 export default (state = initState, action) => {
@@ -20,10 +22,20 @@ export default (state = initState, action) => {
         loggedIn: action.payload
       });
     case VALIDATE:
+      var attemptCount = action.payload.valid ? 0 : state.attempts + 1;
+      var history;
+      if (action.payload.valid) {
+        history = [];
+      } else {
+        history = state.history;
+        history.push(action.payload.dateOfBirth)
+      }
       return Object.assign({}, state, {
         valid: action.payload.valid,
         message: action.payload.message,
-        touched: action.payload.touched
+        touched: action.payload.touched,
+        attempts: attemptCount,
+        history: history
       })
     case CHANGE_DATE_OF_BIRTH:
       return Object.assign({}, state, {

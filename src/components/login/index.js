@@ -20,7 +20,8 @@ import {
   login,
   validate,
   setDateOfBirth,
-  setEmailToken
+  setEmailToken,
+  sendAttempts
 } from '../../actions/authentication'
 import DatePicker from 'react-bootstrap-date-picker';
 import moment from 'moment-es6';
@@ -59,6 +60,9 @@ class Login extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.valid) {
       this.props.login(true);
+    }
+    if (nextProps.attempts === 3) {
+      this.props.sendAttempts(this.props.emailToken, nextProps.history)
     }
   }
 
@@ -115,11 +119,14 @@ export default connect(
     message: state.authentication.message,
     valid: state.authentication.valid,
     touched: state.authentication.touched,
-    emailToken: state.authentication.emailToken
+    emailToken: state.authentication.emailToken,
+    attempts: state.authentication.attempts,
+    history: state.authentication.history
   }), {
     login,
     validate,
     setDateOfBirth,
-    setEmailToken
+    setEmailToken,
+    sendAttempts
   }
 )(Login);

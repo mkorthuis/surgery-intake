@@ -45,6 +45,21 @@ class RegistrationApi {
       return error;
     })
   }
+
+  static sendAttempts(token, history) {
+    return fetch(BASE_URL + 'sendmedhiserror/' + token, {
+      method: 'POST',
+      body: JSON.stringify({
+        'error_message': 'Patient could not validate',
+        'detail_message': 'Patient could not validate after three tries',
+        'patient_dob': history
+      })
+    }).then(response => {
+      return response.json();
+    }).catch(error => {
+      return error;
+    })
+  }
 }
 
 export default RegistrationApi;
