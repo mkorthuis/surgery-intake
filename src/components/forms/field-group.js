@@ -4,9 +4,11 @@ import {
   ControlLabel,
   FormControl,
   HelpBlock,
+  Radio,
   Checkbox
 } from 'react-bootstrap';
 import DatePicker from 'react-bootstrap-date-picker';
+import './field-group.css'
 
 const FieldGroup = (props) => {
   const {
@@ -23,6 +25,7 @@ const FieldGroup = (props) => {
     "text": getText,
     "select": getSelect,
     "checkbox": getCheckbox,
+    "radio": getRadio,
     "datePicker": getDatePicker
   }
 
@@ -82,6 +85,21 @@ const FieldGroup = (props) => {
           })
         }
         </FormControl>
+        {getHelp() && <HelpBlock>{getHelp()}</HelpBlock>}
+        <FormControl.Feedback />
+      </FormGroup>
+    )
+  }
+
+  function getRadio() {
+    return (
+      <FormGroup controlId={id} validationState={getValidation()} >
+        {label && <ControlLabel>{label}</ControlLabel>}<br />
+        {
+          options.map((option, index) => {
+            return (<Radio name={id} id={id} value={option.value} inline {...otherProps} >{option.name}</Radio>);
+          })
+        }
         {getHelp() && <HelpBlock>{getHelp()}</HelpBlock>}
         <FormControl.Feedback />
       </FormGroup>

@@ -159,10 +159,10 @@ class PageFour extends Component {
             <Col md={6}>
               <FieldGroup
                 id="cigarSmoker"
-                type="select"
+                type="radio"
                 label="Cigar smoker, pipe smoker, and/or tobacco chewer?"
                 value={this.props.cigarSmoker}
-                options={union([{name:'Select', value:''}],yesNo)}
+                options={yesNo}
                 onChange={this.handleInputChange} 
                 />
             </Col>
