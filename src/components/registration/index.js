@@ -31,10 +31,11 @@ class Registration extends Component {
   }
 
   handleInputChange = (evt) => {
+    var id = evt.target.type === 'radio' ? evt.target.name : evt.target.id;
     var value = evt.target.type === 'checkbox' ? evt.target.checked : evt.target.value;
-    this.props.updateRegistrationValue({
-      [evt.target.id]: value
-    });
+    var obj = {}
+    obj[id] = value;
+    this.props.updateRegistrationValue(obj);
 
   };
 
