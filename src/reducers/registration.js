@@ -146,7 +146,9 @@ const initState = {
   alcoholAbuse: {},
   drugs: {},
   physicalActivity: {},
-  sex: {},
+  sex: {
+    value: ''
+  },
   malignantHypertermia: {},
   pseudocholinesteraseDeficiency: {},
   motionSickness: {},

@@ -113,9 +113,9 @@ const FieldGroup = (props) => {
         {
           options.map((option, index) => {
             if(option.value === value.value) {
-              return (<Radio name={id} key={option.value} value={option.value} checked="checked" inline {...otherProps} >{option.name}</Radio>);
+              return (<Radio id={id + '-' + option.value} name={id} key={option.value} value={option.value} checked={true} inline {...otherProps} >{option.name}</Radio>);
             } else {
-              return (<Radio name={id} key={option.value} value={option.value} inline {...otherProps} >{option.name}</Radio>);
+              return (<Radio id={id + '-' + option.value} name={id} key={option.value} value={option.value} checked={false} inline {...otherProps} >{option.name}</Radio>);
             }
           })
         }
