@@ -87,6 +87,7 @@ var validateRules = {
   alcoholAbuse: [required],
   drugs: [required],
   physicalActivity: [required],
+  sex: [required],
   snoreLoudly: [required],
   feelTired: [required],
   observedStopBreathing: [required],

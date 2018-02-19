@@ -185,7 +185,7 @@ class PageFive extends Component {
       <Panel>
       <Panel.Heading>Ride Home Information</Panel.Heading>
       <Panel.Body>
-        {this.getRowEntry('First Name', this.props.registration.rideHomeFirstName.value)}  
+        {this.getRowEntry('First Name', this.props.registration.rideHomeFirstName.value)}
         {this.getRowEntry('Last Name', this.props.registration.rideHomeLastName.value)}
         {this.getRowEntry('Primary Phone', this.props.registration.rideHomePrimaryPhone.value)}
         {this.getRowEntry('Other Phone', this.props.registration.rideHomeOtherPhone.value)}
@@ -200,19 +200,10 @@ class PageFive extends Component {
       <Panel>
       <Panel.Heading>Basic Screening</Panel.Heading>
       <Panel.Body>
-        {this.getRowEntry('Height', (this.props.registration.heightFeet.value || '0') + ' ft, ' + (this.props.registration.heightInches.value || '0') + ' in')}
+        {this.getRowEntry('Height?', (this.props.registration.heightFeet.value || '0') + ' ft, ' + (this.props.registration.heightInches.value || '0') + ' in')}
         {this.getRowEntry('Weight? (lbs)', (this.props.registration.weight.value || '0') + ' lbs')}
-        {this.getRowEntry('Smoking status?', getListValue(smokerList, this.props.registration.cigaretteSmoker.value))}
-        {this.getRowEntry('Cigar smoker, pipe smoker, and/or tobacco chewer?', getListValue(yesNo, this.props.registration.cigarSmoker.value))}
-        {this.getRowEntry('Drink beer, wine or liquor?', getListValue(yesNo, this.props.registration.drink.value))}
-        {this.getRowEntry('History of alcohol abuse?', getListValue(yesNo, this.props.registration.alcoholAbuse.value))}
-        {this.getRowEntry('History of using recreational or street drugs?', getListValue(yesNo, this.props.registration.drugs.value))}
-        {this.getRowEntry('Physicial activity level?', getListValue(activity, this.props.registration.physicalActivity.value))}
-        {this.getRowEntry('Do you SNORE loudly (louder than talking or heard through closed doors)?', getListValue(yesNo, this.props.registration.snoreLoudly.value))}
-        {this.getRowEntry('Do you often feel TIRED, fatigued, or sleepy during daytime?', getListValue(yesNo, this.props.registration.feelTired.value))}
-        {this.getRowEntry('Has anyone OBSERVED you stop breathing during your sleep?', getListValue(yesNo, this.props.registration.observedStopBreathing.value))}
-        {this.getRowEntry('Do you have or are you being treated for high blood PRESSURE?', getListValue(yesNo, this.props.registration.highBloodPressure.value))}
-        {this.getRowEntry('What is your neck circumference? (in inches)', getListValue(neckCircumference, this.props.registration.neckCircumference.value))}
+        {this.getRowEntry('Physical activity level?', getListValue(activity, this.props.registration.physicalActivity.value))}
+        {this.getRowEntry('Sex?', getListValue(gender, this.props.registration.sex.value))}
       </Panel.Body>
     </Panel>
     )
