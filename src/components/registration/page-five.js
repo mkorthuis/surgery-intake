@@ -209,6 +209,20 @@ class PageFive extends Component {
     )
   }
 
+  getSleepInformation() {
+    return (
+      <Panel>
+      <Panel.Heading>Basic Screening</Panel.Heading>
+      <Panel.Body>
+        {this.getRowEntry('Do you SNORE loudly (louder than talking or heard through closed doors)?', getListValue(yesNo, this.props.registration.snoreLoudly.value))}
+        {this.getRowEntry('Do you often feel TIRED, fatigued, or sleepy during daytime?', getListValue(yesNo, this.props.registration.feelTired.value))}
+        {this.getRowEntry('Has anyone OBSERVED you stop breathing during your sleep?', getListValue(yesNo, this.props.registration.observedStopBreathing.value))}
+        {this.getRowEntry('What is your neck circumference? (in inches)', getListValue(neckCircumference, this.props.registration.neckCircumference.value))}
+      </Panel.Body>
+    </Panel>
+    )
+  }
+
   getAnesthesia() {
     return (
       <Panel>
@@ -294,6 +308,7 @@ class PageFive extends Component {
           {this.getFamilyContact()}
           {this.getRideHome()}
           {this.getBasicScreening()}
+          {this.getSleepInformation()}
           {this.getAnesthesia()}
           {this.getDiagnostic()}
           {this.getValidationAlert(isInvalid)}

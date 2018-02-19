@@ -175,6 +175,60 @@ class PageFour extends Component {
     )
   }
 
+  getSleepInformation(){
+    return (
+      <Panel>
+        <Panel.Heading>Sleep Information</Panel.Heading>
+        <Panel.Body>
+          <Row>
+            <Col md={6}>
+               <FieldGroup
+                 id="snoreLoudly"
+                 type="select"
+                 label="Do you SNORE loudly (louder than talking or heard through closed doors)?"
+                 value={this.props.snoreLoudly}
+                 options={union([{name:'Select', value:''}],yesNo)}
+                 onChange={this.handleInputChange}
+                 />
+             </Col>
+             <Col md={6}>
+               <FieldGroup
+                 id="feelTired"
+                 type="select"
+                 label="Do you often feel TIRED, fatigued, or sleepy during daytime?"
+                 value={this.props.feelTired}
+                 options={union([{name:'Select', value:''}],yesNo)}
+                 onChange={this.handleInputChange}
+                 />
+             </Col>
+          </Row>
+          <Row>
+            <Col md={6}>
+              <FieldGroup
+                id="observedStopBreathing"
+                type="select"
+                label="Has anyone OBSERVED you stop breathing during your sleep?"
+                value={this.props.observedStopBreathing}
+                options={union([{name:'Select', value:''}],yesNo)}
+                onChange={this.handleInputChange}
+                />
+            </Col>
+            <Col md={6}>
+                <FieldGroup
+                  id="neckCircumference"
+                  type="select"
+                  label="What is your neck circumference? (in inches)"
+                  value={this.props.neckCircumference}
+                  options={union([{name:'Select', value:''}],neckCircumference)}
+                  onChange={this.handleInputChange}
+                  />
+            </Col>
+          </Row>
+        </Panel.Body>
+      </Panel>
+    )
+  }
+
   getHistoryAnesthesiaComplications() {
     return (
       <Panel>
@@ -321,6 +375,7 @@ class PageFour extends Component {
       <form onSubmit={this.handleSubmit}>
         <Grid className="main-grid">
           {this.getBasicScreening()}
+          {this.getSleepInformation()}
           {this.getHistoryAnesthesiaComplications()}
           {this.getDiagnosticTesting()}
           <Row className="last-row">
