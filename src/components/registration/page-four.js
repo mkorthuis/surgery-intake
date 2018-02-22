@@ -42,6 +42,14 @@ class PageFour extends Component {
       'weight',
       'cigaretteSmoker',
       'cigarSmoker',
+      'drinkDaily',
+      'drinkHeavy',
+      'narcoticMeds',
+      'illegalDrugs',
+      'substanceAbuse',
+      'substanceUseCriticism',
+      'substanceUseGuilt',
+      'substanceDependence',
       'drink',
       'alcoholAbuse',
       'drugs',
@@ -89,6 +97,14 @@ class PageFour extends Component {
         weight: this.props.weight.value,
         cigaretteSmoker: this.props.cigaretteSmoker.value,
         cigarSmoker: this.props.cigarSmoker.value,
+        drinkDaily: this.props.drinkDaily.value,
+        drinkHeavy: this.props.drinkHeavy.value,
+        narcoticMeds: this.props.narcoticMeds.value,
+        illegalDrugs: this.props.illegalDrugs.value,
+        substanceAbuse: this.props.substanceAbuse.value,
+        substanceUseCriticism: this.props.substanceUseCriticism.value,
+        substanceUseGuilt: this.props.substanceUseGuilt.value,
+        substanceDependence: this.props.substanceDependence.value,
         drink: this.props.drink.value,
         alcoholAbuse: this.props.alcoholAbuse.value,
         drugs: this.props.drugs.value,
@@ -441,6 +457,126 @@ class PageFour extends Component {
     )
   }
 
+  getSubstanceUse() {
+    return (
+      <Panel>
+        <Panel.Heading>Alcohol, Smoking and Drug Use</Panel.Heading>
+        <Panel.Body>
+          <Row>
+            <Col md={6}>
+              <FieldGroup
+                id="cigaretteSmoker"
+                type="select"
+                label="Smoking status?"
+                value={this.props.cigaretteSmoker}
+                options={union([{name:'Select', value:''}],smokerList)}
+                onChange={this.handleInputChange}
+                />
+            </Col>
+            <Col md={6}>
+              <FieldGroup
+                id="cigarSmoker"
+                type="radio"
+                label="Cigar smoker, pipe smoker, and/or tobacco chewer?"
+                value={this.props.cigarSmoker}
+                options={yesNo}
+                onChange={this.handleInputChange}
+                />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={6}>
+              <FieldGroup
+                id="drinkDaily"
+                type="radio"
+                label="Do you drink alcohol daily?"
+                value={this.props.drinkDaily}
+                options={yesNo}
+                onChange={this.handleInputChange}
+                />
+            </Col>
+            <Col md={6}>
+              <FieldGroup
+                id="drinkHeavy"
+                type="radio"
+                label="Do you drink alcohol heavily?"
+                value={this.props.drinkHeavy}
+                options={yesNo}
+                onChange={this.handleInputChange}
+                />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={6}>
+              <FieldGroup
+                id="narcoticMeds"
+                type="radio"
+                label="Do you take narcotic medications not prescribed for you?"
+                value={this.props.narcoticMeds}
+                options={yesNo}
+                onChange={this.handleInputChange}
+                />
+            </Col>
+            <Col md={6}>
+              <FieldGroup
+                id="illegalDrugs"
+                type="radio"
+                label="Do you take street (illicit) drugs?"
+                value={this.props.illegalDrugs}
+                options={yesNo}
+                onChange={this.handleInputChange}
+                />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={6}>
+              <FieldGroup
+                id="substanceAbuse"
+                type="radio"
+                label="Have you ever felt that you should cut down on your drinking or drug use?"
+                value={this.props.substanceAbuse}
+                options={yesNo}
+                onChange={this.handleInputChange}
+                />
+            </Col>
+            <Col md={6}>
+              <FieldGroup
+                id="substanceUseCriticism"
+                type="radio"
+                label="Are you angry or annoyed when others criticize your drinking or drug use?"
+                value={this.props.substanceUseCriticism}
+                options={yesNo}
+                onChange={this.handleInputChange}
+                />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={6}>
+              <FieldGroup
+                id="substanceUseGuilt"
+                type="radio"
+                label="Have you ever felt bad or guilty about your drinking or drug use?"
+                value={this.props.substanceUseGuilt}
+                options={yesNo}
+                onChange={this.handleInputChange}
+                />
+            </Col>
+            <Col md={6}>
+              <FieldGroup
+                id="substanceDependence"
+                type="radio"
+                label="Have you had a drink or used drugs the first thing in the morning as an eyeopener?"
+                value={this.props.substanceDependence}
+                options={yesNo}
+                onChange={this.handleInputChange}
+                />
+            </Col>
+          </Row>
+        </Panel.Body>
+      </Panel>
+    )
+  }
+
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
@@ -449,6 +585,7 @@ class PageFour extends Component {
           {this.getSleepInformation()}
           {this.getHistoryAnesthesiaComplications()}
           {this.getDiagnosticTesting()}
+          {this.getSubstanceUse()}
           <Row className="last-row">
             <Col xs={12}>
               <Button bsStyle="primary" type="submit">
@@ -469,6 +606,14 @@ export default connect(
     weight: state.registration.weight,
     cigaretteSmoker: state.registration.cigaretteSmoker,
     cigarSmoker: state.registration.cigarSmoker,
+    drinkDaily: state.registration.drinkDaily,
+    drinkHeavy: state.registration.drinkHeavy,
+    narcoticMeds: state.registration.narcoticMeds,
+    illegalDrugs: state.registration.illegalDrugs,
+    substanceAbuse: state.registration.substanceAbuse,
+    substanceUseCriticism: state.registration.substanceUseCriticism,
+    substanceUseGuilt: state.registration.substanceUseGuilt,
+    substanceDependence: state.registration.substanceDependence,
     drink: state.registration.drink,
     alcoholAbuse: state.registration.alcoholAbuse,
     drugs: state.registration.drugs,

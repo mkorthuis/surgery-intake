@@ -212,7 +212,7 @@ class PageFive extends Component {
   getSleepInformation() {
     return (
       <Panel>
-      <Panel.Heading>Basic Screening</Panel.Heading>
+      <Panel.Heading>Sleep Information</Panel.Heading>
       <Panel.Body>
         {this.getRowEntry('Do you SNORE loudly (louder than talking or heard through closed doors)?', getListValue(yesNo, this.props.registration.snoreLoudly.value))}
         {this.getRowEntry('Do you often feel TIRED, fatigued, or sleepy during daytime?', getListValue(yesNo, this.props.registration.feelTired.value))}
@@ -254,6 +254,26 @@ class PageFive extends Component {
         {this.getRowEntry('Cardiac (Heart) Stress Test?', getListValue(yesNo, this.props.registration.cardiacStress.value))}
         {this.getRowEntry('Cardiac (Heart) Echo (Ultrasound)?', getListValue(yesNo, this.props.registration.cardiacEcho.value))}
         {this.getRowEntry('Cardiac Catheterization?', getListValue(yesNo, this.props.registration.cardiacCatheterization.value))}
+      </Panel.Body>
+    </Panel>
+    )
+  }
+
+  getSubstanceUse() {
+    return (
+      <Panel>
+      <Panel.Heading>Alcohol, Smoking and Drug Use</Panel.Heading>
+      <Panel.Body>
+        {this.getRowEntry('Smoking status?', getListValue(smokerList, this.props.registration.cigaretteSmoker.value))}
+        {this.getRowEntry('Cigar smoker, pipe smoker, and/or tobacco chewer?', getListValue(yesNo, this.props.registration.cigarSmoker.value))}
+        {this.getRowEntry('Do you drink alcohol daily?', getListValue(yesNo, this.props.registration.drinkDaily.value))}
+        {this.getRowEntry('Do you drink alcohol heavily?', getListValue(yesNo, this.props.registration.drinkHeavy.value))}
+        {this.getRowEntry('Do you take narcotic medications not prescribed for you?', getListValue(yesNo, this.props.registration.narcoticMeds.value))}
+        {this.getRowEntry('Do you take street (illicit) drugs?', getListValue(yesNo, this.props.registration.illegalDrugs.value))}
+        {this.getRowEntry('Have you ever felt that you should cut down on your drinking or drug use?', getListValue(yesNo, this.props.registration.substanceAbuse.value))}
+        {this.getRowEntry('Are you angry or annoyed when others criticize your drinking or drug use?', getListValue(yesNo, this.props.registration.substanceUseCriticism.value))}
+        {this.getRowEntry('Have you ever felt bad or guilty about your drinking or drug use?', getListValue(yesNo, this.props.registration.substanceUseGuilt.value))}
+        {this.getRowEntry('Have you had a drink or used drugs the first thing in the morning as an eyeopener?', getListValue(yesNo, this.props.registration.substanceDependence.value))}
       </Panel.Body>
     </Panel>
     )
@@ -316,6 +336,7 @@ class PageFive extends Component {
           {this.getSleepInformation()}
           {this.getAnesthesia()}
           {this.getDiagnostic()}
+          {this.getSubstanceUse()}
           {this.getValidationAlert(isInvalid)}
           <Row className="last-row">
             <Col xs={12}>
