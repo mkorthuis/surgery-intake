@@ -156,6 +156,11 @@ const initState = {
   adverseReaction: {
     value: ''
   },
+  breathingTube: {},
+  wakeUp: {},
+  allergicReaction: {},
+  highFever: {},
+  familyComplications: {},
   snoreLoudly: {},
   feelTired: {},
   observedStopBreathing: {},

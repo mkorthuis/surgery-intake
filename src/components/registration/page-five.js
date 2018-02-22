@@ -233,6 +233,11 @@ class PageFive extends Component {
         {this.getRowEntry('Motion sickness?', getListValue(yesNo, this.props.registration.motionSickness.value))}
         {this.getRowEntry('Postoperative nausea and vomiting?', getListValue(yesNo, this.props.registration.nauseaVomiting.value))}
         {this.getRowEntry('Other serious adverse reactions to anesthesia medications?', this.props.registration.adverseReaction.value)}
+        {this.getRowEntry('Was it hard for them to get the breathing tube in place?', getListValue(yesNo, this.props.registration.breathingTube.value))}
+        {this.getRowEntry('Was it hard for you to wake up?', getListValue(yesNo, this.props.registration.wakeUp.value))}
+        {this.getRowEntry('Did you have an allergic reaction to the anesthesia drugs?', getListValue(yesNo, this.props.registration.allergicReaction.value))}
+        {this.getRowEntry('Did you have a high fever because of the anesthesia drugs (malignant hyperthermia)?', getListValue(yesNo, this.props.registration.highFever.value))}
+        {this.getRowEntry('Have any close family members had trouble with anesthesia?', getListValue(yesNo, this.props.registration.familyComplications.value))}
       </Panel.Body>
     </Panel>
     )

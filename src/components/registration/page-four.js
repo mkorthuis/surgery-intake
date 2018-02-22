@@ -52,6 +52,11 @@ class PageFour extends Component {
       'motionSickness',
       'nauseaVomiting',
       'adverseReaction',
+      'breathingTube',
+      'wakeUp',
+      'allergicReaction',
+      'highFever',
+      'familyComplications',
       'snoreLoudly',
       'feelTired',
       'observedStopBreathing',
@@ -94,6 +99,11 @@ class PageFour extends Component {
         motionSickness: this.props.motionSickness.value,
         nauseaVomiting: this.props.nauseaVomiting.value,
         adverseReaction: this.props.adverseReaction.value,
+        breathingTube: this.props.breathingTube.value,
+        wakeUp: this.props.wakeUp.value,
+        allergicReaction: this.props.allergicReaction.value,
+        highFever: this.props.highFever.value,
+        familyComplications: this.props.familyComplications.value,
         snoreLoudly: this.props.snoreLoudly.value,
         feelTired: this.props.feelTired.value,
         observedStopBreathing: this.props.observedStopBreathing.value,
@@ -289,6 +299,67 @@ class PageFour extends Component {
                 />
             </Col>
           </Row>
+          <Row>
+              <Col md={12}>
+                <p>Have you had any problems with having anesthesia in the past? Choices:</p>
+              </Col>
+          </Row>
+          <Row>
+               <Col md={6}>
+                 <FieldGroup
+                   id="breathingTube"
+                   type="radio"
+                   label="Was it hard for them to get the breathing tube in place?"
+                   value={this.props.breathingTube}
+                   options={yesNo}
+                   onChange={this.handleInputChange}
+                   />
+               </Col>
+               <Col md={6}>
+                 <FieldGroup
+                   id="wakeUp"
+                   type="radio"
+                   label="Was it hard for you to wake up?"
+                   value={this.props.wakeUp}
+                   options={yesNo}
+                   onChange={this.handleInputChange}
+                   />
+               </Col>
+          </Row>
+          <Row>
+              <Col md={6}>
+                <FieldGroup
+                  id="allergicReaction"
+                  type="radio"
+                  label="Did you have an allergic reaction to the anesthesia drugs?"
+                  value={this.props.allergicReaction}
+                  options={yesNo}
+                  onChange={this.handleInputChange}
+                  />
+              </Col>
+              <Col md={6}>
+                <FieldGroup
+                  id="highFever"
+                  type="radio"
+                  label="Did you have a high fever because of the anesthesia drugs (malignant hyperthermia)?"
+                  value={this.props.highFever}
+                  options={yesNo}
+                  onChange={this.handleInputChange}
+                  />
+              </Col>
+          </Row>
+          <Row>
+              <Col md={6}>
+                <FieldGroup
+                  id="familyComplications"
+                  type="radio"
+                  label="Have any close family members had trouble with anesthesia?"
+                  value={this.props.familyComplications}
+                  options={yesNo}
+                  onChange={this.handleInputChange}
+                  />
+              </Col>
+          </Row>
         </Panel.Body>
       </Panel>
     )
@@ -408,6 +479,11 @@ export default connect(
     motionSickness: state.registration.motionSickness,
     nauseaVomiting: state.registration.nauseaVomiting,
     adverseReaction: state.registration.adverseReaction,
+    breathingTube: state.registration.breathingTube,
+    wakeUp: state.registration.wakeUp,
+    allergicReaction: state.registration.allergicReaction,
+    highFever: state.registration.highFever,
+    familyComplications: state.registration.familyComplications,
     snoreLoudly: state.registration.snoreLoudly,
     feelTired: state.registration.feelTired,
     observedStopBreathing: state.registration.observedStopBreathing,
