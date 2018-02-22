@@ -301,6 +301,121 @@ class PageFive extends Component {
     )
   }
 
+  getLungDisease() {
+    return (
+      <Panel>
+      <Panel.Heading>Lung Disease</Panel.Heading>
+      <Panel.Body>
+        {this.getRowEntry('Do you have severe lung disease (COPD, pulmonary fibrosis, cystic fibrosis, or frequent asthma attacks)?', getListValue(yesNo, this.props.registration.lungDisease.value))}
+        {this.getRowEntry('Do you use oxygen at home during the day or at night?', getListValue(yesNo, this.props.registration.oxygen.value))}
+      </Panel.Body>
+    </Panel>
+    )
+  }
+
+  getDiabetes() {
+    return (
+      <Panel>
+      <Panel.Heading>Diabetes</Panel.Heading>
+      <Panel.Body>
+        {this.getRowEntry('Do you have Diabetes (Type I or Type II) that is difficult to control?', getListValue(yesNo, this.props.registration.diabetes.value))}
+      </Panel.Body>
+    </Panel>
+    )
+  }
+
+  getKidneyDisease() {
+    return (
+      <Panel>
+      <Panel.Heading>Kidney Disease</Panel.Heading>
+      <Panel.Body>
+        {this.getRowEntry('Do you receive dialysis for kidney disease?', getListValue(yesNo, this.props.registration.dialysis.value))}
+      </Panel.Body>
+    </Panel>
+    )
+  }
+
+  getLiverDisease() {
+    return (
+      <Panel>
+      <Panel.Heading>Liver Disease</Panel.Heading>
+      <Panel.Body>
+        {this.getRowEntry('Do you have chronic hepatitis, cirrhosis or liver failure?', getListValue(yesNo, this.props.registration.liverFailure.value))}
+      </Panel.Body>
+    </Panel>
+    )
+  }
+
+  getNervousSystem() {
+    return (
+      <Panel>
+      <Panel.Heading>Nervous System</Panel.Heading>
+      <Panel.Body>
+        {this.getRowEntry('Have you had a stroke, transient ischemic attack (TIA), brain aneurysm, Alzheimer’s or dementia, seizures, multiple sclerosis, or brain tumor?', getListValue(yesNo, this.props.registration.stroke.value))}
+      </Panel.Body>
+    </Panel>
+    )
+  }
+
+  getMuscleDisorders() {
+    return (
+      <Panel>
+      <Panel.Heading>Muscle Disorders</Panel.Heading>
+      <Panel.Body>
+        {this.getRowEntry('Do you have myasthenia gravis or muscular dystrophy?', getListValue(yesNo, this.props.registration.muscularDystrophy.value))}
+      </Panel.Body>
+    </Panel>
+    )
+  }
+
+  getBloodDisorders() {
+    return (
+      <Panel>
+      <Panel.Heading>Bleeding or Blood Disorders</Panel.Heading>
+      <Panel.Body>
+        {this.getRowEntry('Do you have hemophilia, sickle cell, or blood cancer?', getListValue(yesNo, this.props.registration.hemophilia.value))}
+        {this.getRowEntry('Do you bleed easily when cut or scraped?', getListValue(yesNo, this.props.registration.bleedEasy.value))}
+      </Panel.Body>
+    </Panel>
+    )
+  }
+
+  getOrganTransplant() {
+    return (
+      <Panel>
+      <Panel.Heading>Organ Transplant</Panel.Heading>
+      <Panel.Body>
+        {this.getRowEntry('Have you had an organ transplant?', getListValue(yesNo, this.props.registration.organTransplant.value))}
+      </Panel.Body>
+    </Panel>
+    )
+  }
+
+  getPregnant() {
+    return (
+      <Panel>
+      <Panel.Heading>Pregnant</Panel.Heading>
+      <Panel.Body>
+        {this.getRowEntry('Are you pregnant or do you think you could be pregnant?', getListValue(yesNo, this.props.registration.pregnant.value))}
+      </Panel.Body>
+    </Panel>
+    )
+  }
+
+  getChronicPain() {
+    return (
+      <Panel>
+      <Panel.Heading>Chronic Pain</Panel.Heading>
+      <Panel.Body>
+        {this.getRowEntry('OxyContin (oxycodone)?', getListValue(yesNo, this.props.registration.oxycodone.value))}
+        {this.getRowEntry('Methadone', getListValue(yesNo, this.props.registration.methadone.value))}
+        {this.getRowEntry('Suboxone (buprenorphine)?', getListValue(yesNo, this.props.registration.suboxone.value))}
+        {this.getRowEntry('Other long-acting opioids?', this.props.registration.otherOpioid.value)}
+      </Panel.Body>
+    </Panel>
+    )
+  }
+
   getValidationAlert(isInvalid) {
     if (isInvalid) {
       return (
@@ -360,6 +475,16 @@ class PageFive extends Component {
           {this.getDiagnostic()}
           {this.getSubstanceUse()}
           {this.getHeartDisease()}
+          {this.getLungDisease()}
+          {this.getDiabetes()}
+          {this.getKidneyDisease()}
+          {this.getLiverDisease()}
+          {this.getNervousSystem()}
+          {this.getMuscleDisorders()}
+          {this.getBloodDisorders()}
+          {this.getOrganTransplant()}
+          {this.getPregnant()}
+          {this.getChronicPain()}
           {this.getValidationAlert(isInvalid)}
           <Row className="last-row">
             <Col xs={12}>

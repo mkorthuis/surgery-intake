@@ -86,7 +86,22 @@ class PageFour extends Component {
       'sleepApnea',
       'cardiacStress',
       'cardiacEcho',
-      'cardiacCatheterization'
+      'cardiacCatheterization',
+      'lungDisease',
+      'oxygen',
+      'diabetes',
+      'dialysis',
+      'liverFailure',
+      'stroke',
+      'muscularDystrophy',
+      'hemophilia',
+      'bleedEasy',
+      'organTransplant',
+      'pregnant',
+      'oxycodone',
+      'methadone',
+      'suboxone',
+      'otherOpioid'
     ];
 
     for (var i in fields) {
@@ -152,7 +167,22 @@ class PageFour extends Component {
         sleepApnea: this.props.sleepApnea.value,
         cardiacStress: this.props.cardiacStress.value,
         cardiacEcho: this.props.cardiacEcho.value,
-        cardiacCatheterization: this.props.cardiacCatheterization.value
+        cardiacCatheterization: this.props.cardiacCatheterization.value,
+        lungDisease: this.props.lungDisease.value,
+        oxygen: this.props.oxygen.value,
+        diabetes: this.props.diabetes.value,
+        dialysis: this.props.dialysis.value,
+        liverFailure: this.propsliverFailure.value,
+        stroke: this.props.stroke.value,
+        muscularDystrophy: this.props.muscularDystrophy.value,
+        hemophilia: this.props.hemophilia.value,
+        bleedEasy: this.props.bleedEasy.value,
+        organTransplant: this.props.organTransplant.value,
+        pregnant: this.props.pregnant.value,
+        oxycodone: this.props.oxycodone.value,
+        methadone: this.props.methadone.value,
+        suboxone: this.props.suboxone.value,
+        otherOpioid: this.props.otherOpioid.value,
       }
 
       save(this.props.emailToken, this.props.original, changes)
@@ -746,6 +776,282 @@ class PageFour extends Component {
     )
   }
 
+  getLungDisease() {
+    return (
+      <Panel>
+        <Panel.Heading>Lung Disease</Panel.Heading>
+        <Panel.Body>
+          <Row>
+            <Col md={6}>
+              <FieldGroup
+                id="lungDisease"
+                type="radio"
+                label="Do you have severe lung disease (COPD, pulmonary fibrosis, cystic fibrosis, or frequent asthma attacks)?"
+                value={this.props.lungDisease}
+                options={yesNo}
+                onChange={this.handleInputChange}
+                />
+            </Col>
+            <Col md={6}>
+              <FieldGroup
+                id="oxygen"
+                type="radio"
+                label="Do you use oxygen at home during the day or at night?"
+                value={this.props.oxygen}
+                options={yesNo}
+                onChange={this.handleInputChange}
+               />
+            </Col>
+          </Row>
+        </Panel.Body>
+      </Panel>
+    )
+  }
+
+  getDiabetes() {
+    return (
+      <Panel>
+        <Panel.Heading>Diabetes</Panel.Heading>
+        <Panel.Body>
+          <Row>
+            <Col md={12}>
+              <FieldGroup
+                id="diabetes"
+                type="radio"
+                label="Do you have Diabetes (Type I or Type II) that is difficult to control?"
+                value={this.props.diabetes}
+                options={yesNo}
+                onChange={this.handleInputChange}
+                />
+            </Col>
+          </Row>
+        </Panel.Body>
+      </Panel>
+    )
+  }
+
+  getKidneyDisease() {
+    return (
+      <Panel>
+        <Panel.Heading>Kidney Disease</Panel.Heading>
+        <Panel.Body>
+          <Row>
+            <Col md={12}>
+              <FieldGroup
+                id="dialysis"
+                type="radio"
+                label="Do you receive dialysis for kidney disease?"
+                value={this.props.dialysis}
+                options={yesNo}
+                onChange={this.handleInputChange}
+                />
+            </Col>
+          </Row>
+        </Panel.Body>
+      </Panel>
+    )
+  }
+
+  getLiverDisease() {
+    return (
+      <Panel>
+        <Panel.Heading>Liver Disease</Panel.Heading>
+        <Panel.Body>
+          <Row>
+            <Col md={12}>
+              <FieldGroup
+                id="liverFailure"
+                type="radio"
+                label="Do you have chronic hepatitis, cirrhosis or liver failure?"
+                value={this.props.liverFailure}
+                options={yesNo}
+                onChange={this.handleInputChange}
+                />
+            </Col>
+          </Row>
+        </Panel.Body>
+      </Panel>
+    )
+  }
+
+  getNervousSystem() {
+    return (
+      <Panel>
+        <Panel.Heading>Nervous System Disorders</Panel.Heading>
+        <Panel.Body>
+          <Row>
+            <Col md={12}>
+              <FieldGroup
+                id="stroke"
+                type="radio"
+                label="Have you had a stroke, transient ischemic attack (TIA), brain aneurysm, Alzheimer’s or dementia, seizures, multiple sclerosis, or brain tumor?"
+                value={this.props.stroke}
+                options={yesNo}
+                onChange={this.handleInputChange}
+                />
+            </Col>
+          </Row>
+        </Panel.Body>
+      </Panel>
+    )
+  }
+
+  getMuscleDisorders() {
+    return (
+      <Panel>
+        <Panel.Heading>Muscle Disorders</Panel.Heading>
+        <Panel.Body>
+          <Row>
+            <Col md={12}>
+              <FieldGroup
+                id="muscularDystrophy"
+                type="radio"
+                label="Do you have myasthenia gravis or muscular dystrophy?"
+                value={this.props.muscularDystrophy}
+                options={yesNo}
+                onChange={this.handleInputChange}
+                />
+            </Col>
+          </Row>
+        </Panel.Body>
+      </Panel>
+    )
+  }
+
+  getBloodDisorders() {
+    return (
+      <Panel>
+        <Panel.Heading>Bleeding or Blood Disorders</Panel.Heading>
+        <Panel.Body>
+          <Row>
+            <Col md={6}>
+              <FieldGroup
+                id="hemophilia"
+                type="radio"
+                label="Do you have hemophilia, sickle cell, or blood cancer?"
+                value={this.props.hemophilia}
+                options={yesNo}
+                onChange={this.handleInputChange}
+                />
+            </Col>
+            <Col md={6}>
+              <FieldGroup
+                id="bleedEasy"
+                type="radio"
+                label="Do you bleed easily when cut or scraped?"
+                value={this.props.bleedEasy}
+                options={yesNo}
+                onChange={this.handleInputChange}
+               />
+            </Col>
+          </Row>
+        </Panel.Body>
+      </Panel>
+    )
+  }
+
+  getOrganTransplant() {
+    return (
+      <Panel>
+        <Panel.Heading>Organ Transplant</Panel.Heading>
+        <Panel.Body>
+          <Row>
+            <Col md={12}>
+              <FieldGroup
+                id="organTransplant"
+                type="radio"
+                label="Have you had an organ transplant?"
+                value={this.props.organTransplant}
+                options={yesNo}
+                onChange={this.handleInputChange}
+                />
+            </Col>
+          </Row>
+        </Panel.Body>
+      </Panel>
+    )
+  }
+
+  getPregnant() {
+    return (
+      <Panel>
+        <Panel.Heading>Pregnancy</Panel.Heading>
+        <Panel.Body>
+          <Row>
+            <Col md={12}>
+              <FieldGroup
+                id="pregnant"
+                type="radio"
+                label="Are you pregnant or do you think you could be pregnant?"
+                value={this.props.pregnant}
+                options={yesNo}
+                onChange={this.handleInputChange}
+                />
+            </Col>
+          </Row>
+        </Panel.Body>
+      </Panel>
+    )
+  }
+
+  getChronicPain() {
+    return (
+      <Panel>
+        <Panel.Heading>Chronic Pain</Panel.Heading>
+        <Panel.Body>
+          <Row>
+            <Col md={12}>
+              <p>Do you take long-acting opioids? Choices:</p>
+            </Col>
+          </Row>
+          <Row>
+            <Col md={6}>
+              <FieldGroup
+                id="oxycodone"
+                type="radio"
+                label="OxyContin (oxycodone)?"
+                value={this.props.oxycodone}
+                options={yesNo}
+                onChange={this.handleInputChange}
+                />
+            </Col>
+            <Col md={6}>
+              <FieldGroup
+                id="methadone"
+                type="radio"
+                label="Methadone?"
+                value={this.props.methadone}
+                options={yesNo}
+                onChange={this.handleInputChange}
+               />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={6}>
+              <FieldGroup
+                id="suboxone"
+                type="radio"
+                label="Suboxone (buprenorphine)?"
+                value={this.props.suboxone}
+                options={yesNo}
+                onChange={this.handleInputChange}
+                />
+            </Col>
+            <Col md={6}>
+              <FieldGroup
+                id="otherOpioid"
+                type="text"
+                label="Other long-acting opioids?"
+                value={this.props.otherOpioid}
+                onChange={this.handleInputChange}
+               />
+            </Col>
+          </Row>
+        </Panel.Body>
+      </Panel>
+    )
+  }
+
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
@@ -756,6 +1062,16 @@ class PageFour extends Component {
           {this.getDiagnosticTesting()}
           {this.getSubstanceUse()}
           {this.getHeartDisease()}
+          {this.getLungDisease()}
+          {this.getDiabetes()}
+          {this.getKidneyDisease()}
+          {this.getLiverDisease()}
+          {this.getNervousSystem()}
+          {this.getMuscleDisorders()}
+          {this.getBloodDisorders()}
+          {this.getOrganTransplant()}
+          {this.getPregnant()}
+          {this.getChronicPain()}
           <Row className="last-row">
             <Col xs={12}>
               <Button bsStyle="primary" type="submit">
@@ -822,6 +1138,22 @@ export default connect(
     cardiacStress: state.registration.cardiacStress,
     cardiacEcho: state.registration.cardiacEcho,
     cardiacCatheterization: state.registration.cardiacCatheterization,
+
+    lungDisease: state.registration.lungDisease,
+    oxygen: state.registration.oxygen,
+    diabetes: state.registration.diabetes,
+    dialysis: state.registration.dialysis,
+    liverFailure: state.registration.liverFailure,
+    stroke: state.registration.stroke,
+    muscularDystrophy: state.registration.muscularDystrophy,
+    hemophilia: state.registration.hemophilia,
+    bleedEasy: state.registration.bleedEasy,
+    organTransplant: state.registration.organTransplant,
+    pregnant: state.registration.pregnant,
+    oxycodone: state.registration.oxycodone,
+    methadone: state.registration.methadone,
+    suboxone: state.registration.suboxone,
+    otherOpioid: state.registration.otherOpioid,
 
     validation: state.registration.validation['4'],
 

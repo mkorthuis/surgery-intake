@@ -127,7 +127,22 @@ var validateRules = {
   sleepApnea: [required],
   cardiacStress: [required],
   cardiacEcho: [required],
-  cardiacCatheterization: [required]
+  cardiacCatheterization: [required],
+  lungDisease: [required],
+  oxygen: [required],
+  diabetes: [required],
+  dialysis: [required],
+  liverFailure: [required],
+  stroke: [required],
+  muscularDystrophy: [required],
+  hemophilia: [required],
+  bleedEasy: [required],
+  organTransplant: [required],
+  pregnant: [],
+  oxycodone: [required],
+  methadone: [required],
+  suboxone: [required],
+  otherOpioid: []
 }
 
 export function disableValidation(page) {

@@ -190,7 +190,24 @@ const initState = {
   sleepApnea: {},
   cardiacStress: {},
   cardiacEcho: {},
-  cardiacCatheterization: {}
+  cardiacCatheterization: {},
+  lungDisease: {},
+  oxygen: {},
+  diabetes: {},
+  dialysis: {},
+  liverFailure: {},
+  stroke: {},
+  muscularDystrophy: {},
+  hemophilia: {},
+  bleedEasy: {},
+  organTransplant: {},
+  pregnant: {},
+  oxycodone: {},
+  methadone: {},
+  suboxone: {},
+  otherOpioid: {
+    value: ''
+  }
 
 };
 
