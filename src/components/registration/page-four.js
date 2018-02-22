@@ -661,17 +661,8 @@ class PageFour extends Component {
                />
             </Col>
            </Row>
+           {this.props.heartAttack.value !== "yes" || this.getHeartAttackFollow()}
            <Row>
-             <Col md={6}>
-               <FieldGroup
-                 id="heartAttackTime"
-                 type="radio"
-                 label="If you did have a heart attack, was it in the past 6 months?"
-                 value={this.props.heartAttackTime}
-                 options={yesNo}
-                 onChange={this.handleInputChange}
-                 />
-             </Col>
              <Col md={6}>
                <FieldGroup
                  id="chestPain"
@@ -682,18 +673,18 @@ class PageFour extends Component {
                  onChange={this.handleInputChange}
                 />
              </Col>
+             <Col md={6}>
+               <FieldGroup
+                 id="heartMurmer"
+                 type="radio"
+                 label="Heart murmur or heart valve problem (aortic stenosis, mitral valve prolapse, etc.)?"
+                 value={this.props.heartMurmer}
+                 options={yesNo}
+                 onChange={this.handleInputChange}
+                 />
+             </Col>
             </Row>
             <Row>
-              <Col md={6}>
-                <FieldGroup
-                  id="heartMurmer"
-                  type="radio"
-                  label="Heart murmur or heart valve problem (aortic stenosis, mitral valve prolapse, etc.)?"
-                  value={this.props.heartMurmer}
-                  options={yesNo}
-                  onChange={this.handleInputChange}
-                  />
-              </Col>
               <Col md={6}>
                 <FieldGroup
                   id="heartDevice"
@@ -704,18 +695,18 @@ class PageFour extends Component {
                   onChange={this.handleInputChange}
                  />
               </Col>
+              <Col md={6}>
+                <FieldGroup
+                  id="heartSurgery"
+                  type="radio"
+                  label="Heart or blood vessel surgery (coronary artery bypass, valve replacement or carotid surgery)?"
+                  value={this.props.heartSurgery}
+                  options={yesNo}
+                  onChange={this.handleInputChange}
+                  />
+              </Col>
              </Row>
              <Row>
-               <Col md={6}>
-                 <FieldGroup
-                   id="heartSurgery"
-                   type="radio"
-                   label="Heart or blood vessel surgery (coronary artery bypass, valve replacement or carotid surgery)?"
-                   value={this.props.heartSurgery}
-                   options={yesNo}
-                   onChange={this.handleInputChange}
-                   />
-               </Col>
                <Col md={6}>
                  <FieldGroup
                    id="pulmonaryHypertension"
@@ -726,18 +717,18 @@ class PageFour extends Component {
                    onChange={this.handleInputChange}
                   />
                </Col>
+               <Col md={6}>
+                 <FieldGroup
+                   id="bloodClot"
+                   type="radio"
+                   label="Blood clots in legs or lungs (deep vein thrombosis, pulmonary embolus)?"
+                   value={this.props.bloodClot}
+                   options={yesNo}
+                   onChange={this.handleInputChange}
+                   />
+               </Col>
               </Row>
               <Row>
-                <Col md={6}>
-                  <FieldGroup
-                    id="bloodClot"
-                    type="radio"
-                    label="Blood clots in legs or lungs (deep vein thrombosis, pulmonary embolus)?"
-                    value={this.props.bloodClot}
-                    options={yesNo}
-                    onChange={this.handleInputChange}
-                    />
-                </Col>
                 <Col md={6}>
                   <FieldGroup
                     id="highBloodPressure"
@@ -748,18 +739,18 @@ class PageFour extends Component {
                     onChange={this.handleInputChange}
                    />
                 </Col>
+                <Col md={6}>
+                  <FieldGroup
+                    id="heartDoctor"
+                    type="radio"
+                    label="Have you seen a heart doctor (cardiologist) within the last year?"
+                    value={this.props.heartDoctor}
+                    options={yesNo}
+                    onChange={this.handleInputChange}
+                    />
+                </Col>
                </Row>
                <Row>
-                 <Col md={6}>
-                   <FieldGroup
-                     id="heartDoctor"
-                     type="radio"
-                     label="Have you seen a heart doctor (cardiologist) within the last year?"
-                     value={this.props.heartDoctor}
-                     options={yesNo}
-                     onChange={this.handleInputChange}
-                     />
-                 </Col>
                  <Col md={6}>
                    <FieldGroup
                      id="stairs"
@@ -773,6 +764,23 @@ class PageFour extends Component {
                 </Row>
         </Panel.Body>
       </Panel>
+    )
+  }
+
+  getHeartAttackFollow() {
+    return (
+      <Row>
+        <Col md={6} mdOffset={7}>
+          <FieldGroup
+            id="heartAttackTime"
+            type="radio"
+            label="If you did have a heart attack, was it in the past 6 months?"
+            value={this.props.heartAttackTime}
+            options={yesNo}
+            onChange={this.handleInputChange}
+            />
+        </Col>
+      </Row>
     )
   }
 
@@ -973,25 +981,30 @@ class PageFour extends Component {
   }
 
   getPregnant() {
-    return (
-      <Panel>
-        <Panel.Heading>Pregnancy</Panel.Heading>
-        <Panel.Body>
-          <Row>
-            <Col md={12}>
-              <FieldGroup
-                id="pregnant"
-                type="radio"
-                label="Are you pregnant or do you think you could be pregnant?"
-                value={this.props.pregnant}
-                options={yesNo}
-                onChange={this.handleInputChange}
-                />
-            </Col>
-          </Row>
-        </Panel.Body>
-      </Panel>
-    )
+    if (this.props.sex.value === "female") {
+      return (
+        <Panel>
+          <Panel.Heading>Pregnancy</Panel.Heading>
+          <Panel.Body>
+            <Row>
+              <Col md={12}>
+                <FieldGroup
+                  id="pregnant"
+                  type="radio"
+                  label="Are you pregnant or do you think you could be pregnant?"
+                  value={this.props.pregnant}
+                  options={yesNo}
+                  onChange={this.handleInputChange}
+                  />
+              </Col>
+            </Row>
+          </Panel.Body>
+        </Panel>
+      )
+    }
+    else {
+      return(null)
+    }
   }
 
   getChronicPain() {
