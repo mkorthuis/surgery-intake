@@ -279,6 +279,28 @@ class PageFive extends Component {
     )
   }
 
+  getHeartDisease() {
+    return (
+      <Panel>
+      <Panel.Heading>Heart or Blood Vessel Disease</Panel.Heading>
+      <Panel.Body>
+        {this.getRowEntry('Too much fluid in your lungs (congestive heart failure)?', getListValue(yesNo, this.props.registration.heartFailure.value))}
+        {this.getRowEntry('Heart attack (myocardial infarction)?', getListValue(yesNo, this.props.registration.heartAttack.value))}
+        {this.getRowEntry('If you did have a heart attack, was it in the past 6 months?', getListValue(yesNo, this.props.registration.heartAttackTime.value))}
+        {this.getRowEntry('Chest pain, shortness of breath while walking, or irregular, slow, or fast heart beat?', getListValue(yesNo, this.props.registration.chestPain.value))}
+        {this.getRowEntry('Heart murmur or heart valve problem (aortic stenosis, mitral valve prolapse, etc.)?', getListValue(yesNo, this.props.registration.heartMurmer.value))}
+        {this.getRowEntry('Any implanted devices in your heart (cardiac stents, heart valves, pacemaker or defibrillator)?', getListValue(yesNo, this.props.registration.heartDevice.value))}
+        {this.getRowEntry('Heart or blood vessel surgery (coronary artery bypass, valve replacement or carotid surgery)?', getListValue(yesNo, this.props.registration.heartSurgery.value))}
+        {this.getRowEntry('High blood pressure in the lungs (pulmonary hypertension)?', getListValue(yesNo, this.props.registration.pulmonaryHypertension.value))}
+        {this.getRowEntry('Blood clots in legs or lungs (deep vein thrombosis, pulmonary embolus)?', getListValue(yesNo, this.props.registration.bloodClot.value))}
+        {this.getRowEntry('Uncontrolled high blood pressure greater than 160/100 (160 over 100)', getListValue(yesNo, this.props.registration.highBloodPressure.value))}
+        {this.getRowEntry('Have you seen a heart doctor (cardiologist) within the last year?', getListValue(yesNo, this.props.registration.heartDoctor.value))}
+        {this.getRowEntry('Are you unable to walk up 2 flights of stairs or walk 4-6 blocks without stopping? (Do not answer “yes” if the only reason that you are unable to do this is because of an orthopedic condition)', getListValue(yesNo, this.props.registration.stairs.value))}
+      </Panel.Body>
+    </Panel>
+    )
+  }
+
   getValidationAlert(isInvalid) {
     if (isInvalid) {
       return (
@@ -337,6 +359,7 @@ class PageFive extends Component {
           {this.getAnesthesia()}
           {this.getDiagnostic()}
           {this.getSubstanceUse()}
+          {this.getHeartDisease()}
           {this.getValidationAlert(isInvalid)}
           <Row className="last-row">
             <Col xs={12}>

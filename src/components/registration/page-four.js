@@ -68,7 +68,18 @@ class PageFour extends Component {
       'snoreLoudly',
       'feelTired',
       'observedStopBreathing',
+      'heartFailure',
+      'heartAttack',
+      'heartAttackTime',
+      'chestPain',
+      'heartMurmer',
+      'heartDevice',
+      'heartSurgery',
+      'pulmonaryHypertension',
+      'bloodClot',
       'highBloodPressure',
+      'heartDoctor',
+      'stairs',
       'neckCircumference',
       'ekg',
       'chestXray',
@@ -123,7 +134,18 @@ class PageFour extends Component {
         snoreLoudly: this.props.snoreLoudly.value,
         feelTired: this.props.feelTired.value,
         observedStopBreathing: this.props.observedStopBreathing.value,
+        heartFailure: this.props.heartFailure.value,
+        heartAttack: this.props.heartAttack.value,
+        heartAttackTime: this.props.heartAttackTime.value,
+        chestPain: this.props.chestPain.value,
+        heartMurmer: this.props.heartMurmer.value,
+        heartDevice: this.props.heartDevice.value,
+        heartSurgery: this.props.heartSurgery.value,
+        pulmonaryHypertension: this.props.pulmonaryHypertension.value,
+        bloodClot: this.props.bloodClot.value,
         highBloodPressure: this.props.highBloodPressure.value,
+        heartDoctor: this.props.heartDoctor.value,
+        stairs: this.props.stairs.value,
         neckCircumference: this.props.neckCircumference.value,
         ekg: this.props.ekg.value,
         chestXray: this.props.chestXray.value,
@@ -577,6 +599,153 @@ class PageFour extends Component {
     )
   }
 
+  getHeartDisease() {
+    return (
+      <Panel>
+        <Panel.Heading>Heart or Blood Vessel Disease</Panel.Heading>
+        <Panel.Body>
+          <Row>
+            <Col md={12}>
+              <p>Do you currently have or ever had any of the following?:</p>
+            </Col>
+          </Row>
+          <Row>
+            <Col md={6}>
+              <FieldGroup
+                id="heartFailure"
+                type="radio"
+                label="Too much fluid in your lungs (congestive heart failure)?"
+                value={this.props.heartFailure}
+                options={yesNo}
+                onChange={this.handleInputChange}
+                />
+            </Col>
+            <Col md={6}>
+              <FieldGroup
+                id="heartAttack"
+                type="radio"
+                label="Heart attack (myocardial infarction)?"
+                value={this.props.heartAttack}
+                options={yesNo}
+                onChange={this.handleInputChange}
+               />
+            </Col>
+           </Row>
+           <Row>
+             <Col md={6}>
+               <FieldGroup
+                 id="heartAttackTime"
+                 type="radio"
+                 label="If you did have a heart attack, was it in the past 6 months?"
+                 value={this.props.heartAttackTime}
+                 options={yesNo}
+                 onChange={this.handleInputChange}
+                 />
+             </Col>
+             <Col md={6}>
+               <FieldGroup
+                 id="chestPain"
+                 type="radio"
+                 label="Chest pain, shortness of breath while walking, or irregular, slow, or fast heart beat?"
+                 value={this.props.chestPain}
+                 options={yesNo}
+                 onChange={this.handleInputChange}
+                />
+             </Col>
+            </Row>
+            <Row>
+              <Col md={6}>
+                <FieldGroup
+                  id="heartMurmer"
+                  type="radio"
+                  label="Heart murmur or heart valve problem (aortic stenosis, mitral valve prolapse, etc.)?"
+                  value={this.props.heartMurmer}
+                  options={yesNo}
+                  onChange={this.handleInputChange}
+                  />
+              </Col>
+              <Col md={6}>
+                <FieldGroup
+                  id="heartDevice"
+                  type="radio"
+                  label="Any implanted devices in your heart (cardiac stents, heart valves, pacemaker or defibrillator)?"
+                  value={this.props.heartDevice}
+                  options={yesNo}
+                  onChange={this.handleInputChange}
+                 />
+              </Col>
+             </Row>
+             <Row>
+               <Col md={6}>
+                 <FieldGroup
+                   id="heartSurgery"
+                   type="radio"
+                   label="Heart or blood vessel surgery (coronary artery bypass, valve replacement or carotid surgery)?"
+                   value={this.props.heartSurgery}
+                   options={yesNo}
+                   onChange={this.handleInputChange}
+                   />
+               </Col>
+               <Col md={6}>
+                 <FieldGroup
+                   id="pulmonaryHypertension"
+                   type="radio"
+                   label="High blood pressure in the lungs (pulmonary hypertension)?"
+                   value={this.props.pulmonaryHypertension}
+                   options={yesNo}
+                   onChange={this.handleInputChange}
+                  />
+               </Col>
+              </Row>
+              <Row>
+                <Col md={6}>
+                  <FieldGroup
+                    id="bloodClot"
+                    type="radio"
+                    label="Blood clots in legs or lungs (deep vein thrombosis, pulmonary embolus)?"
+                    value={this.props.bloodClot}
+                    options={yesNo}
+                    onChange={this.handleInputChange}
+                    />
+                </Col>
+                <Col md={6}>
+                  <FieldGroup
+                    id="highBloodPressure"
+                    type="radio"
+                    label="High blood pressure in the lungs (pulmonary hypertension)?"
+                    value={this.props.highBloodPressure}
+                    options={yesNo}
+                    onChange={this.handleInputChange}
+                   />
+                </Col>
+               </Row>
+               <Row>
+                 <Col md={6}>
+                   <FieldGroup
+                     id="heartDoctor"
+                     type="radio"
+                     label="Have you seen a heart doctor (cardiologist) within the last year?"
+                     value={this.props.heartDoctor}
+                     options={yesNo}
+                     onChange={this.handleInputChange}
+                     />
+                 </Col>
+                 <Col md={6}>
+                   <FieldGroup
+                     id="stairs"
+                     type="radio"
+                     label="Are you unable to walk up 2 flights of stairs or walk 4-6 blocks without stopping? (Do not answer “yes” if the only reason that you are unable to do this is because of an orthopedic condition)"
+                     value={this.props.stairs}
+                     options={yesNo}
+                     onChange={this.handleInputChange}
+                    />
+                 </Col>
+                </Row>
+        </Panel.Body>
+      </Panel>
+    )
+  }
+
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
@@ -586,6 +755,7 @@ class PageFour extends Component {
           {this.getHistoryAnesthesiaComplications()}
           {this.getDiagnosticTesting()}
           {this.getSubstanceUse()}
+          {this.getHeartDisease()}
           <Row className="last-row">
             <Col xs={12}>
               <Button bsStyle="primary" type="submit">
@@ -632,7 +802,18 @@ export default connect(
     snoreLoudly: state.registration.snoreLoudly,
     feelTired: state.registration.feelTired,
     observedStopBreathing: state.registration.observedStopBreathing,
+    heartFailure: state.registration.heartFailure,
+    heartAttack: state.registration.heartAttack,
+    heartAttackTime: state.registration.heartAttackTime,
+    chestPain: state.registration.chestPain,
+    heartMurmer: state.registration.heartMurmer,
+    heartDevice: state.registration.heartDevice,
+    heartSurgery: state.registration.heartSurgery,
+    pulmonaryHypertension: state.registration.pulmonaryHypertension,
+    bloodClot: state.registration.bloodClot,
     highBloodPressure: state.registration.highBloodPressure,
+    heartDoctor: state.registration.heartDoctor,
+    stairs: state.registration.stairs,
     neckCircumference: state.registration.neckCircumference,
 
     ekg: state.registration.ekg,
