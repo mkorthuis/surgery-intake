@@ -50,9 +50,6 @@ class PageFour extends Component {
       'substanceUseCriticism',
       'substanceUseGuilt',
       'substanceDependence',
-      'drink',
-      'alcoholAbuse',
-      'drugs',
       'physicalActivity',
       'sex',
       'malignantHypertermia',
@@ -78,6 +75,14 @@ class PageFour extends Component {
       'pulmonaryHypertension',
       'bloodClot',
       'highBloodPressure',
+      'aspirin' ,
+      'coumadin' ,
+      'plavix' ,
+      'effient' ,
+      'pradaxa' ,
+      'xarelto' ,
+      'eliquis' ,
+      'otherThinner' ,
       'heartDoctor',
       'stairs',
       'neckCircumference',
@@ -131,9 +136,6 @@ class PageFour extends Component {
         substanceUseCriticism: this.props.substanceUseCriticism.value,
         substanceUseGuilt: this.props.substanceUseGuilt.value,
         substanceDependence: this.props.substanceDependence.value,
-        drink: this.props.drink.value,
-        alcoholAbuse: this.props.alcoholAbuse.value,
-        drugs: this.props.drugs.value,
         physicalActivity: this.props.physicalActivity.value,
         sex: this.props.sex.value,
         malignantHypertermia: this.props.malignantHypertermia.value,
@@ -159,6 +161,14 @@ class PageFour extends Component {
         pulmonaryHypertension: this.props.pulmonaryHypertension.value,
         bloodClot: this.props.bloodClot.value,
         highBloodPressure: this.props.highBloodPressure.value,
+        aspirin: this.props.aspirin.value,
+        coumadin: this.props.coumadin.value,
+        plavix: this.props.plavix.value,
+        effient: this.props.effient.value,
+        pradaxa: this.props.pradaxa.value,
+        xarelto: this.props.xarelto.value,
+        eliquis: this.props.eliquis.value,
+        otherThinner: this.props.otherThinner.value,
         heartDoctor: this.props.heartDoctor.value,
         stairs: this.props.stairs.value,
         neckCircumference: this.props.neckCircumference.value,
@@ -727,31 +737,123 @@ class PageFour extends Component {
                    onChange={this.handleInputChange}
                    />
                </Col>
+             </Row>
+             <Row>
+              <Col md={6}>
+                <FieldGroup
+                  id="highBloodPressure"
+                  type="radio"
+                  label="Uncontrolled high blood pressure greater than 160/100 (160 over 100)?"
+                  value={this.props.highBloodPressure}
+                  options={yesNo}
+                  onChange={this.handleInputChange}
+                 />
+              </Col>
+             </Row>
+             <Row>
+               <Col md={12}>
+                 <p>Are you taking blood thinners now? Choose from among the following:</p>
+               </Col>
+             </Row>
+             <Row>
+               <Col md={6}>
+                 <FieldGroup
+                   id="aspirin"
+                   type="radio"
+                   label="Aspirin?"
+                   value={this.props.aspirin}
+                   options={yesNo}
+                   onChange={this.handleInputChange}
+                   />
+               </Col>
+               <Col md={6}>
+                 <FieldGroup
+                   id="coumadin"
+                   type="radio"
+                   label="Coumadin (warfarin)?"
+                   value={this.props.coumadin}
+                   options={yesNo}
+                   onChange={this.handleInputChange}
+                  />
+               </Col>
               </Row>
               <Row>
                 <Col md={6}>
                   <FieldGroup
-                    id="highBloodPressure"
+                    id="plavix"
                     type="radio"
-                    label="High blood pressure in the lungs (pulmonary hypertension)?"
-                    value={this.props.highBloodPressure}
-                    options={yesNo}
-                    onChange={this.handleInputChange}
-                   />
-                </Col>
-                <Col md={6}>
-                  <FieldGroup
-                    id="heartDoctor"
-                    type="radio"
-                    label="Have you seen a heart doctor (cardiologist) within the last year?"
-                    value={this.props.heartDoctor}
+                    label="Plavix (clopidogrel)?"
+                    value={this.props.plavix}
                     options={yesNo}
                     onChange={this.handleInputChange}
                     />
                 </Col>
-               </Row>
-               <Row>
-                 <Col md={6}>
+                <Col md={6}>
+                  <FieldGroup
+                    id="effient"
+                    type="radio"
+                    label="Effient (prasugrel)?"
+                    value={this.props.effient}
+                    options={yesNo}
+                    onChange={this.handleInputChange}
+                   />
+                </Col>
+              </Row>
+              <Row>
+                <Col md={6}>
+                  <FieldGroup
+                    id="pradaxa"
+                    type="radio"
+                    label="Pradaxa (dabigatran)?"
+                    value={this.props.pradaxa}
+                    options={yesNo}
+                    onChange={this.handleInputChange}
+                    />
+                </Col>
+                <Col md={6}>
+                  <FieldGroup
+                    id="xarelto"
+                    type="radio"
+                    label="Xarelto (rivaroxaban)?"
+                    value={this.props.xarelto}
+                    options={yesNo}
+                    onChange={this.handleInputChange}
+                   />
+                </Col>
+              </Row>
+              <Row>
+                <Col md={6}>
+                  <FieldGroup
+                    id="eliquis"
+                    type="radio"
+                    label="Eliquis (apixaban)?"
+                    value={this.props.eliquis}
+                    options={yesNo}
+                    onChange={this.handleInputChange}
+                    />
+                </Col>
+                <Col md={6}>
+                  <FieldGroup
+                    id="otherThinner"
+                    type="text"
+                    label="Other?"
+                    value={this.props.otherThinner}
+                    onChange={this.handleInputChange}
+                   />
+                </Col>
+              </Row>
+              <Row>
+                <Col md={6}>
+                   <FieldGroup
+                     id="heartDoctor"
+                     type="radio"
+                     label="Have you seen a heart doctor (cardiologist) within the last year?"
+                     value={this.props.heartDoctor}
+                     options={yesNo}
+                     onChange={this.handleInputChange}
+                     />
+                </Col>
+                <Col md={6}>
                    <FieldGroup
                      id="stairs"
                      type="radio"
@@ -760,8 +862,8 @@ class PageFour extends Component {
                      options={yesNo}
                      onChange={this.handleInputChange}
                     />
-                 </Col>
-                </Row>
+                </Col>
+              </Row>
         </Panel.Body>
       </Panel>
     )
@@ -1113,9 +1215,6 @@ export default connect(
     substanceUseCriticism: state.registration.substanceUseCriticism,
     substanceUseGuilt: state.registration.substanceUseGuilt,
     substanceDependence: state.registration.substanceDependence,
-    drink: state.registration.drink,
-    alcoholAbuse: state.registration.alcoholAbuse,
-    drugs: state.registration.drugs,
     physicalActivity: state.registration.physicalActivity,
     sex: state.registration.sex,
     malignantHypertermia: state.registration.malignantHypertermia,
@@ -1141,6 +1240,14 @@ export default connect(
     pulmonaryHypertension: state.registration.pulmonaryHypertension,
     bloodClot: state.registration.bloodClot,
     highBloodPressure: state.registration.highBloodPressure,
+    aspirin: state.registration.aspirin,
+    coumadin: state.registration.coumadin,
+    plavix: state.registration.plavix,
+    effient: state.registration.effient,
+    pradaxa: state.registration.pradaxa,
+    xarelto: state.registration.xarelto,
+    eliquis: state.registration.eliquis,
+    otherThinner: state.registration.otherThinner,
     heartDoctor: state.registration.heartDoctor,
     stairs: state.registration.stairs,
     neckCircumference: state.registration.neckCircumference,

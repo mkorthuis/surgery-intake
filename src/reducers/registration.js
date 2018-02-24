@@ -182,6 +182,16 @@ const initState = {
   pulmonaryHypertension: {},
   bloodClot: {},
   highBloodPressure: {},
+  aspirin: {},
+  coumadin: {},
+  plavix: {},
+  effient: {},
+  pradaxa: {},
+  xarelto: {},
+  eliquis: {},
+  otherThinner: {
+    value: ''
+  },
   heartDoctor: {},
   stairs: {},
   neckCircumference: {},
