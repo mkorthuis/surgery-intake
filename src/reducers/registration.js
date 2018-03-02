@@ -62,7 +62,9 @@ const initState = {
   dateOfBirth: {
     value: ''
   },
-  sex: {},
+  sex: {
+    value: ''
+  },
   mobilePhone: {
     value: ''
   },
@@ -154,9 +156,6 @@ const initState = {
   alcoholAbuse: {},
   drugs: {},
   physicalActivity: {},
-  sex: {
-    value: ''
-  },
   malignantHypertermia: {},
   pseudocholinesteraseDeficiency: {},
   motionSickness: {},
