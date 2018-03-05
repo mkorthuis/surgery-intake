@@ -223,22 +223,10 @@ export function save(token, original, changes, finalize) {
 export function load(token) {
   return function(dispatch) {
     return RegistrationApi.getCurrentMedicalHistory(token).then(patientHistory => {
-      var patientData = {
-        firstName: patientHistory.firstName,
-        lastName: patientHistory.lastName,
-        dateOfBirth: patientHistory.dateOfBirth ? moment(patientHistory.dateOfBirth, 'YYYY-MM-DD').toISOString() : '',
-        sex: patientHistory.sex ? patientHistory.sex : '',
-        suffix: patientHistory.suffix ? patientHistory.suffix : '',
-        mobilePhone: patientHistory.mobilePhone ? patientHistory.mobilePhone : '',
-        homePhone: patientHistory.homePhone ? patientHistory.homePhone : '',
-        workPhone: patientHistory.workPhone ? patientHistory.workPhone : '',
-        emailAddress: patientHistory.emailAddress ? patientHistory.emailAddress : '',
-        addressOne: patientHistory.addressOne ? patientHistory.addressOne : '',
-        addressTwo: patientHistory.addressTwo ? patientHistory.addressTwo : '',
-        city: patientHistory.city ? patientHistory.city : '',
-        zip: patientHistory.zip ? patientHistory.zip : '',
-        state: patientHistory.state ? patientHistory.state : ''
-      };
+      var patientData = {};
+      forOwn(patientHistory, function(value, key) {
+        patientData[key] = value ? value : '';
+      });
       dispatch(updateRegistrationValue(patientData));
       dispatch(storeOriginal(patientHistory));
     }).catch(error => {
