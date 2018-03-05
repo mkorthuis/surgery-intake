@@ -16,7 +16,6 @@ import {
   checked
 } from './validation/rules'
 import RegistrationApi from '../api/registration-api'
-import moment from 'moment-es6'
 
 var validateRules = {
   //Page One
