@@ -75,14 +75,14 @@ class PageFour extends Component {
       'pulmonaryHypertension',
       'bloodClot',
       'highBloodPressure',
-      'aspirin' ,
-      'coumadin' ,
-      'plavix' ,
-      'effient' ,
-      'pradaxa' ,
-      'xarelto' ,
-      'eliquis' ,
-      'otherThinner' ,
+      'aspirin',
+      'coumadin',
+      'plavix',
+      'effient',
+      'pradaxa',
+      'xarelto',
+      'eliquis',
+      'otherThinner',
       'heartDoctor',
       'stairs',
       'neckCircumference',
@@ -182,7 +182,7 @@ class PageFour extends Component {
         oxygen: this.props.oxygen.value,
         diabetes: this.props.diabetes.value,
         dialysis: this.props.dialysis.value,
-        liverFailure: this.propsliverFailure.value,
+        liverFailure: this.props.liverFailure.value,
         stroke: this.props.stroke.value,
         muscularDystrophy: this.props.muscularDystrophy.value,
         hemophilia: this.props.hemophilia.value,
@@ -263,7 +263,7 @@ class PageFour extends Component {
     )
   }
 
-  getSleepInformation(){
+  getSleepInformation() {
     return (
       <Panel>
         <Panel.Heading>Sleep Information</Panel.Heading>
@@ -1103,9 +1103,8 @@ class PageFour extends Component {
           </Panel.Body>
         </Panel>
       )
-    }
-    else {
-      return(null)
+    } else {
+      return (null)
     }
   }
 
