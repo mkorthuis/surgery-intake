@@ -379,7 +379,7 @@ class PageFour extends Component {
           </Row>
           <Row>
               <Col md={12}>
-                <p class="sub-header">Have you had any problems with having anesthesia in the past?</p>
+                <p className="sub-header">Have you had any problems with having anesthesia in the past?</p>
               </Col>
           </Row>
           <Row>
@@ -646,7 +646,7 @@ class PageFour extends Component {
         <Panel.Body>
           <Row>
             <Col md={12}>
-              <p class="sub-header">Do you currently have or ever had any of the following?</p>
+              <p className="sub-header">Do you currently have or ever had any of the following?</p>
             </Col>
           </Row>
           <Row>
@@ -752,7 +752,7 @@ class PageFour extends Component {
              </Row>
              <Row>
                <Col md={12}>
-                 <p class="sub-header">Are you taking blood thinners now?</p>
+                 <p className="sub-header">Are you taking blood thinners now?</p>
                </Col>
              </Row>
              <Row>
@@ -1115,7 +1115,7 @@ class PageFour extends Component {
         <Panel.Body>
           <Row>
             <Col md={12}>
-              <p class='sub-header'>Do you take long-acting opioids?</p>
+              <p className='sub-header'>Do you take long-acting opioids?</p>
             </Col>
           </Row>
           <Row>
