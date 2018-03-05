@@ -224,7 +224,11 @@ export function load(token) {
     return RegistrationApi.getCurrentMedicalHistory(token).then(patientHistory => {
       var patientData = {};
       forOwn(patientHistory, function(value, key) {
-        patientData[key] = value ? value : '';
+        if (key == 'postalcode') {
+          patientData['zip'] = value ? value : '';
+        } else {
+          patientData[key] = value ? value : '';
+        }
       });
       dispatch(updateRegistrationValue(patientData));
       dispatch(storeOriginal(patientHistory));
