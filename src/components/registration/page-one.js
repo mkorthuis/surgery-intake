@@ -265,7 +265,7 @@ class PageOne extends Component {
         <Row>
           <Col md={5}>
             <FieldGroup
-              id="city"
+              id="institutionCity"
               type="text"
               label="City"
               value={this.props.institutionCity}
@@ -274,7 +274,7 @@ class PageOne extends Component {
             </Col>
           <Col md={4}>
             <FieldGroup
-              id="state"
+              id="institutionState"
               type="select"
               label="State"
               value={this.props.institutionState}
@@ -284,7 +284,7 @@ class PageOne extends Component {
           </Col>
           <Col md={3}>
             <FieldGroup
-              id="zip"
+              id="institutionZip"
               type="text"
               label="Zip"
               value={this.props.institutionZip}
