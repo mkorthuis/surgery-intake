@@ -6,7 +6,9 @@ import {
   Row,
   Col,
   Panel,
-  Button
+  Button,
+  FormGroup,
+  Checkbox
 } from 'react-bootstrap'
 import {
   connect
@@ -752,85 +754,92 @@ class PageFour extends Component {
              </Row>
              <Row>
                <Col md={12}>
-                 <p className="sub-header">Are you taking blood thinners now?</p>
+                 <p className="sub-header">Are you taking blood thinners now? Choose from among the following:</p>
                </Col>
              </Row>
              <Row>
-               <Col md={6}>
-                 <FieldGroup
-                   id="aspirin"
-                   type="radio"
-                   label="Aspirin?"
-                   value={this.props.aspirin}
-                   options={yesNo}
-                   onChange={this.handleInputChange}
-                   />
+               <Col md={12}>
+                 <FormGroup validationState={(this.props.aspirin.touched ? this.props.aspirin.validation : null) || this.props.aspirin.serverValidation} >
+                   <Checkbox
+                     id="aspirin"
+                     onChange={this.handleInputChange}
+                     defaultChecked={this.props.aspirin.value}
+                     inline>
+                     Aspirin
+                    </Checkbox>
+                 </FormGroup>
                </Col>
-               <Col md={6}>
-                 <FieldGroup
-                   id="coumadin"
-                   type="radio"
-                   label="Coumadin (warfarin)?"
-                   value={this.props.coumadin}
-                   options={yesNo}
-                   onChange={this.handleInputChange}
-                  />
+               <Col md={12}>
+                 <FormGroup validationState={(this.props.coumadin.touched ? this.props.coumadin.validation : null) || this.props.coumadin.serverValidation} >
+                   <Checkbox
+                     id="coumadin"
+                     onChange={this.handleInputChange}
+                     defaultChecked={this.props.coumadin.value}
+                     inline>
+                     Coumadin
+                    </Checkbox>
+                 </FormGroup>
                </Col>
               </Row>
               <Row>
-                <Col md={6}>
-                  <FieldGroup
-                    id="plavix"
-                    type="radio"
-                    label="Plavix (clopidogrel)?"
-                    value={this.props.plavix}
-                    options={yesNo}
-                    onChange={this.handleInputChange}
-                    />
+                <Col md={12}>
+                  <FormGroup validationState={(this.props.plavix.touched ? this.props.plavix.validation : null) || this.props.plavix.serverValidation} >
+                    <Checkbox
+                      id="plavix"
+                      onChange={this.handleInputChange}
+                      defaultChecked={this.props.plavix.value}
+                      inline>
+                      Plavix
+                     </Checkbox>
+                  </FormGroup>
                 </Col>
-                <Col md={6}>
-                  <FieldGroup
-                    id="effient"
-                    type="radio"
-                    label="Effient (prasugrel)?"
-                    value={this.props.effient}
-                    options={yesNo}
-                    onChange={this.handleInputChange}
-                   />
-                </Col>
-              </Row>
-              <Row>
-                <Col md={6}>
-                  <FieldGroup
-                    id="pradaxa"
-                    type="radio"
-                    label="Pradaxa (dabigatran)?"
-                    value={this.props.pradaxa}
-                    options={yesNo}
-                    onChange={this.handleInputChange}
-                    />
-                </Col>
-                <Col md={6}>
-                  <FieldGroup
-                    id="xarelto"
-                    type="radio"
-                    label="Xarelto (rivaroxaban)?"
-                    value={this.props.xarelto}
-                    options={yesNo}
-                    onChange={this.handleInputChange}
-                   />
+                <Col md={12}>
+                  <FormGroup validationState={(this.props.effient.touched ? this.props.effient.validation : null) || this.props.effient.serverValidation} >
+                    <Checkbox
+                      id="effient"
+                      onChange={this.handleInputChange}
+                      defaultChecked={this.props.effient.value}
+                      inline>
+                      Effient
+                     </Checkbox>
+                  </FormGroup>
                 </Col>
               </Row>
               <Row>
-                <Col md={6}>
-                  <FieldGroup
-                    id="eliquis"
-                    type="radio"
-                    label="Eliquis (apixaban)?"
-                    value={this.props.eliquis}
-                    options={yesNo}
-                    onChange={this.handleInputChange}
-                    />
+                <Col md={12}>
+                  <FormGroup validationState={(this.props.pradaxa.touched ? this.props.pradaxa.validation : null) || this.props.pradaxa.serverValidation} >
+                    <Checkbox
+                      id="pradaxa"
+                      onChange={this.handleInputChange}
+                      defaultChecked={this.props.pradaxa.value}
+                      inline>
+                      Pradaxa
+                     </Checkbox>
+                  </FormGroup>
+                </Col>
+                <Col md={12}>
+                  <FormGroup validationState={(this.props.xarelto.touched ? this.props.xarelto.validation : null) || this.props.xarelto.serverValidation} >
+                    <Checkbox
+                      id="xarelto"
+                      onChange={this.handleInputChange}
+                      defaultChecked={this.props.xarelto.value}
+                      inline>
+                      Xarelto
+                     </Checkbox>
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={12}>
+                  <FormGroup validationState={(this.props.eliquis.touched ? this.props.eliquis.validation : null) || this.props.eliquis.serverValidation} >
+                    <Checkbox
+                      id="eliquis"
+                      onChange={this.handleInputChange}
+                      defaultChecked={this.props.eliquis.value}
+                      inline>
+                      Eliquis
+                     </Checkbox>
+                  </FormGroup>
                 </Col>
                 <Col md={6}>
                   <FieldGroup
@@ -1115,42 +1124,47 @@ class PageFour extends Component {
         <Panel.Body>
           <Row>
             <Col md={12}>
-              <p className='sub-header'>Do you take long-acting opioids?</p>
+              <p className='sub-header'>Do you take long-acting opioids? Choices:</p>
             </Col>
           </Row>
           <Row>
-            <Col md={6}>
-              <FieldGroup
-                id="oxycodone"
-                type="radio"
-                label="OxyContin (oxycodone)?"
-                value={this.props.oxycodone}
-                options={yesNo}
-                onChange={this.handleInputChange}
-                />
+            <Col md={12}>
+              <FormGroup validationState={(this.props.oxycodone.touched ? this.props.oxycodone.validation : null) || this.props.oxycodone.serverValidation} >
+                <Checkbox
+                  id="oxycodone"
+                  onChange={this.handleInputChange}
+                  defaultChecked={this.props.oxycodone.value}
+                  inline>
+                  OxyContin (oxycodone)
+                 </Checkbox>
+              </FormGroup>
             </Col>
-            <Col md={6}>
-              <FieldGroup
-                id="methadone"
-                type="radio"
-                label="Methadone?"
-                value={this.props.methadone}
-                options={yesNo}
-                onChange={this.handleInputChange}
-               />
+            <Col md={12}>
+              <FormGroup validationState={(this.props.methadone.touched ? this.props.methadone.validation : null) || this.props.methadone.serverValidation} >
+                <Checkbox
+                  id="methadone"
+                  onChange={this.handleInputChange}
+                  defaultChecked={this.props.methadone.value}
+                  inline>
+                  Methadone
+                 </Checkbox>
+              </FormGroup>
             </Col>
           </Row>
           <Row>
-            <Col md={6}>
-              <FieldGroup
-                id="suboxone"
-                type="radio"
-                label="Suboxone (buprenorphine)?"
-                value={this.props.suboxone}
-                options={yesNo}
-                onChange={this.handleInputChange}
-                />
+            <Col md={12}>
+              <FormGroup validationState={(this.props.suboxone.touched ? this.props.suboxone.validation : null) || this.props.suboxone.serverValidation} >
+                <Checkbox
+                  id="suboxone"
+                  onChange={this.handleInputChange}
+                  defaultChecked={this.props.suboxone.value}
+                  inline>
+                  Suboxone (buprenorphine)
+                 </Checkbox>
+              </FormGroup>
             </Col>
+          </Row>
+          <Row>
             <Col md={6}>
               <FieldGroup
                 id="otherOpioid"
