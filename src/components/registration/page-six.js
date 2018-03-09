@@ -5,7 +5,6 @@ import {
   connect
 } from 'react-redux'
 import {
-  Panel,
   Grid,
   Row,
   Col
