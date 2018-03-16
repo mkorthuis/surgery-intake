@@ -40,6 +40,10 @@ class PageFive extends Component {
     this.props.goToPage(6);
   }
 
+  displayChecked = (val) => {
+    return val ? 'Checked' : 'Not Checked'
+  }
+
   getRowEntry = (name, value) => {
     return (
       <Row>
@@ -294,13 +298,13 @@ class PageFive extends Component {
         {this.getRowEntry('High blood pressure in the lungs (pulmonary hypertension)?', getListValue(yesNo, this.props.registration.pulmonaryHypertension.value))}
         {this.getRowEntry('Blood clots in legs or lungs (deep vein thrombosis, pulmonary embolus)?', getListValue(yesNo, this.props.registration.bloodClot.value))}
         {this.getRowEntry('Uncontrolled high blood pressure greater than 160/100 (160 over 100)', getListValue(yesNo, this.props.registration.highBloodPressure.value))}
-        {this.getRowEntry('Aspirin?', getListValue(yesNo, this.props.registration.aspirin.value))}
-        {this.getRowEntry('Coumadin (warfarin)?', getListValue(yesNo, this.props.registration.coumadin.value))}
-        {this.getRowEntry('Plavix (clopidogrel)?', getListValue(yesNo, this.props.registration.plavix.value))}
-        {this.getRowEntry('Effient (prasugrel)?', getListValue(yesNo, this.props.registration.effient.value))}
-        {this.getRowEntry('Pradaxa (dabigatran)?', getListValue(yesNo, this.props.registration.pradaxa.value))}
-        {this.getRowEntry('Xarelto (rivaroxaban)?', getListValue(yesNo, this.props.registration.xarelto.value))}
-        {this.getRowEntry('Eliquis (apixaban)?', getListValue(yesNo, this.props.registration.eliquis.value))}
+        {this.getRowEntry('Aspirin?', this.displayChecked(this.props.registration.aspirin.value))}
+        {this.getRowEntry('Coumadin (warfarin)?', this.displayChecked(this.props.registration.coumadin.value))}
+        {this.getRowEntry('Plavix (clopidogrel)?', this.displayChecked(this.props.registration.plavix.value))}
+        {this.getRowEntry('Effient (prasugrel)?', this.displayChecked(this.props.registration.effient.value))}
+        {this.getRowEntry('Pradaxa (dabigatran)?', this.displayChecked(this.props.registration.pradaxa.value))}
+        {this.getRowEntry('Xarelto (rivaroxaban)?', this.displayChecked(this.props.registration.xarelto.value))}
+        {this.getRowEntry('Eliquis (apixaban)?', this.displayChecked(this.props.registration.eliquis.value))}
         {this.getRowEntry('Other?', this.props.registration.otherThinner.value)}
         {this.getRowEntry('Have you seen a heart doctor (cardiologist) within the last year?', getListValue(yesNo, this.props.registration.heartDoctor.value))}
         {this.getRowEntry('Are you unable to walk up 2 flights of stairs or walk 4-6 blocks without stopping? (Do not answer “yes” if the only reason that you are unable to do this is because of an orthopedic condition)', getListValue(yesNo, this.props.registration.stairs.value))}
@@ -415,9 +419,9 @@ class PageFive extends Component {
       <Panel>
       <Panel.Heading>Chronic Pain</Panel.Heading>
       <Panel.Body>
-        {this.getRowEntry('OxyContin (oxycodone)?', getListValue(yesNo, this.props.registration.oxycodone.value))}
-        {this.getRowEntry('Methadone', getListValue(yesNo, this.props.registration.methadone.value))}
-        {this.getRowEntry('Suboxone (buprenorphine)?', getListValue(yesNo, this.props.registration.suboxone.value))}
+        {this.getRowEntry('OxyContin (oxycodone)?', this.displayChecked(this.props.registration.oxycodone.value))}
+        {this.getRowEntry('Methadone', this.displayChecked(this.props.registration.methadone.value))}
+        {this.getRowEntry('Suboxone (buprenorphine)?', this.displayChecked(this.props.registration.suboxone.value))}
         {this.getRowEntry('Other long-acting opioids?', this.props.registration.otherOpioid.value)}
       </Panel.Body>
     </Panel>
