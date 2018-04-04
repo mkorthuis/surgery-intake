@@ -34,19 +34,441 @@ import moment from 'moment-es6';
 
 class PageFive extends Component {
 
-  handleSubmit = (evt) => {
-    //Since we are just finalizing, there are no changes.  We are just passing the finalize param
-    save(this.props.emailToken, this.props.original, {}, true)
-    this.props.goToPage(6);
-  }
 
   displayChecked = (val) => {
     return val ? 'Checked' : 'Not Checked'
   }
 
+  pageInformation = [{
+    title: 'Procedure Information',
+    rows: [{
+      name: 'Name of Surgeon',
+      value: getListValue(docs, this.props.registration.docPerforming.value)
+    }, {
+      name: 'Procedure to Perform',
+      value: this.props.registration.procedurePerformed.value
+    }, {
+      name: 'Procedure Site',
+      value: getListValue(procedureSites, this.props.registration.procedureSite.value)
+    }, {
+      name: 'Procedure Date',
+      value: (this.props.registration.procedureDate.value || this.props.registration.procedureDate.value === '') ? moment(this.props.registration.procedureDate.value).format("M/D/YYYY") : ''
+    }]
+  }, {
+    title: 'Medical Facility',
+    rows: [{
+      name: 'Name',
+      value: this.props.registration.institutionName.value
+    }, {
+      name: 'Address Line One',
+      value: this.props.registration.institutionAddressOne.value
+    }, {
+      name: 'Address Line Two',
+      value: this.props.registration.institutionAddressTwo.value
+    }, {
+      name: 'City',
+      value: this.props.registration.institutionCity.value
+    }, {
+      name: 'State',
+      value: getListValue(states, this.props.registration.institutionState.value)
+    }, {
+      name: 'Zip',
+      value: this.props.registration.institutionZip.value
+    }]
+  }, {
+    title: 'Patient Information',
+    rows: [{
+      name: 'First Name',
+      value: this.props.registration.firstName.value
+    }, {
+      name: 'Middle Name',
+      value: this.props.registration.middleName.value
+    }, {
+      name: 'Last Name',
+      value: this.props.registration.lastName.value
+    }, {
+      name: 'Preferred Name',
+      value: this.props.registration.preferredName.value
+    }, {
+      name: 'Date of Birth',
+      value: moment(this.props.registration.dateOfBirth.value).format('M/D/YYYY')
+    }, {
+      name: 'Gender',
+      value: getListValue(gender, this.props.registration.sex.value)
+    }]
+  }, {
+    title: 'Contact Numbers',
+    rows: [{
+      name: 'Mobile Phone',
+      value: this.props.registration.mobilePhone.value
+    }, {
+      name: 'Home Phone',
+      value: this.props.registration.homePhone.value
+    }, {
+      name: 'Email Address',
+      value: this.props.registration.emailAddress.value
+    }, {
+      name: 'Work Phone',
+      value: this.props.registration.workPhone.value
+    }, {
+      name: 'Extension',
+      value: this.props.registration.workPhoneExtension.value
+    }]
+  }, {
+    title: 'Patient Address',
+    rows: [{
+      name: 'Address Line One',
+      value: this.props.registration.addressOne.value
+    }, {
+      name: 'Address Line Two',
+      value: this.props.registration.addressTwo.value
+    }, {
+      name: 'City',
+      value: this.props.registration.city.value
+    }, {
+      name: 'State',
+      value: getListValue(states, this.props.registration.state.value)
+    }, {
+      name: 'Zip',
+      value: this.props.registration.zip.value
+    }]
+  }, {
+    title: 'Insurance Information',
+    rows: [{
+      name: 'Primary Insurance',
+      value: getListValue(insuranceTypes, this.props.registration.primaryInsuranceType.value)
+    }, {
+      name: 'Secondary Insurance',
+      value: getListValue(yesNo, this.props.registration.secondaryInsurance.value)
+    }]
+  }, {
+    title: 'Contact Preferences',
+    rows: [{
+      name: 'Weekday contact phone number',
+      value: getListValue(phoneTypes, this.props.registration.weekdayPhoneNumber.value)
+    }, {
+      name: 'Voicemail contact phone number',
+      value: getListValue(phoneTypes, this.props.registration.voiceMailNumber.value)
+    }, {
+      name: 'Can we send text messages',
+      value: getListValue(yesNo, this.props.registration.textMessageApproval.value)
+    }]
+  }, {
+    title: 'Family Contact',
+    rows: [{
+      name: 'First Name',
+      value: this.props.registration.familyMemberFirstName.value
+    }, {
+      name: 'Last Name',
+      value: this.props.registration.familyMemberLastName.value
+    }, {
+      name: 'Relationship',
+      value: getListValue(relationships, this.props.registration.familyMemberRelationship.value)
+    }, {
+      name: 'Address Line One',
+      value: this.props.registration.familyMemberAddressOne.value
+    }, {
+      name: 'Address Line Two',
+      value: this.props.registration.familyMemberAddressTwo.value
+    }, {
+      name: 'City',
+      value: this.props.registration.familyMemberCity.value
+    }, {
+      name: 'State',
+      value: getListValue(states, this.props.registration.familyMemberState.value)
+    }, {
+      name: 'Zip',
+      value: this.props.registration.familyMemberZip.value
+    }]
+  }, {
+    title: 'Ride Home Information',
+    rows: [{
+      name: 'First Name',
+      value: this.props.registration.rideHomeFirstName.value
+    }, {
+      name: 'Last Name',
+      value: this.props.registration.rideHomeLastName.value
+    }, {
+      name: 'Primary Phone',
+      value: this.props.registration.rideHomePrimaryPhone.value
+    }, {
+      name: 'Other Phone',
+      value: this.props.registration.rideHomeOtherPhone.value
+    }, {
+      name: 'Relationship',
+      value: getListValue(relationships, this.props.registration.rideHomeRelationship.value)
+    }]
+  }, {
+    title: 'Basic Screening',
+    rows: [{
+      name: 'Height?',
+      value: (this.props.registration.heightFeet.value || '0') + ' ft, ' + (this.props.registration.heightInches.value || '0') + ' in'
+    }, {
+      name: 'Weight? (lbs)',
+      value: (this.props.registration.weight.value || '0') + ' lbs'
+    }, {
+      name: 'Physical activity level?',
+      value: getListValue(activity, this.props.registration.physicalActivity.value)
+    }, {
+      name: 'Sex?',
+      value: getListValue(gender, this.props.registration.sex.value)
+    }]
+  }, {
+    title: 'Sleep Information',
+    rows: [{
+      name: 'Do you SNORE loudly (louder than talking or heard through closed doors)?',
+      value: getListValue(yesNo, this.props.registration.snoreLoudly.value)
+    }, {
+      name: 'Do you often feel TIRED, fatigued, or sleepy during daytime?',
+      value: getListValue(yesNo, this.props.registration.feelTired.value)
+    }, {
+      name: 'Has anyone OBSERVED you stop breathing during your sleep?',
+      value: getListValue(yesNo, this.props.registration.observedStopBreathing.value)
+    }, {
+      name: 'What is your neck circumference? (in inches)',
+      value: getListValue(neckCircumference, this.props.registration.neckCircumference.value)
+    }]
+  }, {
+    title: 'History of Anesthesia Complications',
+    rows: [{
+      name: 'History of malignant hypertermia?',
+      value: getListValue(yesNo, this.props.registration.malignantHypertermia.value)
+    }, {
+      name: 'History of pseudocholinesterase deficiency?',
+      value: getListValue(yesNo, this.props.registration.pseudocholinesteraseDeficiency.value)
+    }, {
+      name: 'Motion sickness?',
+      value: getListValue(yesNo, this.props.registration.motionSickness.value)
+    }, {
+      name: 'Postoperative nausea and vomiting?',
+      value: getListValue(yesNo, this.props.registration.nauseaVomiting.value)
+    }, {
+      name: 'Other serious adverse reactions to anesthesia medications?',
+      value: this.props.registration.adverseReaction.value
+    }, {
+      name: 'Was it hard for them to get the breathing tube in place?',
+      value: getListValue(yesNo, this.props.registration.breathingTube.value)
+    }, {
+      name: 'Was it hard for you to wake up?',
+      value: getListValue(yesNo, this.props.registration.wakeUp.value)
+    }, {
+      name: 'Did you have an allergic reaction to the anesthesia drugs?',
+      value: getListValue(yesNo, this.props.registration.allergicReaction.value)
+    }, {
+      name: 'Did you have a high fever because of the anesthesia drugs (malignant hyperthermia)?',
+      value: getListValue(yesNo, this.props.registration.highFever.value)
+    }, {
+      name: 'Have any close family members had trouble with anesthesia?',
+      value: getListValue(yesNo, this.props.registration.familyComplications.value)
+    }]
+  }, {
+    title: 'Recent or Planned Diagnostic Testing',
+    rows: [{
+      name: 'EKG?',
+      value: getListValue(yesNo, this.props.registration.ekg.value)
+    }, {
+      name: 'Chest XRAY?',
+      value: getListValue(yesNo, this.props.registration.chestXray.value)
+    }, {
+      name: 'Sleep Apnea Study?',
+      value: getListValue(yesNo, this.props.registration.sleepApnea.value)
+    }, {
+      name: 'Cardiac (Heart) Stress Test?',
+      value: getListValue(yesNo, this.props.registration.cardiacStress.value)
+    }, {
+      name: 'Cardiac (Heart) Echo (Ultrasound)?',
+      value: getListValue(yesNo, this.props.registration.cardiacEcho.value)
+    }, {
+      name: 'Cardiac Catheterization?',
+      value: getListValue(yesNo, this.props.registration.cardiacCatheterization.value)
+    }]
+  }, {
+    title: 'Alcohol, Smoking and Drug Use',
+    rows: [{
+      name: 'Smoking status?',
+      value: getListValue(smokerList, this.props.registration.cigaretteSmoker.value)
+    }, {
+      name: 'Cigar smoker, pipe smoker, and/or tobacco chewer?',
+      value: getListValue(yesNo, this.props.registration.cigarSmoker.value)
+    }, {
+      name: 'Do you drink alcohol daily?',
+      value: getListValue(yesNo, this.props.registration.drinkDaily.value)
+    }, {
+      name: 'Do you drink alcohol heavily?',
+      value: getListValue(yesNo, this.props.registration.drinkHeavy.value)
+    }, {
+      name: 'Do you take narcotic medications not prescribed for you?',
+      value: getListValue(yesNo, this.props.registration.narcoticMeds.value)
+    }, {
+      name: 'Do you take street (illicit) drugs?',
+      value: getListValue(yesNo, this.props.registration.illegalDrugs.value)
+    }, {
+      name: 'Have you ever felt that you should cut down on your drinking or drug use?',
+      value: getListValue(yesNo, this.props.registration.substanceAbuse.value)
+    }, {
+      name: 'Are you angry or annoyed when others criticize your drinking or drug use?',
+      value: getListValue(yesNo, this.props.registration.substanceUseCriticism.value)
+    }, {
+      name: 'Have you ever felt bad or guilty about your drinking or drug use?',
+      value: getListValue(yesNo, this.props.registration.substanceUseGuilt.value)
+    }, {
+      name: 'Have you had a drink or used drugs the first thing in the morning as an eyeopener?',
+      value: getListValue(yesNo, this.props.registration.substanceDependence.value)
+    }]
+  }, {
+    title: 'Heart or Blood Vessel Disease',
+    rows: [{
+      name: 'Too much fluid in your lungs (congestive heart failure)?',
+      value: getListValue(yesNo, this.props.registration.heartFailure.value)
+    }, {
+      name: 'Heart attack (myocardial infarction)?',
+      value: getListValue(yesNo, this.props.registration.heartAttack.value)
+    }, {
+      name: 'If you did have a heart attack, was it in the past 6 months?',
+      value: getListValue(yesNo, this.props.registration.heartAttackTime.value)
+    }, {
+      name: 'Chest pain, shortness of breath while walking, or irregular, slow, or fast heart beat?',
+      value: getListValue(yesNo, this.props.registration.chestPain.value)
+    }, {
+      name: 'Heart murmur or heart valve problem (aortic stenosis, mitral valve prolapse, etc.)?',
+      value: getListValue(yesNo, this.props.registration.heartMurmer.value)
+    }, {
+      name: 'Any implanted devices in your heart (cardiac stents, heart valves, pacemaker or defibrillator)?',
+      value: getListValue(yesNo, this.props.registration.heartDevice.value)
+    }, {
+      name: 'Heart or blood vessel surgery (coronary artery bypass, valve replacement or carotid surgery)?',
+      value: getListValue(yesNo, this.props.registration.heartSurgery.value)
+    }, {
+      name: 'High blood pressure in the lungs (pulmonary hypertension)?',
+      value: getListValue(yesNo, this.props.registration.pulmonaryHypertension.value)
+    }, {
+      name: 'Blood clots in legs or lungs (deep vein thrombosis, pulmonary embolus)?',
+      value: getListValue(yesNo, this.props.registration.bloodClot.value)
+    }, {
+      name: 'Uncontrolled high blood pressure greater than 160/100 (160 over 100)',
+      value: getListValue(yesNo, this.props.registration.highBloodPressure.value)
+    }, {
+      name: 'Aspirin?',
+      value: this.displayChecked(this.props.registration.aspirin.value)
+    }, {
+      name: 'Coumadin (warfarin)?',
+      value: this.displayChecked(this.props.registration.coumadin.value)
+    }, {
+      name: 'Plavix (clopidogrel)?',
+      value: this.displayChecked(this.props.registration.plavix.value)
+    }, {
+      name: 'Effient (prasugrel)?',
+      value: this.displayChecked(this.props.registration.effient.value)
+    }, {
+      name: 'Pradaxa (dabigatran)?',
+      value: this.displayChecked(this.props.registration.pradaxa.value)
+    }, {
+      name: 'Xarelto (rivaroxaban)?',
+      value: this.displayChecked(this.props.registration.xarelto.value)
+    }, {
+      name: 'Eliquis (apixaban)?',
+      value: this.displayChecked(this.props.registration.eliquis.value)
+    }, {
+      name: 'Other?',
+      value: this.props.registration.otherThinner.value
+    }, {
+      name: 'Have you seen a heart doctor (cardiologist) within the last year?',
+      value: getListValue(yesNo, this.props.registration.heartDoctor.value)
+    }, {
+      name: 'Are you unable to walk up 2 flights of stairs or walk 4-6 blocks without stopping? (Do not answer “yes” if the only reason that you are unable to do this is because of an orthopedic condition)',
+      value: getListValue(yesNo, this.props.registration.stairs.value)
+    }]
+  }, {
+    title: 'Lung Disease',
+    rows: [{
+      name: 'Do you have severe lung disease (COPD, pulmonary fibrosis, cystic fibrosis, or frequent asthma attacks)?',
+      value: getListValue(yesNo, this.props.registration.lungDisease.value)
+    }, {
+      name: 'Do you use oxygen at home during the day or at night?',
+      value: getListValue(yesNo, this.props.registration.oxygen.value)
+    }]
+  }, {
+    title: 'Diabetes',
+    rows: [{
+      name: 'Do you have Diabetes (Type I or Type II) that is difficult to control?',
+      value: getListValue(yesNo, this.props.registration.diabetes.value)
+    }]
+  }, {
+    title: 'Kidney Disease',
+    rows: [{
+      name: 'Do you receive dialysis for kidney disease?',
+      value: getListValue(yesNo, this.props.registration.dialysis.value)
+    }]
+  }, {
+    title: 'Liver Disease',
+    rows: [{
+      name: 'Do you have chronic hepatitis, cirrhosis or liver failure?',
+      value: getListValue(yesNo, this.props.registration.liverFailure.value)
+    }]
+  }, {
+    title: 'Nervous System',
+    rows: [{
+      name: 'Have you had a stroke, transient ischemic attack (TIA), brain aneurysm, Alzheimer’s or dementia, seizures, multiple sclerosis, or brain tumor?',
+      value: getListValue(yesNo, this.props.registration.stroke.value)
+    }]
+  }, {
+    title: 'Muscle Disorders',
+    rows: [{
+      name: 'Do you have myasthenia gravis or muscular dystrophy?',
+      value: getListValue(yesNo, this.props.registration.muscularDystrophy.value)
+    }]
+  }, {
+    title: 'Bleeding or Blood Disorders',
+    rows: [{
+      name: 'Do you have hemophilia, sickle cell, or blood cancer?',
+      value: getListValue(yesNo, this.props.registration.hemophilia.value)
+    }, {
+      name: 'Do you bleed easily when cut or scraped?',
+      value: getListValue(yesNo, this.props.registration.bleedEasy.value)
+    }]
+  }, {
+    title: 'Organ Transplant',
+    rows: [{
+      name: 'Have you had an organ transplant?',
+      value: getListValue(yesNo, this.props.registration.organTransplant.value)
+    }]
+  }, {
+    title: 'Pregnant',
+    rows: [{
+      name: 'Are you pregnant or do you think you could be pregnant?',
+      value: getListValue(yesNo, this.props.registration.pregnant.value)
+    }]
+  }, {
+    title: 'Chronic Pain',
+    rows: [{
+      name: 'OxyContin (oxycodone)?',
+      value: this.displayChecked(this.props.registration.oxycodone.value)
+    }, {
+      name: 'Methadone',
+      value: this.displayChecked(this.props.registration.methadone.value)
+    }, {
+      name: 'Suboxone (buprenorphine)?',
+      value: this.displayChecked(this.props.registration.suboxone.value)
+    }, {
+      name: 'Other long-acting opioids?',
+      value: this.props.registration.otherOpioid.value
+    }]
+  }]
+
+
+  handleSubmit = (evt) => {
+    //Since we are just finalizing, there are no changes, aside from the generated HTML.  We are just passing the finalize param
+    var htmlText = "<html><head></head><body>" + this.pageInformation.map((section) => this.displayPrintSection(section)).join("") + "</body></html>";
+    save(this.props.emailToken, this.props.original, {
+      html: htmlText
+    }, true)
+    this.props.goToPage(6);
+  }
+
+
   getRowEntry = (name, value) => {
     return (
-      <Row>
+      <Row key={name}>
         <Col xs={12}>
           <b>{name}:</b> {value}
         </Col>
@@ -54,375 +476,13 @@ class PageFive extends Component {
     )
   }
 
+
   getReview() {
     return (
       <Panel>
       <Panel.Heading>Review Information</Panel.Heading>
       <Panel.Body>
       Please review the information below.  If it is correct, please send.
-      </Panel.Body>
-    </Panel>
-    )
-  }
-
-  getProcedureInformation() {
-    return (
-      <Panel>
-      <Panel.Heading>Procedure Information</Panel.Heading>
-      <Panel.Body>
-        {this.getRowEntry('Name of Surgeon', getListValue(docs, this.props.registration.docPerforming.value))}
-        {this.getRowEntry('Procedure to Perform', this.props.registration.procedurePerformed.value)}
-        {this.getRowEntry('Procedure Site', getListValue(procedureSites, this.props.registration.procedureSite.value))}
-        {this.getRowEntry('Procedure Date', (this.props.registration.procedureDate.value || this.props.registration.procedureDate.value === '') ? moment(this.props.registration.procedureDate.value).format("M/D/YYYY") : '')}
-      </Panel.Body>
-    </Panel>
-    )
-  }
-
-  getMedicalFacility() {
-    return (
-      <Panel>
-      <Panel.Heading>Medical Facility</Panel.Heading>
-      <Panel.Body>
-        {this.getRowEntry('Name', this.props.registration.institutionName.value)}
-        {this.getRowEntry('Address Line One', this.props.registration.institutionAddressOne.value)}
-        {this.getRowEntry('Address Line Two', this.props.registration.institutionAddressTwo.value)}
-        {this.getRowEntry('City', this.props.registration.institutionCity.value)}
-        {this.getRowEntry('State', getListValue(states, this.props.registration.institutionState.value))}
-        {this.getRowEntry('Zip', this.props.registration.institutionZip.value)}
-      </Panel.Body>
-    </Panel>
-    )
-  }
-
-  getPatientInformation() {
-    return (
-      <Panel>
-      <Panel.Heading>Patient Information</Panel.Heading>
-      <Panel.Body>
-        {this.getRowEntry('First Name', this.props.registration.firstName.value)}
-        {this.getRowEntry('Middle Name', this.props.registration.middleName.value)}
-        {this.getRowEntry('Last Name', this.props.registration.lastName.value)}
-        {this.getRowEntry('Preferred Name', this.props.registration.preferredName.value)}
-        {this.getRowEntry('Date of Birth', moment(this.props.registration.dateOfBirth.value).format('M/D/YYYY'))}
-        {this.getRowEntry('Gender', getListValue(gender, this.props.registration.sex.value))}
-      </Panel.Body>
-    </Panel>
-    )
-  }
-
-  getContactNumbers() {
-    return (
-      <Panel>
-      <Panel.Heading>Contact Numbers</Panel.Heading>
-      <Panel.Body>
-        {this.getRowEntry('Mobile Phone', this.props.registration.mobilePhone.value)}
-        {this.getRowEntry('Home Phone', this.props.registration.homePhone.value)}
-        {this.getRowEntry('Email Address', this.props.registration.emailAddress.value)}
-        {this.getRowEntry('Work Phone', this.props.registration.workPhone.value)}
-        {this.getRowEntry('Extension', this.props.registration.workPhoneExtension.value)}
-      </Panel.Body>
-    </Panel>
-    )
-  }
-
-  getPatientAddress() {
-    return (
-      <Panel>
-      <Panel.Heading>Patient Address</Panel.Heading>
-      <Panel.Body>
-        {this.getRowEntry('Address Line One', this.props.registration.addressOne.value)}
-        {this.getRowEntry('Address Line Two', this.props.registration.addressTwo.value)}
-        {this.getRowEntry('City', this.props.registration.city.value)}
-        {this.getRowEntry('State', getListValue(states, this.props.registration.state.value))}
-        {this.getRowEntry('Zip', this.props.registration.zip.value)}
-      </Panel.Body>
-    </Panel>
-    )
-  }
-
-  getInsuranceInformation() {
-    return (
-      <Panel>
-      <Panel.Heading>Insurance Information</Panel.Heading>
-      <Panel.Body>
-        {this.getRowEntry('Primary Insurance', getListValue(insuranceTypes, this.props.registration.primaryInsuranceType.value))}
-        {this.getRowEntry('Secondary Insurance', getListValue(yesNo, this.props.registration.secondaryInsurance.value))}
-      </Panel.Body>
-    </Panel>
-    )
-  }
-
-  getContactPreferences() {
-    return (
-      <Panel>
-      <Panel.Heading>Contact Preferences</Panel.Heading>
-      <Panel.Body>
-        {this.getRowEntry('Weekday contact phone number', getListValue(phoneTypes, this.props.registration.weekdayPhoneNumber.value))}
-        {this.getRowEntry('Voicemail contact phone number', getListValue(phoneTypes, this.props.registration.voiceMailNumber.value))}
-        {this.getRowEntry('Can we send text messages', getListValue(yesNo, this.props.registration.textMessageApproval.value))}
-      </Panel.Body>
-    </Panel>
-    )
-  }
-
-  getFamilyContact() {
-    return (
-      <Panel>
-      <Panel.Heading>Family Contact</Panel.Heading>
-      <Panel.Body>
-        {this.getRowEntry('First Name', this.props.registration.familyMemberFirstName.value)}
-        {this.getRowEntry('Last Name', this.props.registration.familyMemberLastName.value)}
-        {this.getRowEntry('Relationship', getListValue(relationships, this.props.registration.familyMemberRelationship.value))}
-        {this.getRowEntry('Address Line One', this.props.registration.familyMemberAddressOne.value)}
-        {this.getRowEntry('Address Line Two', this.props.registration.familyMemberAddressTwo.value)}
-        {this.getRowEntry('City', this.props.registration.familyMemberCity.value)}
-        {this.getRowEntry('State', getListValue(states, this.props.registration.familyMemberState.value))}
-        {this.getRowEntry('Zip', this.props.registration.familyMemberZip.value)}
-      </Panel.Body>
-    </Panel>
-    )
-  }
-
-  getRideHome() {
-    return (
-      <Panel>
-      <Panel.Heading>Ride Home Information</Panel.Heading>
-      <Panel.Body>
-        {this.getRowEntry('First Name', this.props.registration.rideHomeFirstName.value)}
-        {this.getRowEntry('Last Name', this.props.registration.rideHomeLastName.value)}
-        {this.getRowEntry('Primary Phone', this.props.registration.rideHomePrimaryPhone.value)}
-        {this.getRowEntry('Other Phone', this.props.registration.rideHomeOtherPhone.value)}
-        {this.getRowEntry('Relationship', getListValue(relationships, this.props.registration.rideHomeRelationship.value))}
-      </Panel.Body>
-    </Panel>
-    )
-  }
-
-  getBasicScreening() {
-    return (
-      <Panel>
-      <Panel.Heading>Basic Screening</Panel.Heading>
-      <Panel.Body>
-        {this.getRowEntry('Height?', (this.props.registration.heightFeet.value || '0') + ' ft, ' + (this.props.registration.heightInches.value || '0') + ' in')}
-        {this.getRowEntry('Weight? (lbs)', (this.props.registration.weight.value || '0') + ' lbs')}
-        {this.getRowEntry('Physical activity level?', getListValue(activity, this.props.registration.physicalActivity.value))}
-        {this.getRowEntry('Sex?', getListValue(gender, this.props.registration.sex.value))}
-      </Panel.Body>
-    </Panel>
-    )
-  }
-
-  getSleepInformation() {
-    return (
-      <Panel>
-      <Panel.Heading>Sleep Information</Panel.Heading>
-      <Panel.Body>
-        {this.getRowEntry('Do you SNORE loudly (louder than talking or heard through closed doors)?', getListValue(yesNo, this.props.registration.snoreLoudly.value))}
-        {this.getRowEntry('Do you often feel TIRED, fatigued, or sleepy during daytime?', getListValue(yesNo, this.props.registration.feelTired.value))}
-        {this.getRowEntry('Has anyone OBSERVED you stop breathing during your sleep?', getListValue(yesNo, this.props.registration.observedStopBreathing.value))}
-        {this.getRowEntry('What is your neck circumference? (in inches)', getListValue(neckCircumference, this.props.registration.neckCircumference.value))}
-      </Panel.Body>
-    </Panel>
-    )
-  }
-
-  getAnesthesia() {
-    return (
-      <Panel>
-      <Panel.Heading>History of Anesthesia Complications</Panel.Heading>
-      <Panel.Body>
-        {this.getRowEntry('History of malignant hypertermia?', getListValue(yesNo, this.props.registration.malignantHypertermia.value))}
-        {this.getRowEntry('History of pseudocholinesterase deficiency?', getListValue(yesNo, this.props.registration.pseudocholinesteraseDeficiency.value))}
-        {this.getRowEntry('Motion sickness?', getListValue(yesNo, this.props.registration.motionSickness.value))}
-        {this.getRowEntry('Postoperative nausea and vomiting?', getListValue(yesNo, this.props.registration.nauseaVomiting.value))}
-        {this.getRowEntry('Other serious adverse reactions to anesthesia medications?', this.props.registration.adverseReaction.value)}
-        {this.getRowEntry('Was it hard for them to get the breathing tube in place?', getListValue(yesNo, this.props.registration.breathingTube.value))}
-        {this.getRowEntry('Was it hard for you to wake up?', getListValue(yesNo, this.props.registration.wakeUp.value))}
-        {this.getRowEntry('Did you have an allergic reaction to the anesthesia drugs?', getListValue(yesNo, this.props.registration.allergicReaction.value))}
-        {this.getRowEntry('Did you have a high fever because of the anesthesia drugs (malignant hyperthermia)?', getListValue(yesNo, this.props.registration.highFever.value))}
-        {this.getRowEntry('Have any close family members had trouble with anesthesia?', getListValue(yesNo, this.props.registration.familyComplications.value))}
-      </Panel.Body>
-    </Panel>
-    )
-  }
-
-  getDiagnostic() {
-    return (
-      <Panel>
-      <Panel.Heading>Recent or Planned Diagnostic Testing</Panel.Heading>
-      <Panel.Body>
-        {this.getRowEntry('EKG?', getListValue(yesNo, this.props.registration.ekg.value))}
-        {this.getRowEntry('Chest XRAY?', getListValue(yesNo, this.props.registration.chestXray.value))}
-        {this.getRowEntry('Sleep Apnea Study?', getListValue(yesNo, this.props.registration.sleepApnea.value))}
-        {this.getRowEntry('Cardiac (Heart) Stress Test?', getListValue(yesNo, this.props.registration.cardiacStress.value))}
-        {this.getRowEntry('Cardiac (Heart) Echo (Ultrasound)?', getListValue(yesNo, this.props.registration.cardiacEcho.value))}
-        {this.getRowEntry('Cardiac Catheterization?', getListValue(yesNo, this.props.registration.cardiacCatheterization.value))}
-      </Panel.Body>
-    </Panel>
-    )
-  }
-
-  getSubstanceUse() {
-    return (
-      <Panel>
-      <Panel.Heading>Alcohol, Smoking and Drug Use</Panel.Heading>
-      <Panel.Body>
-        {this.getRowEntry('Smoking status?', getListValue(smokerList, this.props.registration.cigaretteSmoker.value))}
-        {this.getRowEntry('Cigar smoker, pipe smoker, and/or tobacco chewer?', getListValue(yesNo, this.props.registration.cigarSmoker.value))}
-        {this.getRowEntry('Do you drink alcohol daily?', getListValue(yesNo, this.props.registration.drinkDaily.value))}
-        {this.getRowEntry('Do you drink alcohol heavily?', getListValue(yesNo, this.props.registration.drinkHeavy.value))}
-        {this.getRowEntry('Do you take narcotic medications not prescribed for you?', getListValue(yesNo, this.props.registration.narcoticMeds.value))}
-        {this.getRowEntry('Do you take street (illicit) drugs?', getListValue(yesNo, this.props.registration.illegalDrugs.value))}
-        {this.getRowEntry('Have you ever felt that you should cut down on your drinking or drug use?', getListValue(yesNo, this.props.registration.substanceAbuse.value))}
-        {this.getRowEntry('Are you angry or annoyed when others criticize your drinking or drug use?', getListValue(yesNo, this.props.registration.substanceUseCriticism.value))}
-        {this.getRowEntry('Have you ever felt bad or guilty about your drinking or drug use?', getListValue(yesNo, this.props.registration.substanceUseGuilt.value))}
-        {this.getRowEntry('Have you had a drink or used drugs the first thing in the morning as an eyeopener?', getListValue(yesNo, this.props.registration.substanceDependence.value))}
-      </Panel.Body>
-    </Panel>
-    )
-  }
-
-  getHeartDisease() {
-    return (
-      <Panel>
-      <Panel.Heading>Heart or Blood Vessel Disease</Panel.Heading>
-      <Panel.Body>
-        {this.getRowEntry('Too much fluid in your lungs (congestive heart failure)?', getListValue(yesNo, this.props.registration.heartFailure.value))}
-        {this.getRowEntry('Heart attack (myocardial infarction)?', getListValue(yesNo, this.props.registration.heartAttack.value))}
-        {this.getRowEntry('If you did have a heart attack, was it in the past 6 months?', getListValue(yesNo, this.props.registration.heartAttackTime.value))}
-        {this.getRowEntry('Chest pain, shortness of breath while walking, or irregular, slow, or fast heart beat?', getListValue(yesNo, this.props.registration.chestPain.value))}
-        {this.getRowEntry('Heart murmur or heart valve problem (aortic stenosis, mitral valve prolapse, etc.)?', getListValue(yesNo, this.props.registration.heartMurmer.value))}
-        {this.getRowEntry('Any implanted devices in your heart (cardiac stents, heart valves, pacemaker or defibrillator)?', getListValue(yesNo, this.props.registration.heartDevice.value))}
-        {this.getRowEntry('Heart or blood vessel surgery (coronary artery bypass, valve replacement or carotid surgery)?', getListValue(yesNo, this.props.registration.heartSurgery.value))}
-        {this.getRowEntry('High blood pressure in the lungs (pulmonary hypertension)?', getListValue(yesNo, this.props.registration.pulmonaryHypertension.value))}
-        {this.getRowEntry('Blood clots in legs or lungs (deep vein thrombosis, pulmonary embolus)?', getListValue(yesNo, this.props.registration.bloodClot.value))}
-        {this.getRowEntry('Uncontrolled high blood pressure greater than 160/100 (160 over 100)', getListValue(yesNo, this.props.registration.highBloodPressure.value))}
-        {this.getRowEntry('Aspirin?', this.displayChecked(this.props.registration.aspirin.value))}
-        {this.getRowEntry('Coumadin (warfarin)?', this.displayChecked(this.props.registration.coumadin.value))}
-        {this.getRowEntry('Plavix (clopidogrel)?', this.displayChecked(this.props.registration.plavix.value))}
-        {this.getRowEntry('Effient (prasugrel)?', this.displayChecked(this.props.registration.effient.value))}
-        {this.getRowEntry('Pradaxa (dabigatran)?', this.displayChecked(this.props.registration.pradaxa.value))}
-        {this.getRowEntry('Xarelto (rivaroxaban)?', this.displayChecked(this.props.registration.xarelto.value))}
-        {this.getRowEntry('Eliquis (apixaban)?', this.displayChecked(this.props.registration.eliquis.value))}
-        {this.getRowEntry('Other?', this.props.registration.otherThinner.value)}
-        {this.getRowEntry('Have you seen a heart doctor (cardiologist) within the last year?', getListValue(yesNo, this.props.registration.heartDoctor.value))}
-        {this.getRowEntry('Are you unable to walk up 2 flights of stairs or walk 4-6 blocks without stopping? (Do not answer “yes” if the only reason that you are unable to do this is because of an orthopedic condition)', getListValue(yesNo, this.props.registration.stairs.value))}
-      </Panel.Body>
-    </Panel>
-    )
-  }
-
-  getLungDisease() {
-    return (
-      <Panel>
-      <Panel.Heading>Lung Disease</Panel.Heading>
-      <Panel.Body>
-        {this.getRowEntry('Do you have severe lung disease (COPD, pulmonary fibrosis, cystic fibrosis, or frequent asthma attacks)?', getListValue(yesNo, this.props.registration.lungDisease.value))}
-        {this.getRowEntry('Do you use oxygen at home during the day or at night?', getListValue(yesNo, this.props.registration.oxygen.value))}
-      </Panel.Body>
-    </Panel>
-    )
-  }
-
-  getDiabetes() {
-    return (
-      <Panel>
-      <Panel.Heading>Diabetes</Panel.Heading>
-      <Panel.Body>
-        {this.getRowEntry('Do you have Diabetes (Type I or Type II) that is difficult to control?', getListValue(yesNo, this.props.registration.diabetes.value))}
-      </Panel.Body>
-    </Panel>
-    )
-  }
-
-  getKidneyDisease() {
-    return (
-      <Panel>
-      <Panel.Heading>Kidney Disease</Panel.Heading>
-      <Panel.Body>
-        {this.getRowEntry('Do you receive dialysis for kidney disease?', getListValue(yesNo, this.props.registration.dialysis.value))}
-      </Panel.Body>
-    </Panel>
-    )
-  }
-
-  getLiverDisease() {
-    return (
-      <Panel>
-      <Panel.Heading>Liver Disease</Panel.Heading>
-      <Panel.Body>
-        {this.getRowEntry('Do you have chronic hepatitis, cirrhosis or liver failure?', getListValue(yesNo, this.props.registration.liverFailure.value))}
-      </Panel.Body>
-    </Panel>
-    )
-  }
-
-  getNervousSystem() {
-    return (
-      <Panel>
-      <Panel.Heading>Nervous System</Panel.Heading>
-      <Panel.Body>
-        {this.getRowEntry('Have you had a stroke, transient ischemic attack (TIA), brain aneurysm, Alzheimer’s or dementia, seizures, multiple sclerosis, or brain tumor?', getListValue(yesNo, this.props.registration.stroke.value))}
-      </Panel.Body>
-    </Panel>
-    )
-  }
-
-  getMuscleDisorders() {
-    return (
-      <Panel>
-      <Panel.Heading>Muscle Disorders</Panel.Heading>
-      <Panel.Body>
-        {this.getRowEntry('Do you have myasthenia gravis or muscular dystrophy?', getListValue(yesNo, this.props.registration.muscularDystrophy.value))}
-      </Panel.Body>
-    </Panel>
-    )
-  }
-
-  getBloodDisorders() {
-    return (
-      <Panel>
-      <Panel.Heading>Bleeding or Blood Disorders</Panel.Heading>
-      <Panel.Body>
-        {this.getRowEntry('Do you have hemophilia, sickle cell, or blood cancer?', getListValue(yesNo, this.props.registration.hemophilia.value))}
-        {this.getRowEntry('Do you bleed easily when cut or scraped?', getListValue(yesNo, this.props.registration.bleedEasy.value))}
-      </Panel.Body>
-    </Panel>
-    )
-  }
-
-  getOrganTransplant() {
-    return (
-      <Panel>
-      <Panel.Heading>Organ Transplant</Panel.Heading>
-      <Panel.Body>
-        {this.getRowEntry('Have you had an organ transplant?', getListValue(yesNo, this.props.registration.organTransplant.value))}
-      </Panel.Body>
-    </Panel>
-    )
-  }
-
-  getPregnant() {
-    return (
-      <Panel>
-      <Panel.Heading>Pregnant</Panel.Heading>
-      <Panel.Body>
-        {this.getRowEntry('Are you pregnant or do you think you could be pregnant?', getListValue(yesNo, this.props.registration.pregnant.value))}
-      </Panel.Body>
-    </Panel>
-    )
-  }
-
-  getChronicPain() {
-    return (
-      <Panel>
-      <Panel.Heading>Chronic Pain</Panel.Heading>
-      <Panel.Body>
-        {this.getRowEntry('OxyContin (oxycodone)?', this.displayChecked(this.props.registration.oxycodone.value))}
-        {this.getRowEntry('Methadone', this.displayChecked(this.props.registration.methadone.value))}
-        {this.getRowEntry('Suboxone (buprenorphine)?', this.displayChecked(this.props.registration.suboxone.value))}
-        {this.getRowEntry('Other long-acting opioids?', this.props.registration.otherOpioid.value)}
       </Panel.Body>
     </Panel>
     )
@@ -436,6 +496,22 @@ class PageFive extends Component {
         </Alert>
       )
     }
+  }
+
+  displayPrintSection(section) {
+    var html = "<h3>" + section.title + "</h3><table>";
+    var rows = section.rows.map((row) => "<tr><td>" + row.name + "</td><td>" + row.value + "</td></tr>").join("");
+    html += rows + "</table>";
+    return html;
+  }
+
+  displaySection(section) {
+    return (
+      <Panel key={section.title}>
+        <Panel.Heading>{section.title}</Panel.Heading>
+        <Panel.Body>{section.rows.map((row) => this.getRowEntry(row.name, row.value))}</Panel.Body>
+      </Panel>
+    )
   }
 
   getButton(isInvalid) {
@@ -467,36 +543,11 @@ class PageFive extends Component {
       isInvalid = "the procedure page / page 1";
     }
 
-
     return (
       <form onSubmit={this.handleSubmit}>
-        <Grid className="main-grid">
+        <Grid className="main-grid" ref={div => {this.rootDiv = div; }}>
           {this.getReview()}
-          {this.getProcedureInformation()}
-          {this.getMedicalFacility()}
-          {this.getPatientInformation()}
-          {this.getContactNumbers()}
-          {this.getPatientAddress()}
-          {this.getInsuranceInformation()}
-          {this.getContactPreferences()}
-          {this.getFamilyContact()}
-          {this.getRideHome()}
-          {this.getBasicScreening()}
-          {this.getSleepInformation()}
-          {this.getAnesthesia()}
-          {this.getDiagnostic()}
-          {this.getSubstanceUse()}
-          {this.getHeartDisease()}
-          {this.getLungDisease()}
-          {this.getDiabetes()}
-          {this.getKidneyDisease()}
-          {this.getLiverDisease()}
-          {this.getNervousSystem()}
-          {this.getMuscleDisorders()}
-          {this.getBloodDisorders()}
-          {this.getOrganTransplant()}
-          {this.getPregnant()}
-          {this.getChronicPain()}
+          {this.pageInformation.map((section) => this.displaySection(section))}
           {this.getValidationAlert(isInvalid)}
           <Row className="last-row">
             <Col xs={12}>
